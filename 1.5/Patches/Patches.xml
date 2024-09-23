@@ -1,0 +1,254 @@
+<Patch>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/comps/li[@Class="CompProperties_TreeConnection"]</xpath>
+    <value>
+      <li Class="Dryad.CompProperties_NewTreeConnection">
+        <pawnKind>Dryad_Basic</pawnKind>
+        <spawnDays>3</spawnDays>
+        <initialConnectionStrengthRange>0.2~0.2</initialConnectionStrengthRange>
+        <connectionStrengthLossPerDryadDeath>0.1</connectionStrengthLossPerDryadDeath>
+        <connectionStrengthGainPerHourPruningBase>0.1</connectionStrengthGainPerHourPruningBase>
+        <spawningPodOffset>(-0.15, 0, -0.55)</spawningPodOffset>
+        <spawningPodSizeRange>0.4~0.65</spawningPodSizeRange>
+        <maxDryadsWild>1</maxDryadsWild>
+        <harmonyBuildings>
+          <li MayRequire="Ludeon.Rimworld.Royalty">AnimusStone</li>
+          <li MayRequire="Ludeon.Rimworld.Royalty">NatureShrine_Small</li>
+          <li MayRequire="Ludeon.Rimworld.Royalty">NatureShrine_Large</li>
+          <li>Dryad_GauranlenShrine_Small</li>
+          <li>Dryad_GauranlenShrine_Large</li>
+          <li>Dryad_VikingShrine</li>
+        </harmonyBuildings>
+        <maxDryadsPerConnectionStrengthCurve>
+          <points>
+            <li>(0.05, 0)</li>
+            <li>(0.23, 1)</li>
+            <li>(0.48, 2)</li>
+            <li>(0.73, 3)</li>
+            <li>(0.95, 4)</li>
+            <li>(0.99, 5)</li>
+          </points>
+        </maxDryadsPerConnectionStrengthCurve>
+        <connectionLossPerLevelCurve>
+          <points>
+            <li>(0, -0.1)</li>
+          </points>
+        </connectionLossPerLevelCurve>
+        <connectionLossDailyPerBuildingDistanceCurve>
+          <points>
+            <li>(0,0)</li>
+          </points>
+        </connectionLossDailyPerBuildingDistanceCurve>
+        <connectionStrengthGainPerPlantSkill>
+          <points>
+            <li>(0, 50)</li>
+            <li>(8, 1)</li>
+            <li>(20, 1.2)</li>
+          </points>
+        </connectionStrengthGainPerPlantSkill>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/comps</xpath>
+    <value>
+      <li Class="CompProperties_MeditationFocus">
+        <statDef>MeditationFocusStrength</statDef>
+        <focusTypes>
+          <li>Natural</li>
+        </focusTypes>
+        <offsets>
+          <li Class="FocusStrengthOffset_ArtificialBuildings">
+            <radius>27.9</radius>
+            <curve>
+              <points>
+                <li>(0,   0.0)</li>
+                <li>(5,  -0.15)</li>
+                <li>(10, -0.3)</li>
+                <li>(50, -0.5)</li>
+              </points>
+            </curve>
+          </li>
+          <li Class="FocusStrengthOffset_BuildingDefs">
+            <defs>
+              <AnimusStone>0.02</AnimusStone>
+              <NatureShrine_Small>0.01</NatureShrine_Small>
+              <NatureShrine_Large>0.01</NatureShrine_Large>
+            </defs>
+            <radius>9.9</radius>
+            <maxBuildings>4</maxBuildings>
+            <explanationKey>MeditationFocusPerAnimusStoneAndShrine</explanationKey>
+            <explanationKeyAbstract>MeditationFocusPerAnimusStoneAndShrineAbstract</explanationKeyAbstract>
+          </li>
+        </offsets>
+      </li>
+    </value>
+  </Operation> -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/statBases</xpath>
+    <value>
+      <MeditationFocusStrength>0.24</MeditationFocusStrength>
+    </value>
+  </Operation>
+  
+  <!-- <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/drawPlaceWorkersWhileSelected</xpath>
+    <value>
+      <drawPlaceWorkersWhileSelected>false</drawPlaceWorkersWhileSelected>
+    </value>
+  </Operation> -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/placeWorkers</xpath>
+    <value>
+      <placeWorkers>
+        <li Inherit="False">Dryad.PlaceWorker_Woody</li>
+      </placeWorkers>
+      
+      <!-- PlaceWorker_ShowFacilitiesConnections -->
+    </value>
+  </Operation>
+
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="DryadCocoon"]/comps/li[@Class="CompProperties_DryadCocoon" or @Class="DryadHealingPod"]/daysToComplete</xpath>
+    <value>
+      <daysToComplete>1</daysToComplete>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThinkTreeDef[defName="Dryad"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalOfPlayerFaction"]/subNodes/li[@Class="ThinkNode_ChancePerHour_Constant"]</xpath>
+    <value>
+      <li Class="ThinkNode_ConditionalRequireCapacities">
+        <requiredCapacities>
+          <li>Manipulation</li>
+        </requiredCapacities>
+        <subNodes>
+          <li Class="ThinkNode_ChancePerHour_Constant">
+            <mtbHours>0.1</mtbHours>
+            <subNodes>
+              <!-- Trained behavior: Haul-->
+              <li Class="ThinkNode_ConditionalTrainableCompleted">
+                <trainable>Haul</trainable>
+                <subNodes>
+                  <li Class="ThinkNode_Tagger">
+                    <tagToGive>TrainedAnimalBehavior</tagToGive>
+                    <subNodes>
+                      <li Class="JobGiver_Haul" />
+                    </subNodes>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <li Class="ThinkNode_ChancePerHour_Constant">
+            <mtbHours>2</mtbHours>
+            <subNodes>
+              <li Class="ThinkNode_Tagger">
+                <tagToGive>TrainedAnimalBehavior</tagToGive>
+                <subNodes>
+                  <li Class="Dryad.JobGiver_Sow">
+                    <maxDistance>70</maxDistance>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <li Class="ThinkNode_Tagger"> 
+            <tagToGive>TrainedAnimalBehavior</tagToGive>
+            <subNodes>
+              <li Class="Dryad.JobGiver_Sow"> <!--This is a more reliable short-ranged version.-->
+                <maxDistance>14</maxDistance>
+              </li>
+            </subNodes>
+          </li>
+        </subNodes>
+      </li>
+    </value>
+  </Operation>  
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name="DryadBase"]/statBases</xpath>
+    <value>
+      <RestRateMultiplier>2</RestRateMultiplier>
+      <PlantWorkSpeed>0.25</PlantWorkSpeed>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Woodmaker"]/statBases</xpath>
+    <value>
+      <RestRateMultiplier>1</RestRateMultiplier>
+      <PlantWorkSpeed>0.4</PlantWorkSpeed>
+    </value>
+  </Operation>
+
+  <!-- <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Medicinemaker"]/statBases</xpath>
+    <value>
+      <PlantWorkSpeed>0.3</PlantWorkSpeed>
+    </value>
+  </Operation> -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Woodmaker"]/race</xpath>
+    <value>
+      <trainability>Advanced</trainability>
+      <trainableTags>
+        <li>Basic</li>
+        <li>Combat</li>
+        <li>Work</li>
+      </trainableTags>
+      <untrainableTags>
+        <li>Help</li>
+      </untrainableTags>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Medicinemaker"]/race</xpath>
+    <value>
+      <trainability>Advanced</trainability>
+      <trainableTags>
+        <li>Help</li>
+      </trainableTags>
+      <untrainableTags>
+        <li>Work</li>
+        <li>Basic</li>
+        <li>Combat</li>
+      </untrainableTags>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Dryad_Carrier"]/race/trainableTags</xpath>
+    <value>
+      <trainableTags>
+        <li>Help</li>
+        <li>Work</li>
+      </trainableTags>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Dryad_Carrier"]/race/untrainableTags</xpath>
+    <value>
+      <untrainableTags>
+        <li>Combat</li>
+        <li>Basic</li>
+      </untrainableTags>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/StatDef[defName="PlantWorkSpeed"]/showOnPawnKind</xpath>
+    <value>
+      <li>Dryad_Berrymaker</li>
+      <li>Dryad_Woodmaker</li>
+      <li>Dryad_Medicinemaker</li>
+    </value>
+  </Operation>
+
+</Patch>

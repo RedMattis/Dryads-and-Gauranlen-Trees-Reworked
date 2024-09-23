@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  
+  <Dryad_NotEnoughHarmony>Not enough harmony to spawn dryads</Dryad_NotEnoughHarmony>
+  <Dryad_LocalHarmony>Gauranlen Tree Harmony of {0} ({1}%). Max effect at {2}</Dryad_LocalHarmony>
+  <Dryad_TotalHarmony>Map Harmony: {0}.</Dryad_TotalHarmony>
+  <Dryad_MechanoidDisruption>Disruption from owned mechanoids: {0}.</Dryad_MechanoidDisruption>
+
+  <Dryad_NeedMoreHarmony>Needs: more nearby shrines (score: {0})</Dryad_NeedMoreHarmony>
+  <Dryad_BadMapHarmony>Needs: less mechs or more shrines {0}/{1}</Dryad_BadMapHarmony>
+  <Dryad_ShrineWealthNeed>Needs: More nearby high-value shrines {0}/{1}</Dryad_ShrineWealthNeed>
+  <Dryad_NeedMapHarmony>Needs: More shrines on the map {0}/{1}</Dryad_NeedMapHarmony>
+  <Dryad_MaxLevelMaybe>At Max level..?</Dryad_MaxLevelMaybe>
+  <Dryad_MaxLevel>At Max level?</Dryad_MaxLevel>
+  <Dryad_MaxLevelYES>At Absolute Max!</Dryad_MaxLevelYES>
+  <Dryad_GauDistClose>Feeling cramped by another other Gauranlen Tree.</Dryad_GauDistClose>
+  <Dryad_GauDistNear>Feeling a little camped by another Gauranlen Tree.</Dryad_GauDistNear>
+  <Dryad_GauDistFar>Far enough from other Gauranlen Trees.</Dryad_GauDistFar>
+</LanguageData>
