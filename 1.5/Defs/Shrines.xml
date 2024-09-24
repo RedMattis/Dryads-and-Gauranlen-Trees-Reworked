@@ -17,7 +17,7 @@
     </stuffCategories>
     <placeWorkers>
       <li MayRequire="Ludeon.Rimworld.Royalty">PlaceWorker_ArtificialBuildingsNear</li>
-      <li MayRequire="Ludeon.Rimworld.Royalty">PlaceWorker_RequireNaturePsycaster</li>
+      <!-- <li MayRequire="Ludeon.Rimworld.Royalty">PlaceWorker_RequireNaturePsycaster</li> -->
       <li MayRequire="Ludeon.Rimworld.Royalty">PlaceWorker_MeditationOffsetBuildingsNear</li>
     </placeWorkers>
     <building>

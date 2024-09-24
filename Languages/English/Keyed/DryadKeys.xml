@@ -16,4 +16,6 @@
   <Dryad_GauDistClose>Feeling cramped by another other Gauranlen Tree.</Dryad_GauDistClose>
   <Dryad_GauDistNear>Feeling a little camped by another Gauranlen Tree.</Dryad_GauDistNear>
   <Dryad_GauDistFar>Far enough from other Gauranlen Trees.</Dryad_GauDistFar>
+  <Dryad_FlowerTurret>Has {0}/{1} thorncasters.</Dryad_FlowerTurret>
+  <Dryad_DryadsReworkedSettings>Dryads &amp; Gauranlen Reworked</Dryad_DryadsReworkedSettings>
 </LanguageData>
