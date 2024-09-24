@@ -47,7 +47,7 @@ namespace Dryad
             for (int i = 0; i < num; i++)
             {
                 IntVec3 intVec = base.Position + GenRadial.RadialPattern[i];
-                if (!GenSight.LineOfSight(base.Position, intVec, base.Map, skipFirstCell: true))
+                if (!GenSight.LineOfSight(base.Position, intVec, base.Map, skipFirstCell: true) && !ExtinguishVerb.ProjectileFliesOverhead())
                 {
                     continue;
                 }

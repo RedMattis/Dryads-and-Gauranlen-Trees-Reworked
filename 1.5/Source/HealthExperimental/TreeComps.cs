@@ -11,179 +11,41 @@ using System.Reflection;
 using HarmonyLib;
 using Verse.AI;
 using Dryads;
+using KTrie;
 
 namespace Dryad
 {
-    [DefOf]
-    public static class DryadDefs
-    {
-        public static ThingDef Dryad_Medicinemaker;
-        public static ThingDef Dryad_Berrymaker;
-        public static ThingDef Dryad_Woodmaker;
-        public static ThingDef Plant_Healroot;
-        public static ThingDef Plant_Strawberry;
-        public static WorkGiverDef GrowerSow;
-        public static HediffDef Dryad_Hediff;
-        public static HediffDef Dryad_ConnectedHediff;
-
-        public static ThingDef Dryad_Thorncaster;
-        public static ThingDef Dryad_Bulb;
-    }
-
-    public class JobGiverCasteDuty : ThinkNode_JobGiver
-    {
-        protected override Job TryGiveJob(Pawn pawn)
-        {
-
-            // Check if pawn is a Dryad_Medicinemaker
-            if (pawn.def == DryadDefs.Dryad_Berrymaker)
-            {
-
-            }
-
-            return null;
-        }
-    }
+    
 
     public class CompProperties_NewTreeConnection : CompProperties_TreeConnection
     {
-        public List<ThingDef> harmonyBuildings = new();
+        public List<ThingDef> harmonyBuildings = [];
+        public List<TreeTier> gauTiers = [];
         public CompProperties_NewTreeConnection()
         {
             compClass = typeof(CompNewTreeConnection);
         }
     }
 
-    public class GauLevel
-    {
-        const int maxLocalHarmony = 10;
+    //public class GauLevel
+    //{
+    //    public int dryadCount = 0;
+    //    public string info = "";
+    //    //public string info_GauDist = "";
 
-        public float mapHarmony = 0;
-        public int totalShrineWealth = 0;
-        public int dryadCount = 0;
-        public int flowerCount = 0;
-        public int turretCount = 0;
-        public float localHarmony = 0;
-        public float harmonyEfficiency = 0;
-        public float mechanoidDisruption = 0;
-        public float totalHarmony = 0;
-        public float buffLevel = 0.10f;
-        public string info = "";
-        public string info_GauDist = "";
+    //    public GauLevel(CompNewTreeConnection tree, List<(Thing thing, float distance)> nearbyThings, float mapHarmony, int totalShrineWealth, float localHarmony, float harmonyEfficiency, float mechanoidDisruption, float totalHarmony, float otherGauranlenDist)
+    //    {
+            
+    //        dryadBuffLevel = tier.dryadHediffSeverity;
+    //         pawnBuffLevel = tier.connectedHediffSeverity;
 
-        public GauLevel(float mapHarmony, int totalShrineWealth, float localHarmony, float harmonyEfficiency, float mechanoidDisruption, float totalHarmony, float otherGauranlenDist, int stoneCount)
-        {
-            const int gDistClose = 9;
-            const int gDistMid = 14;
-            this.mapHarmony = mapHarmony;
-            this.totalShrineWealth = totalShrineWealth;
-            this.localHarmony = localHarmony;
-            this.harmonyEfficiency = harmonyEfficiency;
-            this.mechanoidDisruption = mechanoidDisruption;
-            this.totalHarmony = totalHarmony;
+            
+    //        dryadCount+=stoneCount;
+    //        turretCount+=stoneCount*2;
 
-            localHarmony *= harmonyEfficiency;
 
-            bool otherGauranlenClose = otherGauranlenDist < gDistClose;
-            bool otherGauranlenMid = otherGauranlenDist < gDistMid;
-            if (otherGauranlenClose)
-            {
-                localHarmony *= 0.75f;
-            }
-            else if (otherGauranlenMid)
-            {
-                localHarmony *= 0.9f;
-            }
-
-            dryadCount = localHarmony switch
-            {
-                >= maxLocalHarmony => 4,
-                > maxLocalHarmony / 2 => 3,
-                > maxLocalHarmony / 4 => 2,
-                _ => 1
-            };
-
-            var txtClr = ColorLibrary.Orange;
-            info = "Dryad_MaxLevelMaybe".Translate().Colorize(ColorLibrary.Blue); ;
-
-            if (dryadCount != 4)
-            {
-                info = "Dryad_NeedMoreHarmony".Translate(localHarmony.ToString("F1")).Resolve().Colorize(txtClr);
-            }
-            if (totalHarmony < -10)
-            {
-                info = "Dryad_NeedMapHarmony".Translate(totalHarmony.ToString("F0"), (-10).ToString("F0")).Colorize(ColorLibrary.RedReadable);
-                buffLevel = 0.01f;
-                dryadCount -= 1;
-            }
-
-            if (dryadCount == 4)
-            {
-                if (totalShrineWealth < 4000)
-                {
-                    info = "Dryad_ShrineWealthNeed".Translate(totalShrineWealth.ToString("F0"), 4000.ToString("F0")).Resolve().Colorize(txtClr);
-                    dryadCount = 3;
-                }
-                else if (mapHarmony < 20)
-                {
-                    info = "Dryad_NeedMapHarmony".Translate(mapHarmony.ToString("F0"), 20.ToString("F0")).Resolve().Colorize(txtClr);
-                    dryadCount = 3;
-                }
-                else if (totalShrineWealth > 15000 && mapHarmony > 40 && otherGauranlenDist > gDistMid)
-                {
-                    info = "Dryad_MaxLevelYES".Translate().Colorize(ColorLibrary.Green);
-                    buffLevel = 1;
-                    turretCount = 4;
-                }
-                else if (totalShrineWealth > 6000 && mapHarmony > 20 && otherGauranlenDist > gDistClose)
-                {
-                    info = "Dryad_MaxLevel".Translate().Colorize(ColorLibrary.Green);
-                    buffLevel = 0.75f;
-                    turretCount = 3;
-                }
-                else
-                {
-                    buffLevel = 0.5f;
-                    turretCount = 2;
-                }
-            }
-
-            if (dryadCount == 3)
-            {
-                if (totalShrineWealth < 2100)
-                {
-                    info = "Dryad_ShrineWealthNeed".Translate(totalShrineWealth.ToString("F0"), 2000.ToString("F0")).Resolve().Colorize(txtClr);
-                    dryadCount = 2;
-                }
-                else if (mapHarmony < 10)
-                {
-                    info = "Dryad_NeedMapHarmony".Translate(mapHarmony.ToString("F0"), 10f.ToString("F0")).Resolve().Colorize(txtClr);
-                    dryadCount = 2;
-                }
-                else
-                {
-                    buffLevel = 0.5f;
-                    if (mapHarmony >= 14)
-                    {
-                        turretCount = 1;
-                    }
-                }
-            }
-            dryadCount+=stoneCount;
-            turretCount+=stoneCount*2;
-
-            flowerCount = Mathf.FloorToInt(dryadCount / 2f);
-            if (flowerCount < 1 && turretCount > 0)  // Just a safeguard to make sure there is at least 1 flower if turrets are needed.
-            {
-                flowerCount = 1;
-            }
-            flowerCount = Mathf.Min(flowerCount, 3);
-
-            if (otherGauranlenClose) info_GauDist = "Dryad_GauDistClose".Translate(otherGauranlenDist.ToString("F0")).Colorize(ColorLibrary.Orange);
-            else if (otherGauranlenMid) info_GauDist = "Dryad_GauDistNear".Translate(otherGauranlenDist.ToString("F0")).Colorize(ColorLibrary.YellowGreen);
-            else info_GauDist = "Dryad_GauDistFar".Translate(otherGauranlenDist.ToString("F0")).Colorize(ColorLibrary.Green);
-        }
-    }
+    //    }
+    //}
 
     [HarmonyPatch]
     [StaticConstructorOnStartup]
@@ -194,14 +56,15 @@ namespace Dryad
         public FieldInfo leafEffecterFI = null;
 
         protected int actualMaxDryads = 1;
-        public int maxTurrets = 0;
-        public int maxFlowers = 0;
+
+        private TreeTierTracker currentTier = null;
+
         public int turretSpawnTick = 0;
 
         public int TurretSpawnTickCooldown => (int)(15000 * Main.settings.turretSpawnTime);
 
-        protected List<Thing> turrets = new();
-        protected List<Thing> flowers = new();
+        //protected List<Thing> turrets = new();
+        protected List<Thing> plants = new();
         public CompProperties_NewTreeConnection NewProps => (CompProperties_NewTreeConnection)props;
         // "dryads" is private in the base class, so we need to use reflection to access it
         public List<Pawn> Dryads
@@ -239,14 +102,20 @@ namespace Dryad
             }
             set => leafEffecterFI.SetValue(this, value);
         }
-        
+
+        public TreeTierTracker CurrentTier
+        {
+            get
+            {
+                currentTier ??= GetGauLevel();
+                return currentTier;
+            }
+            set => currentTier = value;
+        }
 
         public override void CompTick()
         {
-            if (!ModsConfig.IdeologyActive)
-            {
-                return;
-            }
+            if (CurrentTier == null) RefreshConnection();
             if (Find.TickManager.TicksGame >= SpawnTick)
             {
                 // Use reflection to run SpawnDryad();
@@ -254,9 +123,7 @@ namespace Dryad
             }
             if (LeafEffecter == null)
             {
-                // leafEffecter = EffecterDefOf.GauranlenLeavesBatch.Spawn();
                 LeafEffecter = EffecterDefOf.GauranlenLeavesBatch.Spawn();
-
                 LeafEffecter.Trigger(parent, parent);
             }
             LeafEffecter?.EffectTick(parent, parent);
@@ -286,13 +153,12 @@ namespace Dryad
 
         private void RefreshConnection()
         {
-            var gauLevel = GetGauLevel();
-            actualMaxDryads = gauLevel.dryadCount;
-            maxTurrets = gauLevel.turretCount;
-            maxFlowers = gauLevel.flowerCount;
+            var tierTracker = GetGauLevel();
+            var tier = tierTracker.tier;
+            actualMaxDryads = tierTracker.dryadCount;
 
-            if (actualMaxDryads > 4) ConnectionStrength = 1f;
-            if (actualMaxDryads == 4) ConnectionStrength = 0.98f;
+            if (actualMaxDryads > 4) ConnectionStrength = Mathf.Min(1, 0.90f + (actualMaxDryads - 4) * 0.01f);
+            if (actualMaxDryads == 4) ConnectionStrength = 0.90f;
             if (actualMaxDryads == 3) ConnectionStrength = 0.75f;
             if (actualMaxDryads == 2) ConnectionStrength = 0.5f;
             if (actualMaxDryads == 1) ConnectionStrength = 0.25f;
@@ -302,107 +168,95 @@ namespace Dryad
             // Fetch all dryads.
             foreach (var dryad in Dryads)
             {
-                var dryadHediff = dryad.health.hediffSet.GetFirstHediffOfDef(DryadDefs.Dryad_Hediff);
+                var dryadHediff = dryad.health.hediffSet.GetFirstHediffOfDef(tier.dryadHediff);
                 if (dryadHediff == null)
                 {
-                    dryad.health.AddHediff(DryadDefs.Dryad_Hediff);
+                    dryad.health.AddHediff(tier.dryadHediff);
                 }
                 else
                 {
-                    dryadHediff.Severity = gauLevel.buffLevel;
+                    dryadHediff.Severity = tier.dryadHediffSeverity;
                 }
             }
 
             if (ConnectedPawn != null)
             {
-                var connectedPawnHediff = ConnectedPawn.health.hediffSet.GetFirstHediffOfDef(DryadDefs.Dryad_ConnectedHediff);
+                var connectedPawnHediff = ConnectedPawn.health.hediffSet.GetFirstHediffOfDef(tier.connectedPawnHediff);
                 if (connectedPawnHediff == null)
                 {
-                    connectedPawnHediff = ConnectedPawn.health.AddHediff(DryadDefs.Dryad_ConnectedHediff);
+                    connectedPawnHediff = ConnectedPawn.health.AddHediff(tier.connectedPawnHediff);
                     try
                     {
                         var dryadConnectionHediff = (DryadConnectionHediff)connectedPawnHediff;
-                        dryadConnectionHediff.UpdateConnection(this, gauLevel.buffLevel);
+                        dryadConnectionHediff.UpdateConnection(this, tier.connectedHediffSeverity);
                     }
                     catch { }
                 }
                 else
                 {
                     var dryadConnectionHediff = (DryadConnectionHediff)connectedPawnHediff;
-                    dryadConnectionHediff.UpdateConnection(this, gauLevel.buffLevel);
+                    dryadConnectionHediff.UpdateConnection(this, tier.connectedHediffSeverity);
                 }
             }
-            SpawnTurrets();
-            SpawnFlowers();
+            SpawnPlants(tierTracker);
         }
 
         const int maxSpawnDist = 7;
-        private void SpawnFlowers()
+        private void SpawnPlants(TreeTierTracker tierTracker)
         {
-            // Remove all dead/missing flowers
-            flowers.RemoveAll(t => t == null || t.Destroyed || !t.Spawned);
+            plants.RemoveAll(t => t == null || t.Destroyed || !t.Spawned);
 
-            if (maxFlowers > flowers.Count && Rand.Value < 0.05f)
+            if (turretSpawnTick > Find.TickManager.TicksGame) return;
+
+            foreach(var (pToSpawn, plantDef) in tierTracker.plants.InRandomOrder())
             {
-                var flower = ThingMaker.MakeThing(DryadDefs.Dryad_Bulb);
-                // Search nearby for a suitable spot to place the turret, it should have Gauranlen Moss on it.
-                if (CellFinder.TryFindRandomCellNear(parent.Position, parent.Map, maxSpawnDist, (IntVec3 c)
-                    => c.GetThingList(parent.Map).Any(t => t.def.defName == "Plant_MossGauranlen"), out var cell))
+                int plantNumberSpawned = plants.Count(p => p.def == plantDef);
+                if (plantNumberSpawned == pToSpawn) continue;
+                if (plantNumberSpawned > pToSpawn)
                 {
-                    flower = GenSpawn.Spawn(flower, cell, parent.Map);
-                    flowers.Add(flower);
-                    flower.SetFaction(Faction.OfPlayer);
-                    turretSpawnTick = Find.TickManager.TicksGame + TurretSpawnTickCooldown;
+                    var p = plants.First(p => p.def == plantDef);
+                    try { p.Destroy(); } catch { }
+                    plants.Remove(p);
+                    continue;
+                }
+
+                var plantRules = PlantSpawnRules.GetRulesForPlant(plantDef);
+                if (plantRules == null)
+                {
+                    Log.Error($"PlantSpawnRules not found for {plantDef.defName}");
+                    continue;
+                }
+                if (CellFinder.TryFindRandomCellNear(parent.Position, parent.Map, maxSpawnDist, (IntVec3 c)
+                    => c.GetThingList(parent.Map).Any(t =>
+                    // If not spawnOn is not defined check if the place is empty.
+                    (plantRules.spawnOn == null && c.GetEdifice(parent.Map) == null) ||
+                    // If spawnOn is defined check if the place is the right thing.
+                    c.GetThingList(parent.Map).Any(t => t.def == plantRules.spawnOn)
+                    ), out var cell))
+                {
+                    var plantThing = GenSpawn.Spawn(plantDef, cell, parent.Map);
+                    plants.Add(plantThing);
+                    plantThing.SetFaction(Faction.OfPlayer);
+                    turretSpawnTick = Find.TickManager.TicksGame + Rand.Range(TurretSpawnTickCooldown/2, (int)(TurretSpawnTickCooldown*1.5f));
+                    return;
                 }
             }
-            else if (maxFlowers < flowers.Count)
-            {
-                var flower = flowers.First();
-                flower.Destroy();
-                flowers.Remove(flower);
-            }
+
+            // Shorter cooldown in case there was nothing to place, or it failed to place.
+            turretSpawnTick = Find.TickManager.TicksGame + Rand.Range(TurretSpawnTickCooldown / 4, (int)(TurretSpawnTickCooldown));
         }
 
-        private void SpawnTurrets()
-        {
-            // Remove all dead/missing turrets
-            turrets.RemoveAll(t => t == null || t.Destroyed || !t.Spawned);
-
-            if (flowers.Count > 0 && maxTurrets > turrets.Count && turretSpawnTick < Find.TickManager.TicksGame && Rand.Value < 0.25f)
-            {
-                var turret = ThingMaker.MakeThing(DryadDefs.Dryad_Thorncaster);
-                // Search nearby for a suitable spot to place the turret. 
-                if (CellFinder.TryFindRandomCellNear(parent.Position, parent.Map, maxSpawnDist, (IntVec3 c)
-                    => c.GetThingList(parent.Map).Any(t => t.def == DryadDefs.Dryad_Bulb), out var cell))
-                {
-                    turret = GenSpawn.Spawn(turret, cell, parent.Map);
-                    turrets.Add(turret);
-                    turret.SetFaction(Faction.OfPlayer);
-                    turretSpawnTick = Find.TickManager.TicksGame + TurretSpawnTickCooldown/2;
-                }
-            }
-            else if (maxTurrets < turrets.Count)
-            {
-                var turret = turrets.First();
-                turret.Destroy();
-                turrets.Remove(turret);
-            }
-        }
 
         public override void PostDestroy(DestroyMode mode, Map previousMap)
         {
-            foreach (var turret in turrets.Where(t=>t != null && t.Destroyed == false))
+            foreach (var turret in plants.Where(t=>t != null && t.Destroyed == false))
             {
                 turret.Destroy();
-            }
-            foreach (var flower in flowers.Where(t => t != null && t.Destroyed == false))
-            {
-                flower.Destroy();
             }
             base.PostDestroy(mode, previousMap);
         }
 
-        private GauLevel GetGauLevel()
+        private TreeTierTracker GetGauLevel()
         {
             // Get all buildings withn range of the tree
             var otherGau = parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.DryadSpawner);
@@ -446,7 +300,7 @@ namespace Dryad
                 otherGauranlenDist = otherTrees.Min(b => b.Position.DistanceTo(parent.Position));
             }
 
-            // Grab first 4 shrines, or less if there are less than 4
+            // Grab first 3 shrines, or less if there are less than 3
             float totalShrineWealth = nearBuildings.Where(b => hb.Contains(b.def)).OrderByDescending(b => b.MarketValue).Take(3).Sum(b => b.MarketValue);
 
             // Check if any of the buildings nearby is the AnimusStone
@@ -454,11 +308,39 @@ namespace Dryad
 
             totalShrineWealth *= (1 + animaStoneCount);
 
-            return new GauLevel(mapHarmony, (int)totalShrineWealth, localHarmony, harmonyEfficiency, mechanoidDisruption, totalHarmony, otherGauranlenDist, animaStoneCount);
+            const int gDistClose = 9;
+            const int gDistMid = 14;
+            localHarmony *= harmonyEfficiency;
 
+            bool otherGauranlenClose = otherGauranlenDist < gDistClose;
+            bool otherGauranlenMid = otherGauranlenDist < gDistMid;
+            if (otherGauranlenClose)
+            {
+                localHarmony *= 0.75f;
+            }
+            else if (otherGauranlenMid)
+            {
+                localHarmony *= 0.9f;
+            }
+            string info = "";
+            if (NewProps.gauTiers.Count == 0)
+            {
+                Log.Error("No tiers defined for " + parent.def.defName);
+                return null;
+            }
+            var tier = NewProps.gauTiers.First(t => t.IsValidFor(this, localHarmony, totalHarmony, totalShrineWealth, otherGauranlenDist, ref info));
+
+            if (tier == null)
+            {
+                Log.Error("No valid tier found for " + parent.def.defName);
+                return null;
+            }
+            List<(Building thing, float distance)> thingsNearby = allBuildings.Select(b => (b, b.Position.DistanceTo(parent.Position))).ToList();
+
+            var tracker = new TreeTierTracker(tier, thingsNearby, info);
+            CurrentTier = tracker;
+            return tracker;
         }
-
-        
 
         public float HarmonyFromBuilding(Thing building)
         {
@@ -515,7 +397,7 @@ namespace Dryad
                 {
                     text +="\n" + text2;
                 }
-                var gauLevel = GetGauLevel();
+                var tierTracker = GetGauLevel();
                 if (MaxDryads > 0)
                 {
                     text = string.Concat(text, " ", "DryadPlural".Translate(), $" ({Dryads.Count}/{MaxDryads})");
@@ -528,12 +410,7 @@ namespace Dryad
                 {
                     text += "\n" + "Dryad_NotEnoughHarmony".Translate().Colorize(ColorLibrary.RedReadable);
                 }
-                if (maxTurrets > 0)
-                {
-                    text += "\n" + "Dryad_FlowerTurret".Translate(turrets.Count, maxTurrets);
-                }
-                text += "\n" + gauLevel.info;
-                text += "\n" + gauLevel.info_GauDist;
+                text += "\n" + tierTracker.info;
                 if (!HasProductionMode)
                 {
                     text +="\n" + "AlertGauranlenTreeWithoutDryadTypeLabel".Translate().Colorize(ColorLibrary.RedReadable);
@@ -546,6 +423,14 @@ namespace Dryad
                 if (!text3.NullOrEmpty())
                 {
                     text +="\n" + text3;
+                }
+                if (plants.Count > 0)
+                {
+                    foreach ((int maxCount, ThingDef plant) in tierTracker.plants)
+                    {
+                        int currentPlantCount = plants.Count(p => p.def == plant);
+                        text += "\n" + "Dryad_GauPlantNum".Translate(currentPlantCount, maxCount, plant.label);
+                    }
                 }
             }
             else if (!text2.NullOrEmpty())
@@ -560,7 +445,7 @@ namespace Dryad
         public static void ResetDryadPostFix(CompTreeConnection __instance, Pawn dryad)
         {
             if (dryad == null) return;
-            dryad.health.AddHediff(DryadDefs.Dryad_Hediff);
+            //dryad.health.AddHediff(DryadDefs.Dryad_Hediff);
             foreach (TrainableDef allDef in DefDatabase<TrainableDef>.AllDefs)
             {
                 // Hax it so that dryads can be trained to rescue even if not combat trained.
@@ -582,15 +467,15 @@ namespace Dryad
             base.PostExposeData();
             Scribe_Values.Look(ref actualMaxDryads, "actualMaxDryads", 1);
             Scribe_Values.Look(ref turretSpawnTick, "turretSpawnTick", 0);
+            //Scribe_Deep.Look(ref currentTier, "currentTier");
 
-            Scribe_Collections.Look(ref turrets, "turrets", LookMode.Reference);
-            Scribe_Collections.Look(ref flowers, "flowers", LookMode.Reference);
+            Scribe_Collections.Look(ref plants, "turrets", LookMode.Reference);
+            //Scribe_Collections.Look(ref flowers, "flowers", LookMode.Reference);
             
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 // Remove all missing/destroyed turrets.
-                turrets.RemoveAll((Thing x) => x?.Destroyed ?? true);
-                flowers.RemoveAll((Thing x) => x?.Destroyed ?? true);
+                plants.RemoveAll((Thing x) => x?.Destroyed ?? true);
             }
         }
     }

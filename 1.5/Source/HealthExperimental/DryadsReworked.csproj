@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Defs.cs" />
     <Compile Include="DryadConnectionHediff.cs" />
     <Compile Include="GauranlenTurret.cs" />
     <Compile Include="JobGivers.cs" />

@@ -11,6 +11,16 @@
         <spawningPodOffset>(-0.15, 0, -0.55)</spawningPodOffset>
         <spawningPodSizeRange>0.4~0.65</spawningPodSizeRange>
         <maxDryadsWild>1</maxDryadsWild>
+        <gauTiers>
+          <li>Dryad_TierUltimate</li>
+          <li>Dryad_TierPenultimate</li>
+          <li>Dryad_TierGreat</li>
+          <li>Dryad_TierGood</li>
+          <li>Dryad_TierNormal</li>
+          <li>Dryad_TierPoor</li>
+          <li>Dryad_TierBad</li>
+          <li>Dryad_TierWorst</li>
+        </gauTiers>
         <harmonyBuildings>
           <li MayRequire="Ludeon.Rimworld.Royalty">AnimusStone</li>
           <li MayRequire="Ludeon.Rimworld.Royalty">NatureShrine_Small</li>
@@ -25,8 +35,17 @@
             <li>(0.23, 1)</li>
             <li>(0.48, 2)</li>
             <li>(0.73, 3)</li>
-            <li>(0.95, 4)</li>
-            <li>(0.99, 5)</li>
+            <li>(0.90, 4)</li>
+            <li>(0.91, 5)</li>
+            <li>(0.92, 6)</li>
+            <li>(0.93, 7)</li>
+            <li>(0.94, 8)</li>
+            <li>(0.95, 9)</li>
+            <li>(0.96, 10)</li>
+            <li>(0.97, 11)</li>
+            <li>(0.98, 12)</li>
+            <li>(0.99, 13)</li>
+            <li>(1, 14)</li>
           </points>
         </maxDryadsPerConnectionStrengthCurve>
         <connectionLossPerLevelCurve>

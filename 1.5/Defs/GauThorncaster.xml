@@ -1,79 +1,10 @@
 <Defs>
   
-  <ThingDef ParentName="BuildingBase">
-    <defName>Dryad_Bulb</defName>
-    <label>gauranlen flower bulb</label>
-    <description>A gauralnlen flower simlar to those dryads are born from. Perhaps it might grow into something.</description>
-    <rotatable>false</rotatable>
-    <altitudeLayer>Building</altitudeLayer>
-    <useHitPoints>true</useHitPoints>
-    <passability>PassThroughOnly</passability>
-    <soundImpactDefault>BulletImpact_Ground</soundImpactDefault>
-    <statBases>
-      <Flammability>0.5</Flammability>
-      <MaxHitPoints>50</MaxHitPoints>
-      <Beauty>50</Beauty>
-      <Mass>8</Mass>
-    </statBases>
-    <building>
-      <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
-      <ai_neverTrashThis>true</ai_neverTrashThis>
-      <ai_chillDestination>false</ai_chillDestination>
-      <paintable>true</paintable>
-    </building>
-    <graphicData>
-      <texPath>Building/Dryad_Turret/FlowerBase</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(1,1)</drawSize>
-      <damageData>
-        <rect>(0.2,0.2,0.6,0.6)</rect>
-      </damageData>
-      <drawOffset>(0,0,-.2)</drawOffset>
-      <shadowData>
-        <volume>(0.27,0.25,0.27)</volume>
-        <offset>(0,0,-.2)</offset>
-      </shadowData>
-    </graphicData>
-    <size>(1,1)</size>
-    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
-    <comps>
-    </comps>
-  </ThingDef>
-
-  <ThingDef Abstract="True" Name="DryadTurretGun" ParentName="BaseWeaponTurret">
-
-  </ThingDef>
-
-  <ThingDef Abstract="True" Name="Dryad_Turret" ParentName="BuildingBase">
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <uiIconPath>Things/Building/Security/TurretMini_MenuIcon</uiIconPath>
-    <uiIconScale>0.90</uiIconScale>
-    <altitudeLayer>Building</altitudeLayer>
-    <stealable>false</stealable>
-    <rotatable>false</rotatable>
-    <statBases>
-      <MaxHitPoints>150</MaxHitPoints>
-      <Flammability>0.3</Flammability>
-      <WorkToBuild>1800</WorkToBuild>
-      <Mass>12</Mass>
-      <Beauty>50</Beauty>
-      <ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
-    </statBases>
-    <tickerType>Normal</tickerType>
-    <comps>
-    </comps>
-    <passability>PassThroughOnly</passability>
-    <pathCost>50</pathCost>
-    <fillPercent>0.4</fillPercent>
-    <hasTooltip>true</hasTooltip>
-    <soundImpactDefault>BulletImpact_Ground</soundImpactDefault>
-    <!-- <terrainAffordanceNeeded>Light</terrainAffordanceNeeded> -->
-  </ThingDef>
 
   <ThingDef ParentName="Dryad_Turret">
     <defName>Dryad_Thorncaster</defName>
     <label>gauranlen thorncaster</label>
-    <description>An unusual plant which rarely grows from gauranlen moss near a gauranlen tree. Tha plant can rapidly launch dense spikes of hardened resin at foes.\n\nDespite the terrible accuracy the plant is queerly adept at avoiding striking allies.\n\nWhen it detects fire the plant will also attempt to shoot a fire-retardant gooey substance. While this does little to extinguish a large fire it can quickly coat the ground and prevent the fire from spreading to itself and the Gauranlen Tree</description>
+    <description>An unusual plant which rarely grows from gauranlen moss near a gauranlen tree. The plant can rapidly launch dense spikes of hardened resin at foes.\n\nDespite the terrible accuracy the plant is queerly adept at avoiding striking allies.\n\nWhen it detects fire the plant will also attempt to shoot a fire-retardant gooey substance. While this does little to extinguish a large fire it can quickly coat the ground and prevent the fire from spreading to itself and the Gauranlen Tree</description>
     <thingClass>Dryad.GauranlenTurret</thingClass>
     <graphicData>
       <texPath>Building/Dryad_Turret/Thorncaster</texPath>
@@ -146,23 +77,6 @@
     </verbs>
   </ThingDef>
 
-  <SoundDef>
-    <defName>Dryad_ThornShoot</defName>  
-    <context>MapOnly</context>
-    <maxSimultaneous>3</maxSimultaneous>  
-    <subSounds>
-      <li>
-        <grains>
-          <li Class="AudioGrain_Folder">
-            <clipFolderPath>Impact/BeatFire</clipFolderPath>
-          </li>
-        </grains>      
-        <volumeRange>21~25</volumeRange>
-        <pitchRange>1.15~1.3</pitchRange>
-      </li>
-    </subSounds>
-  </SoundDef>
-
   <ThingDef ParentName="BaseProjectileNeolithic">
     <defName>Dryad_GauBullet</defName>
     <label>gau stinger</label>
@@ -178,6 +92,7 @@
       <armorPenetrationBase>0.45</armorPenetrationBase>
       <speed>35</speed>
       <arcHeightFactor>0.25</arcHeightFactor>
+      <shadowSize>0.4</shadowSize>
     </projectile>
   </ThingDef>
 
@@ -185,7 +100,6 @@
     <defName>Dryad_SapBullet</defName>
     <label>gau sap</label>
     <thingClass>Projectile_Liquid</thingClass>
-    <neverMultiSelect>True</neverMultiSelect>
     <graphicData>
       <texPath>Building/Dryad_Turret/Sap_Bullet</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -202,6 +116,7 @@
       <filth>Filth_FireFoam</filth>
       <filthCount>1</filthCount>
       <soundImpact>Foam_Impact</soundImpact>
+      <shadowSize>0.4</shadowSize>
     </projectile>
   </ThingDef>
 
