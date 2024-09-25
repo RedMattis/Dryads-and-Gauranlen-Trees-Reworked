@@ -22,6 +22,7 @@
     <!--The tiers will be tested from the highest number to the lowest.
     If a tier is valid it will stop testing and go with that.-->
     <label>label_missing</label>
+    <tierColor>0.8,0.7,0.6</tierColor>
     <!-- Requirements to activate this tier -->
     <localHarmony>-99</localHarmony>
     <globalHarmony>-99</globalHarmony>
@@ -90,7 +91,8 @@
   </Dryad.TreeTier>
   <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
     <defName>Dryad_TierPenultimate</defName>
-    <label>transcendance</label>
+    <label>transcendant</label>
+    <tierColor>0.6,0.8,1.0</tierColor>
     <localHarmony>10</localHarmony>
     <globalHarmony>20</globalHarmony>
     <localWealth>6000</localWealth>
@@ -117,7 +119,7 @@
 
   <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
     <defName>Dryad_TierGreat</defName>
-    <label>potential reached</label>
+    <label>empowered</label>
     <tierColor>0.4,0.8,0.6</tierColor>
     <localHarmony>10</localHarmony>
     <globalHarmony>20</globalHarmony>
@@ -140,7 +142,7 @@
 
   <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
     <defName>Dryad_TierGood</defName>
-    <label>empowered</label>
+    <label>great</label>
     <tierColor>0.4,0.8,0.4</tierColor>
     <localHarmony>5</localHarmony>
     <globalHarmony>10</globalHarmony>
@@ -163,7 +165,8 @@
 
   <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
     <defName>Dryad_TierNormalPlus</defName>
-    <label>healthy</label>
+    <label>strong</label>
+    <tierColor>0.7,0.8,0.6</tierColor>
     <localHarmony>3</localHarmony>
     <globalHarmony>0</globalHarmony>
 
@@ -179,6 +182,7 @@
   <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
     <defName>Dryad_TierNormal</defName>
     <label>healthy</label>
+    <tierColor>0.8,0.7,0.6</tierColor>
     <localHarmony>2</localHarmony>
     <globalHarmony>0</globalHarmony>
 
@@ -187,7 +191,7 @@
 
   <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
     <defName>Dryad_TierPoor</defName>
-    <label>strained</label>
+    <label>neutral</label>
     <tierColor>0.8,0.6,0.4</tierColor>
     <globalHarmony>-5</globalHarmony>
     <dryadCount>1</dryadCount>

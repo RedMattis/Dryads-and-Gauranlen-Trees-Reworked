@@ -93,29 +93,25 @@ namespace Dryad
         // Check if the tree is valid for this tier (enough Harmony, etc.)
         public bool IsValidFor(CompNewTreeConnection tree, float localHarmony, float globalHarmony, float localWealth, float gauranlenSpacing, ref string info)
         {
-            info = "Dryad_MaxLevelYES".Translate().Colorize(ColorLibrary.Blue); ;
+            //if (info.NullOrEmpty()) info = "Dryad_MaxLevelYES".Translate().Colorize(ColorLibrary.Blue);
             if (localHarmony < this.localHarmony)
             {
                 info = "Dryad_NeedMoreHarmony".Translate(localHarmony.ToString("F1"), this.localHarmony.ToString("F1")).Resolve().Colorize(tierColor);
-                Log.Message($"Local Harmony Failed for {defName}: {localHarmony} < {this.localHarmony}");
                 return false;
             }
             if (globalHarmony < this.globalHarmony)
             {
                 info = "Dryad_NeedMapHarmony".Translate(globalHarmony.ToString("F0"), this.globalHarmony.ToString("F0")).Resolve().Colorize(tierColor);
-                Log.Message($"Global Harmony Failed for {defName}: {globalHarmony} < {this.globalHarmony}");
                 return false;
             }
             if (localWealth < this.localWealth)
             {
                 info = "Dryad_ShrineWealthNeed".Translate(localWealth.ToString("F0"), this.localWealth.ToString("F0")).Resolve().Colorize(tierColor);
-                Log.Message($"Local Wealth Failed for {defName}: {localWealth} < {this.localWealth}");
                 return false;
             }
             if (gauranlenSpacing < this.gauranlenSpacing)
             {
                 info = "Dryad_GauranlenSpacing".Translate(gauranlenSpacing.ToString("F0"), this.gauranlenSpacing.ToString("F0")).Resolve().Colorize(tierColor);
-                Log.Message($"Gauranlen Spacing Failed for {defName}: {gauranlenSpacing} < {this.gauranlenSpacing}");
                 return false;
             }
             return true;

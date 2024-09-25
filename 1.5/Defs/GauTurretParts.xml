@@ -2,7 +2,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>Dryad_Bulb</defName>
     <label>gauranlen flower bulb</label>
-    <description>A gauralnlen flower simlar to those dryads are born from. Perhaps it might grow into something.</description>
+    <description>A gauranlen flower simlar to those dryads are born from. Perhaps it may grow into something.</description>
     <rotatable>false</rotatable>
     <altitudeLayer>Building</altitudeLayer>
     <useHitPoints>true</useHitPoints>

@@ -268,7 +268,7 @@ namespace Dryad
             var hb = NewProps.harmonyBuildings;
             float localHarmony = nearBuildings.Where(b => hb.Contains(b.def)).Sum(HarmonyFromBuilding);
             float mapHarmony = allBuildings.Where(b => hb.Contains(b.def)).Sum(HarmonyFromBuilding);
-            float harmonyDisruption = nearBuildings.Where(b => b.def.building.artificialForMeditationPurposes).Count();
+            float harmonyDisruption = nearBuildings.Where(b => b.def.building.artificialForMeditationPurposes && !hb.Contains(b.def)).Count();
             float mechanoidDisruption = parent.Map.mapPawns.AllPawns.Where(p => p.Faction == Faction.OfPlayer && p.RaceProps.IsMechanoid).Sum(p => (int)Mathf.Ceil(p.BodySize));
             mechanoidDisruption *= Main.settings.mechPenaltyScale;
             
@@ -376,69 +376,91 @@ namespace Dryad
 
         public override string CompInspectStringExtra()
         {
-            string text = "";
+            StringBuilder text = new();
             string text2 = string.Empty;
+
             if (Dryads.Count < MaxDryads)
             {
                 text2 = "SpawningDryadIn".Translate(NamedArgumentUtility.Named(Props.pawnKind, "DRYAD"), (SpawnTick - Find.TickManager.TicksGame).ToStringTicksToPeriod().Named("TIME")).Resolve();
             }
-            text = ((!ConnectionTorn) ? (text + "ConnectedPawn".Translate().Resolve() + ": " + (Connected ? ConnectedPawn.NameFullColored : "Nobody".Translate().CapitalizeFirst()).Resolve()) : (text + "ConnectionTorn".Translate(UntornInDurationTicks.ToStringTicksToPeriod()).Resolve()));
+
+            if (!ConnectionTorn)
+            {
+                text.AppendLine("ConnectedPawn".Translate().Resolve() + ": " + (Connected ? ConnectedPawn.NameFullColored : "Nobody".Translate().CapitalizeFirst()));
+            }
+            else
+            {
+                text.AppendLine("ConnectionTorn".Translate(UntornInDurationTicks.ToStringTicksToPeriod()));
+            }
+
             if (Connected)
             {
                 if (Mode != null)
                 {
-                    text += string.Concat("\n", "GauranlenTreeMode".Translate(), ": ") + Mode.LabelCap;
+                    text.AppendLine("GauranlenTreeMode".Translate() + ": " + Mode.LabelCap);
                 }
                 if (HasProductionMode && Mode != desiredMode)
                 {
-                    text +="\n" + "WaitingForConnectorToChangeCaste".Translate(ConnectedPawn.Named("CONNECTEDPAWN")).Resolve();
+                    text.AppendLine("WaitingForConnectorToChangeCaste".Translate(ConnectedPawn.Named("CONNECTEDPAWN")));
                 }
                 if (!text2.NullOrEmpty())
                 {
-                    text +="\n" + text2;
+                    text.AppendLine(text2);
                 }
+
                 var tierTracker = GetGauLevel();
+                text.AppendLine("Dryad_CurrentLevel".Translate(tierTracker.tier.label).Colorize(tierTracker.tier.tierColor));
+
+                if (!tierTracker.info.NullOrEmpty())
+                {
+                    text.AppendLine(tierTracker.info);
+                }
+
                 if (MaxDryads > 0)
                 {
-                    text = string.Concat(text, " ", "DryadPlural".Translate(), $" ({Dryads.Count}/{MaxDryads})");
+                    text.Append("DryadPlural".Translate() + $" ({Dryads.Count}/{MaxDryads})");
                     if (Dryads.Count > 0)
                     {
-                        text +=": " + Dryads.Select((Pawn x) => x.NameShortColored.Resolve()).ToCommaList().CapitalizeFirst();
+                        text.Append(": " + Dryads.Select((Pawn x) => x.NameShortColored.Resolve()).ToCommaList().CapitalizeFirst());
                     }
+                    text.AppendLine();
                 }
                 else
                 {
-                    text += "\n" + "Dryad_NotEnoughHarmony".Translate().Colorize(ColorLibrary.RedReadable);
+                    text.AppendLine("Dryad_NotEnoughHarmony".Translate().Colorize(ColorLibrary.RedReadable));
                 }
-                text += "\n" + tierTracker.info;
+
                 if (!HasProductionMode)
                 {
-                    text +="\n" + "AlertGauranlenTreeWithoutDryadTypeLabel".Translate().Colorize(ColorLibrary.RedReadable);
+                    text.AppendLine("AlertGauranlenTreeWithoutDryadTypeLabel".Translate().Colorize(ColorLibrary.RedReadable));
                 }
                 if (Mode == GauranlenTreeModeDefOf.Gaumaker && MaxDryads < 3)
                 {
-                    text +="\n" + "ConnectionStrengthTooWeakForGaumakerPod".Translate().Colorize(ColorLibrary.RedReadable);
-                }
-                string text3 = AffectingBuildingsDescription("ConnectionStrengthAffectedBy");
-                if (!text3.NullOrEmpty())
-                {
-                    text +="\n" + text3;
+                    text.AppendLine("ConnectionStrengthTooWeakForGaumakerPod".Translate().Colorize(ColorLibrary.RedReadable));
                 }
                 if (plants.Count > 0)
                 {
                     foreach ((int maxCount, ThingDef plant) in tierTracker.plants)
                     {
                         int currentPlantCount = plants.Count(p => p.def == plant);
-                        text += "\n" + "Dryad_GauPlantNum".Translate(currentPlantCount, maxCount, plant.label);
+                        text.AppendLine("Dryad_GauPlantNum".Translate(currentPlantCount, maxCount, plant.label));
                     }
+                }
+                string text3 = AffectingBuildingsDescription("Dryad_HarmonyAffectedBy");
+                if (!text3.NullOrEmpty())
+                {
+                    text.AppendLine(text3);
                 }
             }
             else if (!text2.NullOrEmpty())
             {
-                text +="\n" + text2;
+                text.AppendLine(text2);
             }
-            return text;
+            return text.ToString().Trim();
         }
+
+
+
 
         [HarmonyPatch(typeof(CompTreeConnection), "ResetDryad")]
         [HarmonyPostfix]
