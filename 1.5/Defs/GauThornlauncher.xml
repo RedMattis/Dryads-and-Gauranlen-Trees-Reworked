@@ -1,7 +1,7 @@
 <Defs>
   <ThingDef ParentName="Dryad_Turret">
     <defName>Dryad_Thornlauncher</defName>
-    <label>gauranlen thornlauncher</label>
+    <label>gauranlen impaler</label>
     <description>A highly unusual plant which rarely grows from gauranlen moss near a gauranlen tree. Tha plant can launch heavy dense spikes of hardened resin over walls to strike distant foes. While its accuracy is impressive the range is not. It will mostly prioritise enemies a safe distance away from its allies.\n\nWhen it detects fire the plant will also attempt to shoot a fire-retardant gooey substance. While this does little to extinguish a large fire it can quickly coat the ground and prevent the fire from spreading to itself and the Gauranlen Tree</description>
     <thingClass>Dryad.GauranlenTurret</thingClass>
     <graphicData>
