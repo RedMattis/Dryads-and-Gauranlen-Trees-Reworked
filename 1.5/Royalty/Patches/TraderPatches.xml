@@ -23,8 +23,8 @@
     <xpath>//ThingSetMakerDef[defName="Reward_ItemsStandard"]/root/options/li[maxMarketValue=5500]/thingSetMaker/options</xpath>
     <value>
       <li>
-        <weight>4</weight>
-        <weightIfPlayerHasNoItem>100</weightIfPlayerHasNoItem>
+        <weight>0.2</weight>
+        <weightIfPlayerHasNoItem>20</weightIfPlayerHasNoItem>
         <weightIfPlayerHasNoItemItem>AnimusStone</weightIfPlayerHasNoItemItem>
         <thingSetMaker Class="ThingSetMaker_Conditional_MakingFaction">
           <makingFactionCategories><li>Tribal</li></makingFactionCategories>
