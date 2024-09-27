@@ -33,6 +33,8 @@
 		<li>biotexpans.core</li>
 		<li>RedMattis.BigSmall.Core</li>
 		<li>vera.bug</li>
+		<li>VanillaExpanded.VIEAT</li>
+		<li>ReGrowth.BOTR.Core</li>
 	</loadAfter>
 	<incompatibleWith>
 	</incompatibleWith>

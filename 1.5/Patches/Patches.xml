@@ -69,47 +69,56 @@
     </value>
   </Operation>
 
-  <!-- <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/comps</xpath>
-    <value>
-      <li Class="CompProperties_MeditationFocus">
-        <statDef>MeditationFocusStrength</statDef>
-        <focusTypes>
-          <li>Natural</li>
-        </focusTypes>
-        <offsets>
-          <li Class="FocusStrengthOffset_ArtificialBuildings">
-            <radius>27.9</radius>
-            <curve>
-              <points>
-                <li>(0,   0.0)</li>
-                <li>(5,  -0.15)</li>
-                <li>(10, -0.3)</li>
-                <li>(50, -0.5)</li>
-              </points>
-            </curve>
-          </li>
-          <li Class="FocusStrengthOffset_BuildingDefs">
-            <defs>
-              <AnimusStone>0.02</AnimusStone>
-              <NatureShrine_Small>0.01</NatureShrine_Small>
-              <NatureShrine_Large>0.01</NatureShrine_Large>
-            </defs>
-            <radius>9.9</radius>
-            <maxBuildings>4</maxBuildings>
-            <explanationKey>MeditationFocusPerAnimusStoneAndShrine</explanationKey>
-            <explanationKeyAbstract>MeditationFocusPerAnimusStoneAndShrineAbstract</explanationKeyAbstract>
-          </li>
-        </offsets>
-      </li>
-    </value>
-  </Operation> -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/comps/li[@Class="CompProperties_MeditationFocus"]</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/comps</xpath>
+      <value>
+        <li Class="CompProperties_MeditationFocus" MayRequire="Ludeon.Rimworld.Royalty">
+          <statDef>MeditationFocusStrength</statDef>
+          <focusTypes>
+            <li>Natural</li>
+          </focusTypes>
+          <offsets>
+            <li Class="FocusStrengthOffset_ArtificialBuildings">
+              <radius>7.9</radius>
+              <curve>
+                <points>
+                  <li>(0,   0.0)</li>
+                  <li>(5,  -0.05)</li>
+                  <li>(10, -0.1)</li>
+                  <li>(50, -0.15)</li>
+                </points>
+              </curve>
+            </li>
+            <li Class="FocusStrengthOffset_BuildingDefs">
+              <defs>
+                <AnimusStone MayRequire="Ludeon.RimWorld.Royalty">0.03</AnimusStone>
+                <NatureShrine_Small MayRequire="Ludeon.RimWorld.Royalty">0.01</NatureShrine_Small>
+                <NatureShrine_Large MayRequire="Ludeon.RimWorld.Royalty">0.01</NatureShrine_Large>
+                <Dryad_GauranlenShrine_Small MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Small>
+                <Dryad_GauranlenShrine_Large MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Large>
+                <Dryad_VikingShrine MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_VikingShrine>
+              </defs>
+              <radius>7.9</radius>
+              <maxBuildings>4</maxBuildings>
+              <explanationKey>MeditationFocusPerAnimusStoneAndShrine</explanationKey>
+              <explanationKeyAbstract>MeditationFocusPerAnimusStoneAndShrineAbstract</explanationKeyAbstract>
+            </li>
+          </offsets>
+        </li>
+      </value>
+    </nomatch>
+  </Operation>
 
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/statBases</xpath>
-    <value>
-      <MeditationFocusStrength>0.24</MeditationFocusStrength>
-    </value>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/statBases/MeditationFocusStrength</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/statBases</xpath>
+      <value>
+        <MeditationFocusStrength>0.24</MeditationFocusStrength>
+      </value>
+    </nomatch>
   </Operation>
   
   <!-- <Operation Class="PatchOperationReplace">
