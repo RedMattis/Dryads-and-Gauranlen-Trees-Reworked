@@ -72,14 +72,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Jobs\Jobigver_DryadCocoon.cs" />
     <Compile Include="Defs.cs" />
     <Compile Include="DryadConnectionHediff.cs" />
     <Compile Include="GauranlenTurret.cs" />
-    <Compile Include="JobGivers.cs" />
+    <Compile Include="Jobs\JobGiver_DryadHarvest.cs" />
+    <Compile Include="Jobs\JobGiver_FeedPatient.cs" />
+    <Compile Include="Jobs\JobGiver_Rescue.cs" />
+    <Compile Include="Jobs\JobGiver_DryadTend.cs" />
+    <Compile Include="Jobs\JobGiver_DryadSow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Misc.cs" />
+    <Compile Include="Jobs\ThinkNode_ConditionalIsDef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TreeComps.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

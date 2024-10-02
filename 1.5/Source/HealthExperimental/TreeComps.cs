@@ -12,6 +12,7 @@ using HarmonyLib;
 using Verse.AI;
 using Dryads;
 using KTrie;
+using System.Runtime.Remoting.Messaging;
 
 namespace Dryad
 {
@@ -56,6 +57,7 @@ namespace Dryad
         public FieldInfo leafEffecterFI = null;
 
         protected int actualMaxDryads = 1;
+        protected int maxGreater = 0;
 
         private TreeTierTracker currentTier = null;
 
@@ -64,7 +66,7 @@ namespace Dryad
         public int TurretSpawnTickCooldown => (int)(15000 * Main.settings.turretSpawnTime);
 
         //protected List<Thing> turrets = new();
-        protected List<Thing> plants = new();
+        protected List<Thing> plants = [];
         public CompProperties_NewTreeConnection NewProps => (CompProperties_NewTreeConnection)props;
         // "dryads" is private in the base class, so we need to use reflection to access it
         public List<Pawn> Dryads
@@ -78,6 +80,7 @@ namespace Dryad
                 return (List<Pawn>)dryadsFI.GetValue(this);
             }
         }
+        public PawnKindDef GreaterDryadKind => DryadGreaterLink.GetGreaterVersionOf(desiredMode?.pawnKindDef)?.greaterDryad;
         public int SpawnTick
         {
             get
@@ -149,6 +152,7 @@ namespace Dryad
             {
                 FinalizeMode();
             }
+            TryUpgradeToGreaterDryad();
         }
 
         private void RefreshConnection()
@@ -156,6 +160,7 @@ namespace Dryad
             var tierTracker = GetGauLevel();
             var tier = tierTracker.tier;
             actualMaxDryads = tierTracker.dryadCount;
+            maxGreater = tierTracker.greaterDryadCount;
 
             if (actualMaxDryads > 4) ConnectionStrength = Mathf.Min(1, 0.90f + (actualMaxDryads - 4) * 0.01f);
             if (actualMaxDryads == 4) ConnectionStrength = 0.90f;
@@ -171,7 +176,8 @@ namespace Dryad
                 var dryadHediff = dryad.health.hediffSet.GetFirstHediffOfDef(tier.dryadHediff);
                 if (dryadHediff == null)
                 {
-                    dryad.health.AddHediff(tier.dryadHediff);
+                    var hediff = dryad.health.AddHediff(tier.dryadHediff);
+                    hediff.Severity = tier.dryadHediffSeverity;
                 }
                 else
                 {
@@ -337,7 +343,7 @@ namespace Dryad
             }
             List<(Building thing, float distance)> thingsNearby = allBuildings.Select(b => (b, b.Position.DistanceTo(parent.Position))).ToList();
 
-            var tracker = new TreeTierTracker(tier, thingsNearby, info);
+            var tracker = new TreeTierTracker(this, tier, thingsNearby, info);
             CurrentTier = tracker;
             return tracker;
         }
@@ -458,28 +464,64 @@ namespace Dryad
             }
             return text.ToString().Trim();
         }
+        
+        public void TryUpgradeToGreaterDryad()
+        {
+            if (maxGreater == 0 || Dryads.NullOrEmpty())
+            {
+                return;
+            }
 
-
-
+            var baseKind = desiredMode.pawnKindDef;
+            var nextTier = DryadGreaterLink.GetGreaterVersionOf(baseKind)?.greaterDryad;
+            if (nextTier == null)
+            {
+                return;
+            }
+            int numGreater = Dryads.Count((Pawn x) => x.kindDef == nextTier);
+            if (numGreater >= maxGreater)
+            {
+                return;
+            }
+            var regularDryads = Dryads.Where((Pawn x) => x.kindDef == baseKind).ToList();
+            for (int idx = regularDryads.Count - 1; idx >= 0; idx--)
+            {
+                Pawn rDryad = regularDryads[idx];
+                if (numGreater >= maxGreater)
+                {
+                    break;
+                }
+                if (rDryad.DestroyedOrNull())
+                {
+                    continue;
+                }
+                RemoveDryad(rDryad);
+                rDryad.Destroy();
+                Pawn pawn = PawnGenerator.GeneratePawn(new PawnGenerationRequest(nextTier, null, PawnGenerationContext.NonPlayer, -1, forceGenerateNewPawn: false, allowDead: false, allowDowned: false, canGeneratePawnRelations: true, mustBeCapableOfViolence: false, 1f, forceAddFreeWarmLayerIfNeeded: false, allowGay: true, allowPregnant: false, allowFood: true, allowAddictions: true, inhabitant: false, certainlyBeenInCryptosleep: false, forceRedressWorldPawnIfFormerColonist: false, worldPawnFactionDoesntMatter: false, 0f, 0f, null, 1f, null, null, null, null, null, null, null, Gender.Male, null, null, null, null, forceNoIdeo: false, forceNoBackstory: false, forbidAnyTitle: false, forceDead: false, null, null, null, null, null, 0f, DevelopmentalStage.Newborn));
+                typeof(CompTreeConnection).GetMethod("ResetDryad", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(this, [pawn]);
+                pawn.connections?.ConnectTo(parent);
+                Dryads.Add(pawn);
+                
+                // Spawn the new pawn
+                GenSpawn.Spawn(pawn, parent.Position, parent.Map);
+                EffecterDefOf.DryadEmergeFromCocoon.Spawn(pawn.Position, pawn.Map).Cleanup();
+                numGreater++;
+            }
+        }
 
         [HarmonyPatch(typeof(CompTreeConnection), "ResetDryad")]
         [HarmonyPostfix]
         public static void ResetDryadPostFix(CompTreeConnection __instance, Pawn dryad)
         {
             if (dryad == null) return;
-            //dryad.health.AddHediff(DryadDefs.Dryad_Hediff);
-            foreach (TrainableDef allDef in DefDatabase<TrainableDef>.AllDefs)
+            foreach (TrainableDef aDef in DefDatabase<TrainableDef>.AllDefs)
             {
                 // Hax it so that dryads can be trained to rescue even if not combat trained.
-                if (allDef.defName == "Rescue" &&
-                    dryad?.def?.race?.trainableTags?.Contains("Help") == true && dryad?.def?.race?.trainableTags?.Contains("Combat") != true)
+                if (aDef.defName == "Rescue" &&
+                    dryad?.def?.race?.trainableTags?.Contains("Help") == true)
                 {
-                    dryad.training.SetWantedRecursive(allDef, checkOn: true);
-                    dryad.training.Train(allDef, __instance.ConnectedPawn, complete: true);
-                    if (allDef == TrainableDefOf.Release)
-                    {
-                        dryad.playerSettings.followDrafted = true;
-                    }
+                    dryad.training.SetWantedRecursive(aDef, checkOn: true);
+                    dryad.training.Train(aDef, __instance.ConnectedPawn, complete: true);
                 }
             }
         }
@@ -488,6 +530,7 @@ namespace Dryad
         {
             base.PostExposeData();
             Scribe_Values.Look(ref actualMaxDryads, "actualMaxDryads", 1);
+            Scribe_Values.Look(ref maxGreater, "maxGreater", 0);
             Scribe_Values.Look(ref turretSpawnTick, "turretSpawnTick", 0);
             //Scribe_Deep.Look(ref currentTier, "currentTier");
 

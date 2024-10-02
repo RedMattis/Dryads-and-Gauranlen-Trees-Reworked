@@ -36,24 +36,26 @@
 
     <dryadCount>1</dryadCount>
     <dryadMaxCount>5</dryadMaxCount>
+    <greaterDryadCount>0</greaterDryadCount>
     <dryadPerThing>
-      <li>
-        <multiplyByNearbyThingCount>AnimusStone</multiplyByNearbyThingCount>
+      <li MayRequire="Ludeon.RimWorld.Royalty">
+        <multiplyByNearbyThingCount MayRequire="Ludeon.RimWorld.Royalty">AnimusStone</multiplyByNearbyThingCount>
         <distanceToMThing>5</distanceToMThing>
         <count>1</count>
         <max>99</max>
       </li>
     </dryadPerThing>
+    <greaterDryadPerThing></greaterDryadPerThing>
     <plants>
-      <li>
-        <multiplyByNearbyThingCount>AnimusStone</multiplyByNearbyThingCount>
+      <li MayRequire="Ludeon.RimWorld.Royalty">
+        <multiplyByNearbyThingCount MayRequire="Ludeon.RimWorld.Royalty">AnimusStone</multiplyByNearbyThingCount>
         <plantDef>Dryad_Thorncaster</plantDef>
         <distanceToMThing>4</distanceToMThing>
         <count>2</count> <!--Multiplied by thing count if provided.-->
         <max>6</max>
       </li>
-      <li>
-        <multiplyByNearbyThingCount>AnimusStone</multiplyByNearbyThingCount>
+      <li MayRequire="Ludeon.RimWorld.Royalty">
+        <multiplyByNearbyThingCount MayRequire="Ludeon.RimWorld.Royalty">AnimusStone</multiplyByNearbyThingCount>
         <plantDef>Dryad_Thornlauncher</plantDef>
         <distanceToMThing>4</distanceToMThing>
         <count>1</count>
@@ -64,16 +66,17 @@
 
   <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
     <defName>Dryad_TierUltimate</defName>
-    <label>final transcendance</label>
+    <label>divine</label>
     <tierColor>0.4,0.8,0.8</tierColor>
     <localHarmony>10</localHarmony>
     <globalHarmony>40</globalHarmony>
     <localWealth>15000</localWealth>
-    <gauranlenSpacing>9</gauranlenSpacing>
+    <gauranlenSpacing>14</gauranlenSpacing>
 
     <connectedHediffSeverity>1</connectedHediffSeverity>
     <dryadHediffSeverity>1</dryadHediffSeverity>
     <dryadCount>4</dryadCount>
+    <greaterDryadCount>1</greaterDryadCount>
     <plants>
       <li>
         <plantDef>Dryad_Bulb</plantDef>
@@ -85,7 +88,7 @@
       </li>
       <li>
         <plantDef>Dryad_Thorncaster</plantDef>
-        <count>4</count>
+        <count>3</count>
       </li>
     </plants>
   </Dryad.TreeTier>
@@ -96,11 +99,12 @@
     <localHarmony>10</localHarmony>
     <globalHarmony>20</globalHarmony>
     <localWealth>6000</localWealth>
-    <gauranlenSpacing>14</gauranlenSpacing>
+    <gauranlenSpacing>9</gauranlenSpacing>
 
     <connectedHediffSeverity>0.75</connectedHediffSeverity>
     <dryadHediffSeverity>0.75</dryadHediffSeverity>
     <dryadCount>4</dryadCount>
+    <greaterDryadCount>1</greaterDryadCount>
     <plants>
       <li>
         <plantDef>Dryad_Bulb</plantDef>
@@ -128,6 +132,7 @@
     <connectedHediffSeverity>0.5</connectedHediffSeverity>
     <dryadHediffSeverity>0.5</dryadHediffSeverity>
     <dryadCount>4</dryadCount>
+    <greaterDryadCount>1</greaterDryadCount>
     <plants>
       <li>
         <plantDef>Dryad_Bulb</plantDef>

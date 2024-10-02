@@ -15,9 +15,11 @@ namespace Dryad
         public static ThingDef Dryad_Medicinemaker;
         public static ThingDef Dryad_Berrymaker;
         public static ThingDef Dryad_Woodmaker;
+        public static ThingDef Dryad_Clawer;
         public static ThingDef Plant_Healroot;
         public static ThingDef Plant_Strawberry;
         public static WorkGiverDef GrowerSow;
+        public static WorkGiverDef GrowerHarvest;
         //public static HediffDef Dryad_Hediff;
         //public static HediffDef Dryad_ConnectedHediff;
 
@@ -38,19 +40,39 @@ namespace Dryad
         }
     }
 
+    public class DryadGreaterLink : Def
+    {
+        public static Dictionary<PawnKindDef, DryadGreaterLink> dryadLinks = null;
+        public PawnKindDef dryad;
+        public PawnKindDef greaterDryad;
+        public int cost = 2;
+
+        public static DryadGreaterLink GetGreaterVersionOf(PawnKindDef baseDryad)
+        {
+            if (baseDryad == null) return null;
+            // Check if there are any defs of DryadGreaterLink at all.
+            if (DefDatabase<DryadGreaterLink>.AllDefs.Count() == 0) return null;
+
+            dryadLinks ??= DefDatabase<DryadGreaterLink>.AllDefs.ToDictionary(r => r.dryad);
+            return dryadLinks.TryGetValue(baseDryad, out var link) ? link : null;
+        }
+    }
+
     public class TreeTierTracker
     {
         public List<(int count, ThingDef thingDef)> plants = [];
         public int dryadCount = 0;
+        public int greaterDryadCount = 0;
         public string info = "";
         public TreeTier tier = null;
 
         public TreeTierTracker() { }
-        public TreeTierTracker(TreeTier tier, List<(Building thing, float distance)> thingsNearby, string levelUpInfo)
+        public TreeTierTracker(CompNewTreeConnection treeComp, TreeTier tier, List<(Building thing, float distance)> thingsNearby, string levelUpInfo)
         {
             this.tier = tier;
             plants = tier.GetPlantsToSpawn(thingsNearby).ToList();
-            dryadCount = tier.GetDryadCount(thingsNearby);
+            dryadCount = tier.GetDryadCount(thingsNearby, treeComp);
+            (greaterDryadCount, int greaterCost) = tier.GetGreaterDryadData(thingsNearby, treeComp);
             info = levelUpInfo;
         }
 
@@ -76,13 +98,33 @@ namespace Dryad
         public HediffDef dryadHediff;
         public float dryadHediffSeverity = 0.1f;
 
-        public int dryadCount = 1;
-        public int dryadMaxCount = 5;
+        protected int dryadCount = 1;
+        protected int greaterDryadCount = 0;
+        protected int dryadMaxCount = 5;
         public List<ThingCountToSpawn> plants = [];
         public List<ThingCountToSpawn> dryadPerThing = [];
+        public List<ThingCountToSpawn> greaterDryadPerThing = [];
 
-        public int GetDryadCount(List<(Building thing, float distance)> thingsFound) => dryadCount + dryadPerThing.Sum(pt => pt.CountToSpawn(thingsFound));
-
+        public int GetDryadCount(List<(Building thing, float distance)> thingsFound, CompNewTreeConnection treeComp)
+        {
+            (int greaterAmount, int greaterCost) = GetGreaterDryadData(thingsFound, treeComp);
+            int amount = dryadCount + dryadPerThing.Sum(pt => pt.CountToSpawn(thingsFound));
+            amount -= -greaterAmount * (greaterCost - 1); // cost - 1 Because it already counts as one.
+            amount = Mathf.Min(dryadMaxCount, amount);
+            return amount;
+        }
+        public (int amount, int cost) GetGreaterDryadData(List<(Building thing, float distance)> thingsFound, CompNewTreeConnection treeComp)
+        {
+            if (treeComp?.DryadKind == null)
+            {
+                return (0, 0);
+            }
+            if (DryadGreaterLink.GetGreaterVersionOf(treeComp.DryadKind) is DryadGreaterLink link)
+            {
+                return (greaterDryadCount + greaterDryadPerThing.Sum(pt => pt.CountToSpawn(thingsFound)), link.cost);
+            }
+            else return (0,0);
+        }
         public IEnumerable<(int count, ThingDef thingDef)> GetPlantsToSpawn(List<(Building thing, float distance)> thingsFound)
         {
             var plantsToSpawn = plants.Select(pt => (pt.CountToSpawn(thingsFound), pt.plantDef));

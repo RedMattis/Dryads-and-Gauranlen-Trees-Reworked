@@ -21,9 +21,23 @@
         <regeneration>25</regeneration>
       </li>
       <li>
+        <label>strong</label>
+        <minSeverity>0.5</minSeverity>
+        <regeneration>50</regeneration>
+        <statFactors>
+          <WorkSpeedGlobal>1.25</WorkSpeedGlobal>
+          <ImmunityGainSpeed>1.25</ImmunityGainSpeed>
+          <MoveSpeed>1.05</MoveSpeed>
+          <RestFallRateFactor>0.75</RestFallRateFactor>
+          <MedicalTendQuality>1.25</MedicalTendQuality>
+          <PlantHarvestYield>1.1</PlantHarvestYield>
+        </statFactors>
+      </li>
+      <li>
         <label>potent</label>
         <minSeverity>0.74</minSeverity>
         <regeneration>100</regeneration>
+        <statOffsets></statOffsets>
         <statFactors>
           <WorkSpeedGlobal>2</WorkSpeedGlobal>
           <ImmunityGainSpeed>1.5</ImmunityGainSpeed>
@@ -31,6 +45,8 @@
           <IncomingDamageFactor>0.8</IncomingDamageFactor>
           <RestFallRateFactor>0.5</RestFallRateFactor>
           <MeleeDamageFactor>1.2</MeleeDamageFactor>
+          <MedicalTendQuality>1.5</MedicalTendQuality>
+          <PlantHarvestYield>1.25</PlantHarvestYield>
         </statFactors>
       </li>
       <li>
@@ -44,6 +60,8 @@
           <IncomingDamageFactor>0.5</IncomingDamageFactor>
           <RestFallRateFactor>0</RestFallRateFactor>
           <MeleeDamageFactor>1.5</MeleeDamageFactor>
+          <MedicalTendQuality>2</MedicalTendQuality>
+          <PlantHarvestYield>1.5</PlantHarvestYield>
         </statFactors>
       </li>
     </stages>

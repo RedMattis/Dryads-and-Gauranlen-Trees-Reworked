@@ -10,14 +10,31 @@ using Verse;
 namespace Dryad
 {
     // Mostly stolen from Sarg's Animal Implants sow
-    public class JobGiver_Sow : ThinkNode
+    public class JobGiver_DryadSow : ThinkNode
     {
-        public bool emergency;
+        //public bool emergency;
         public int maxDistance = 9999;
+        public bool plantTrees = true;
+        public bool plantOnlyTrees = false;
+        public bool plantMedical = true;
+        public bool plantFood = true;
+        public bool plantBeauty = true;
+        public bool plantMisc = true;
+        public bool plantDrugs = true;
+        public int maxSkill = 99;
 
         public override ThinkNode DeepCopy(bool resolve = true)
         {
-            return (JobGiver_Sow)base.DeepCopy(resolve);
+            var js = (JobGiver_DryadSow)base.DeepCopy(resolve);
+            js.maxDistance = maxDistance;
+            js.plantTrees = plantTrees;
+            js.plantMedical = plantMedical;
+            js.plantFood = plantFood;
+            js.plantBeauty = plantBeauty;
+            js.plantMisc = plantMisc;
+            js.plantOnlyTrees = plantOnlyTrees;
+            js.maxSkill = maxSkill;
+            return js;
         }
 
         public override float GetPriority(Pawn pawn)
@@ -127,20 +144,43 @@ namespace Dryad
                                 {
                                     continue;
                                 }
-
+                                bool isTree = thingDef?.plant?.IsTree == true;
                                 int minSow = thingDef.plant?.sowMinSkill ?? 0;
-                                if (isBerryMaker && (minSow > 9 || (thingDef?.plant?.purpose != PlantPurpose.Food)))
+                                if (minSow > maxSkill)
                                 {
                                     continue;
                                 }
-                                if (isWoodMaker && (minSow > 9 || thingDef?.plant?.IsTree != true))
+                                if (plantOnlyTrees && !isTree)
                                 {
                                     continue;
                                 }
-                                // Check if Healing Plant.
-                                if (isMedicineMaker && (thingDef?.plant?.purpose != PlantPurpose.Health))
+                                if (!plantTrees && isTree)
                                 {
                                     continue;
+                                }
+                                bool isDrug = thingDef.plant?.drugForHarvestPurposes == true;
+                                if (!plantDrugs && isDrug)
+                                {
+                                    continue;
+                                }
+                                if (!isDrug)
+                                {
+                                    if (!plantFood && (thingDef?.plant?.purpose == PlantPurpose.Food))
+                                    {
+                                        continue;
+                                    }
+                                    if (!plantMedical && (thingDef?.plant?.purpose == PlantPurpose.Health))
+                                    {
+                                        continue;
+                                    }
+                                    if (!plantBeauty && (thingDef?.plant?.purpose == PlantPurpose.Beauty))
+                                    {
+                                        continue;
+                                    }
+                                    if (!plantMisc && (thingDef?.plant?.purpose == PlantPurpose.Misc))
+                                    {
+                                        continue;
+                                    }
                                 }
                                 bool flag = false;
                                 float num4 = (item - pawnPos).LengthHorizontalSquared;
@@ -209,48 +249,6 @@ namespace Dryad
         public static ThingDef CalculateWantedPlantDef(IntVec3 c, Map map)
         {
             return c.GetPlantToGrowSettable(map)?.GetPlantDefToGrow();
-        }
-
-        private Job GiverTryGiveJobPrioritized(Pawn pawn, WorkGiver giver, IntVec3 cell)
-        {
-            if (!PawnCanUseWorkGiver(pawn, giver))
-            {
-                return null;
-            }
-            try
-            {
-                Job job = giver.NonScanJob(pawn);
-                if (job != null)
-                {
-                    return job;
-                }
-                WorkGiver_Scanner scanner = giver as WorkGiver_Scanner;
-                if (scanner != null)
-                {
-                    if (giver.def.scanThings)
-                    {
-                        Predicate<Thing> predicate = (Thing t) => !t.IsForbidden(pawn) && scanner.HasJobOnThing(pawn, t);
-                        List<Thing> thingList = cell.GetThingList(pawn.Map);
-                        for (int i = 0; i < thingList.Count; i++)
-                        {
-                            Thing thing = thingList[i];
-                            if (scanner.PotentialWorkThingRequest.Accepts(thing) && predicate(thing))
-                            {
-                                return scanner.JobOnThing(pawn, thing);
-                            }
-                        }
-                    }
-                    if (giver.def.scanCells && !cell.IsForbidden(pawn) && scanner.HasJobOnCell(pawn, cell))
-                    {
-                        return scanner.JobOnCell(pawn, cell);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(string.Concat(pawn, " threw exception in GiverTryGiveJobTargeted on WorkGiver ", giver.def.defName, ": ", ex.ToString()));
-            }
-            return null;
         }
     }
 
