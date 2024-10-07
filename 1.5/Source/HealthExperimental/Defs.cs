@@ -20,6 +20,7 @@ namespace Dryad
         public static ThingDef Plant_Strawberry;
         public static WorkGiverDef GrowerSow;
         public static WorkGiverDef GrowerHarvest;
+        public static WorkGiverDef Mine;
         //public static HediffDef Dryad_Hediff;
         //public static HediffDef Dryad_ConnectedHediff;
 

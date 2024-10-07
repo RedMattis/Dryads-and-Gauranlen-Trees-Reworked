@@ -40,7 +40,7 @@
     <dryadPerThing>
       <li MayRequire="Ludeon.RimWorld.Royalty">
         <multiplyByNearbyThingCount MayRequire="Ludeon.RimWorld.Royalty">AnimusStone</multiplyByNearbyThingCount>
-        <distanceToMThing>5</distanceToMThing>
+        <distanceToMThing>4</distanceToMThing>
         <count>1</count>
         <max>99</max>
       </li>

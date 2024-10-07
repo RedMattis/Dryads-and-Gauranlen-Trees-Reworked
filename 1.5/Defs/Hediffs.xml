@@ -52,7 +52,7 @@
       <li>
         <label>overpowering</label>
         <minSeverity>0.9</minSeverity>
-        <regeneration>250</regeneration>
+        <regeneration>400</regeneration>
         <statFactors>
           <WorkSpeedGlobal>4</WorkSpeedGlobal>
           <ImmunityGainSpeed>3</ImmunityGainSpeed>
@@ -125,9 +125,9 @@
       <li>
         <label>avatar</label>
         <minSeverity>0.9</minSeverity>
-        <regeneration>100</regeneration>
+        <!-- <regeneration>100</regeneration> -->
         <hungerRateFactor>0.5</hungerRateFactor>
-        <naturalHealingFactor>2</naturalHealingFactor>
+        <naturalHealingFactor>4</naturalHealingFactor>
         <totalBleedFactor>0.5</totalBleedFactor>
         <statFactors>
           <ImmunityGainSpeed>1.5</ImmunityGainSpeed>

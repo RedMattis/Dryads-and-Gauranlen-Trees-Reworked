@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Jobs\JobGiver_DryadMiner.cs" />
     <Compile Include="Jobs\Jobigver_DryadCocoon.cs" />
     <Compile Include="Defs.cs" />
     <Compile Include="DryadConnectionHediff.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Jobs\JobGiver_Rescue.cs" />
     <Compile Include="Jobs\JobGiver_DryadTend.cs" />
     <Compile Include="Jobs\JobGiver_DryadSow.cs" />
+    <Compile Include="Jobs\ThinkNodeScanner.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Misc.cs" />
     <Compile Include="Jobs\ThinkNode_ConditionalIsDef.cs" />

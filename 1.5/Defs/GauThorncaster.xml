@@ -43,8 +43,8 @@
     <statBases>
       <AccuracyTouch>0.9</AccuracyTouch>
       <AccuracyShort>0.75</AccuracyShort>
-      <AccuracyMedium>0.4</AccuracyMedium>
-      <AccuracyLong>0.2</AccuracyLong>
+      <AccuracyMedium>0.35</AccuracyMedium>
+      <AccuracyLong>0.15</AccuracyLong>
       <RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
       <DeteriorationRate>0</DeteriorationRate>
       <Mass>5</Mass>
@@ -87,7 +87,7 @@
     </graphicData>
     <projectile>
       <damageDef>RangedStab</damageDef>
-      <damageAmountBase>24</damageAmountBase>
+      <damageAmountBase>22</damageAmountBase>
       <stoppingPower>2</stoppingPower>
       <armorPenetrationBase>0.45</armorPenetrationBase>
       <speed>35</speed>

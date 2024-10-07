@@ -8,9 +8,9 @@
 
   <Dryad_NeedMoreHarmony>Needs: more nearby shrines (score: {0}/{1})</Dryad_NeedMoreHarmony>
   <Dryad_BadMapHarmony>Needs: less mechs or more shrines {0}/{1}</Dryad_BadMapHarmony>
-  <Dryad_ShrineWealthNeed>Needs: More nearby high-value shrines {0}/{1}</Dryad_ShrineWealthNeed>
+  <Dryad_ShrineWealthNeed>Needs: More nearby high-value shrines {0}/{1}. Only the 3 best counts.</Dryad_ShrineWealthNeed>
   <Dryad_GauranlenSpacing>Needs: More space between Gauranlen Trees {0}/{1}</Dryad_GauranlenSpacing>
-  <Dryad_NeedMapHarmony>Needs: More shrines on the map {0}/{1}</Dryad_NeedMapHarmony>
+  <Dryad_NeedMapHarmony>Needs: More shrines anywhere on the map {0}/{1}</Dryad_NeedMapHarmony>
   <Dryad_MaxLevelMaybe>At Max level..?</Dryad_MaxLevelMaybe>
   <Dryad_MaxLevel>At Max level?</Dryad_MaxLevel>
   <Dryad_MaxLevelYES>At Absolute Max!</Dryad_MaxLevelYES>

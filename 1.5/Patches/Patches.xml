@@ -1,5 +1,19 @@
 <Patch>
   <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/minifiedDef</xpath>
+    <value>
+      <minifiedDef>MinifiedTree</minifiedDef>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/statBases/MaxHitPoints</xpath>
+    <value>
+      <MaxHitPoints>600</MaxHitPoints>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/comps/li[@Class="CompProperties_TreeConnection"]</xpath>
     <value>
       <li Class="Dryad.CompProperties_NewTreeConnection">
@@ -176,7 +190,7 @@
                   <li Class="Dryad.ThinkNode_ConditionalIsDef">
                     <defList>
                       <li>Dryad_Medicinemaker</li>
-                      <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Medicinemaker</li>
+                      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Medicinemaker</li>
                     </defList>
                     <subNodes>
                       <li Class="Dryad.JobGiver_DryadTend">
@@ -197,8 +211,8 @@
                     <defList>
                       <li>Dryad_Medicinemaker</li>
                       <li>Dryad_Carrier</li>
-                      <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Medicinemaker</li>
-                      <!-- <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Carrier</li> -->
+                      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Medicinemaker</li>
+                      <!-- <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Carrier</li> -->
                     </defList>
                     <subNodes>
                       <li Class="Dryad.JobGiver_DryadRescueNearby">
@@ -243,7 +257,7 @@
               <li Class="Dryad.ThinkNode_ConditionalIsDef">
                 <defList>
                   <li>Dryad_Medicinemaker</li>
-                  <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Medicinemaker</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Medicinemaker</li>
                 </defList>
                 <subNodes>
                   <li Class="ThinkNode_Tagger">
@@ -264,8 +278,8 @@
                 <defList>
                   <li>Dryad_Berrymaker</li>
                   <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Nectarmaker</li>
-                  <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Berrymaker</li>
-                  <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Nectarmaker</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Berrymaker</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Nectarmaker</li>
                 </defList>
                 <subNodes>
                   <li Class="ThinkNode_Tagger">
@@ -285,7 +299,7 @@
               <li Class="Dryad.ThinkNode_ConditionalIsDef">
                 <defList>
                   <li>Dryad_Woodmaker</li>
-                  <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Woodmaker</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Woodmaker</li>
                 </defList>
                 <subNodes>
                   <li Class="ThinkNode_Tagger">
@@ -306,7 +320,7 @@
           <li Class="Dryad.ThinkNode_ConditionalIsDef">
             <defList>
               <li>Dryad_Medicinemaker</li>
-              <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Medicinemaker</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Medicinemaker</li>
             </defList>
             <subNodes>
               <li Class="ThinkNode_Tagger">
@@ -327,8 +341,8 @@
             <defList>
               <li>Dryad_Berrymaker</li>
               <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Nectarmaker</li>
-              <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Berrymaker</li>
-              <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Nectarmaker</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Berrymaker</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Nectarmaker</li>
             </defList>
             <subNodes>
               <li Class="ThinkNode_Tagger">
@@ -348,7 +362,7 @@
           <li Class="Dryad.ThinkNode_ConditionalIsDef">
             <defList>
               <li>Dryad_Woodmaker</li>
-              <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Woodmaker</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Woodmaker</li>
             </defList>
             <subNodes>
               <li Class="ThinkNode_Tagger">
@@ -370,7 +384,7 @@
               <li Class="Dryad.ThinkNode_ConditionalIsDef">
                 <defList>
                   <li>Dryad_Clawer</li>
-                  <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Clawer</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Clawer</li>
                 </defList>
                 <subNodes>
                   <li Class="ThinkNode_Tagger">
@@ -385,16 +399,57 @@
               </li>
             </subNodes>
           </li>
+          <li Class="ThinkNode_ChancePerHour_Constant">
+            <mtbHours>4</mtbHours>
+            <subNodes>
+              <li Class="Dryad.ThinkNode_ConditionalIsDef">
+                <defList>
+                  <li>Dryad_Barkskin</li>
+                  <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Stonedigger</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Barkskin</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Stonedigger</li>
+                </defList>
+                <subNodes>
+                  <li Class="ThinkNode_Tagger">
+                    <tagToGive>TrainedAnimalBehavior</tagToGive>
+                    <subNodes>
+                      <li Class="Dryad.JobGiver_DryadMine"> 
+                        <maxDistance>500</maxDistance>
+                      </li>
+                    </subNodes>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
           <li Class="Dryad.ThinkNode_ConditionalIsDef">
             <defList>
               <li>Dryad_Clawer</li>
-              <li MayRequire="RedMattis.Dryads.VECompat">DVE_GreaterDryad_Clawer</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Clawer</li>
             </defList>
             <subNodes>
               <li Class="ThinkNode_Tagger">
                 <tagToGive>TrainedAnimalBehavior</tagToGive>
                 <subNodes>
                   <li Class="Dryad.JobGiver_DryadHarvest"> 
+                    <maxDistance>14</maxDistance>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <li Class="Dryad.ThinkNode_ConditionalIsDef">
+            <defList>
+              <li>Dryad_Barkskin</li>
+              <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Stonedigger</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Barkskin</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Stonedigger</li>
+            </defList>
+            <subNodes>
+              <li Class="ThinkNode_Tagger">
+                <tagToGive>TrainedAnimalBehavior</tagToGive>
+                <subNodes>
+                  <li Class="Dryad.JobGiver_DryadMine"> 
                     <maxDistance>14</maxDistance>
                   </li>
                 </subNodes>
@@ -411,6 +466,7 @@
     <value>
       <RestRateMultiplier>2</RestRateMultiplier>
       <PlantWorkSpeed>0.25</PlantWorkSpeed>
+      <MiningSpeed>0.25</MiningSpeed>
     </value>
   </Operation>
   
@@ -518,9 +574,17 @@
     </value>
   </Operation>
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/GauranlenTreeModeDef[defName="Clawer" or defName="Woodmaker" or defName="Berrymaker" or defName="Medicinemaker"]/displayedStats</xpath>
+    <xpath>Defs/GauranlenTreeModeDef[defName="Clawer" or defName="Woodmaker" or defName="Berrymaker" or defName="Medicinemaker" or defName="VDE_Nectarmaker"]/displayedStats</xpath>
     <value>
       <li>PlantWorkSpeed</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/GauranlenTreeModeDef[defName="Barkskin" or defName="VDE_Stonedigger"]/displayedStats</xpath>
+    <value>
+      <li>MiningSpeed</li>
+      <li>MiningYield</li>
     </value>
   </Operation>
 
@@ -542,6 +606,23 @@
     <xpath>Defs/StatDef[defName="MedicalTendQuality" or defName="MedicalTendSpeed"]/showOnPawnKind</xpath>
     <value>
       <li>Dryad_Medicinemaker</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/StatDef[(defName="MiningSpeed" or defName="MiningYield") and not(showOnPawnKind)]</xpath>
+    <success>Always</success>
+    <value>
+      <showOnPawnKind></showOnPawnKind>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/StatDef[defName="MiningSpeed" or defName="MiningYield"]/showOnPawnKind</xpath>
+    <value>
+      <li>Dryad_Barkskin</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Stonedigger</li>
+      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Barkskin</li>
+      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Stonedigger</li>
     </value>
   </Operation>
 
