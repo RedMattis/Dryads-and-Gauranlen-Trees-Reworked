@@ -73,6 +73,7 @@
     <description>This person has a connection to a Gauranlen tree.\n\nThe consciousness bonus scales with pruning ability.</description>
     <hediffClass>Dryad.DryadConnectionHediff</hediffClass>
     <isBad>false</isBad>
+    <countsAsAddedPartOrImplant>false</countsAsAddedPartOrImplant>
     <stages>
       <li>
         <label>strained</label>

@@ -35,7 +35,7 @@
     <dryadHediffSeverity>0.1</dryadHediffSeverity>
 
     <dryadCount>1</dryadCount>
-    <dryadMaxCount>5</dryadMaxCount>
+    <dryadMaxCount>6</dryadMaxCount>
     <greaterDryadCount>0</greaterDryadCount>
     <dryadPerThing>
       <li MayRequire="Ludeon.RimWorld.Royalty">
@@ -45,7 +45,14 @@
         <max>99</max>
       </li>
     </dryadPerThing>
-    <greaterDryadPerThing></greaterDryadPerThing>
+    <greaterDryadPerThing>
+      <li MayRequire="Ludeon.RimWorld.Royalty">
+        <multiplyByNearbyThingCount MayRequire="Ludeon.RimWorld.Royalty">AnimusStone</multiplyByNearbyThingCount>
+        <distanceToMThing>4</distanceToMThing>
+        <count>0.5</count>
+        <max>99</max>
+      </li>
+    </greaterDryadPerThing>
     <plants>
       <li MayRequire="Ludeon.RimWorld.Royalty">
         <multiplyByNearbyThingCount MayRequire="Ludeon.RimWorld.Royalty">AnimusStone</multiplyByNearbyThingCount>
@@ -59,7 +66,7 @@
         <plantDef>Dryad_Thornlauncher</plantDef>
         <distanceToMThing>4</distanceToMThing>
         <count>1</count>
-        <max>4</max>
+        <max>3</max>
       </li>
     </plants>
   </Dryad.TreeTier>
@@ -216,7 +223,7 @@
 
   <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
     <defName>Dryad_TierWorst</defName>
-    <label>withered</label>
+    <label>withered (too many mechs, too few map shrines!)</label>
     <tierColor>0.8,0.2,0.2</tierColor>
     <dryadMaxCount>0</dryadMaxCount>
     <connectedHediffSeverity>0.01</connectedHediffSeverity>

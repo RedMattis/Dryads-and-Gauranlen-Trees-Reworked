@@ -109,8 +109,8 @@ namespace Dryad
         public int GetDryadCount(List<(Building thing, float distance)> thingsFound, CompNewTreeConnection treeComp)
         {
             (int greaterAmount, int greaterCost) = GetGreaterDryadData(thingsFound, treeComp);
-            int amount = dryadCount + dryadPerThing.Sum(pt => pt.CountToSpawn(thingsFound));
-            amount -= -greaterAmount * (greaterCost - 1); // cost - 1 Because it already counts as one.
+            int amount = dryadCount + dryadPerThing.Sum(pt => pt.CountToSpawn(thingsFound, "dryads"));
+            amount -= (-greaterAmount * (greaterCost - 1)); // cost - 1 Because it already counts as one.
             amount = Mathf.Min(dryadMaxCount, amount);
             return amount;
         }
@@ -122,13 +122,13 @@ namespace Dryad
             }
             if (DryadGreaterLink.GetGreaterVersionOf(treeComp.DryadKind) is DryadGreaterLink link)
             {
-                return (greaterDryadCount + greaterDryadPerThing.Sum(pt => pt.CountToSpawn(thingsFound)), link.cost);
+                return (Math.Min(greaterDryadCount + greaterDryadPerThing.Sum(pt => pt.CountToSpawn(thingsFound, "greater_dryads")), dryadMaxCount), link.cost);
             }
             else return (0,0);
         }
         public IEnumerable<(int count, ThingDef thingDef)> GetPlantsToSpawn(List<(Building thing, float distance)> thingsFound)
         {
-            var plantsToSpawn = plants.Select(pt => (pt.CountToSpawn(thingsFound), pt.plantDef));
+            var plantsToSpawn = plants.Select(pt => (pt.CountToSpawn(thingsFound, "plants"), pt.plantDef));
             // Merge identical plants, sum up their count.
             return plantsToSpawn.GroupBy(p => p.plantDef).Select(g => (g.Sum(p => p.Item1), g.Key));
         }
@@ -159,7 +159,6 @@ namespace Dryad
             }
             return true;
         }
-
     }
 
     public class ThingCountToSpawn
@@ -167,18 +166,18 @@ namespace Dryad
         public ThingDef multiplyByNearbyThingCount = null;
         public float distanceToMThing = 14; // Distance from thing. If any.
         public ThingDef plantDef;
-        public int count = 1;
+        private float count = 1;
         public int max = 99;
 
-        public int CountToSpawn(List<(Building thing, float distance)> thingsFound)
+        public int CountToSpawn(List<(Building thing, float distance)> thingsFound, string caller="")
         {
             if (multiplyByNearbyThingCount == null)
             {
-                return count;
+                return Mathf.FloorToInt(count);
             }
 
-            int fromThingCount = thingsFound.Where(t => t.thing.def == multiplyByNearbyThingCount && t.distance <= distanceToMThing).Count() * count;
-            return Math.Min(fromThingCount, max);
+            float fromThingCount = thingsFound.Where(t => t.thing.def == multiplyByNearbyThingCount && t.distance <= distanceToMThing).Count() * count;
+            return Mathf.FloorToInt(Math.Min(fromThingCount, max));
         }
     }
 }

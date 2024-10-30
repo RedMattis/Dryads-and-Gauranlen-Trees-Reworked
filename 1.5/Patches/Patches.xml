@@ -50,16 +50,16 @@
             <li>(0.48, 2)</li>
             <li>(0.73, 3)</li>
             <li>(0.90, 4)</li>
-            <li>(0.91, 5)</li>
-            <li>(0.92, 6)</li>
-            <li>(0.93, 7)</li>
-            <li>(0.94, 8)</li>
-            <li>(0.95, 9)</li>
-            <li>(0.96, 10)</li>
-            <li>(0.97, 11)</li>
-            <li>(0.98, 12)</li>
-            <li>(0.99, 13)</li>
-            <li>(1, 14)</li>
+            <li>(0.909, 5)</li>
+            <li>(0.919, 6)</li>
+            <li>(0.929, 7)</li>
+            <li>(0.939, 8)</li>
+            <li>(0.949, 9)</li>
+            <li>(0.959, 10)</li>
+            <li>(0.969, 11)</li>
+            <li>(0.979, 12)</li>
+            <li>(0.989, 13)</li>
+            <li>(0.999, 14)</li>
           </points>
         </maxDryadsPerConnectionStrengthCurve>
         <connectionLossPerLevelCurve>
@@ -537,6 +537,13 @@
       <CarryingCapacity>100</CarryingCapacity>
     </value>
   </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Dryad_Carrier"]/statBases/MoveSpeed</xpath>
+    <value>
+      <MoveSpeed>5</MoveSpeed>
+    </value>
+  </Operation>
+  
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/ThingDef[defName="Dryad_Carrier"]/race</xpath>
     <value>

@@ -163,11 +163,11 @@ namespace Dryad
             maxGreater = tierTracker.greaterDryadCount;
 
             if (actualMaxDryads > 4) ConnectionStrength = Mathf.Min(1, 0.90f + (actualMaxDryads - 4) * 0.01f);
-            if (actualMaxDryads == 4) ConnectionStrength = 0.90f;
-            if (actualMaxDryads == 3) ConnectionStrength = 0.75f;
-            if (actualMaxDryads == 2) ConnectionStrength = 0.5f;
-            if (actualMaxDryads == 1) ConnectionStrength = 0.25f;
-            if (actualMaxDryads == 0) ConnectionStrength = 0f;
+            else if (actualMaxDryads == 4) ConnectionStrength = 0.90f;
+            else if (actualMaxDryads == 3) ConnectionStrength = 0.75f;
+            else if (actualMaxDryads == 2) ConnectionStrength = 0.5f;
+            else if (actualMaxDryads == 1) ConnectionStrength = 0.25f;
+            else if (actualMaxDryads == 0) ConnectionStrength = 0f;
             DesiredConnectionStrength = 0;
 
             // Fetch all dryads.
@@ -236,8 +236,8 @@ namespace Dryad
                     => c.GetThingList(parent.Map).Any(t =>
                     // If not spawnOn is not defined check if the place is empty.
                     (plantRules.spawnOn == null && c.GetEdifice(parent.Map) == null) ||
-                    // If spawnOn is defined check if the place is the right thing.
-                    c.GetThingList(parent.Map).Any(t => t.def == plantRules.spawnOn)
+                    // If spawnOn is defined check if the place is the right thing. And check is there is no in-progress construction there.
+                    c.GetThingList(parent.Map).All(t => t.def == plantRules.spawnOn) 
                     ), out var cell))
                 {
                     var plantThing = GenSpawn.Spawn(plantDef, cell, parent.Map);
