@@ -40,7 +40,7 @@
     <dryadPerThing>
       <li MayRequire="Ludeon.RimWorld.Royalty">
         <multiplyByNearbyThingCount MayRequire="Ludeon.RimWorld.Royalty">AnimusStone</multiplyByNearbyThingCount>
-        <distanceToMThing>4</distanceToMThing>
+        <distanceToMThing>3</distanceToMThing>
         <count>1</count>
         <max>99</max>
       </li>
@@ -48,7 +48,7 @@
     <greaterDryadPerThing>
       <li MayRequire="Ludeon.RimWorld.Royalty">
         <multiplyByNearbyThingCount MayRequire="Ludeon.RimWorld.Royalty">AnimusStone</multiplyByNearbyThingCount>
-        <distanceToMThing>4</distanceToMThing>
+        <distanceToMThing>3</distanceToMThing>
         <count>0.5</count>
         <max>99</max>
       </li>
@@ -57,14 +57,14 @@
       <li MayRequire="Ludeon.RimWorld.Royalty">
         <multiplyByNearbyThingCount MayRequire="Ludeon.RimWorld.Royalty">AnimusStone</multiplyByNearbyThingCount>
         <plantDef>Dryad_Thorncaster</plantDef>
-        <distanceToMThing>4</distanceToMThing>
+        <distanceToMThing>3</distanceToMThing>
         <count>2</count> <!--Multiplied by thing count if provided.-->
         <max>6</max>
       </li>
       <li MayRequire="Ludeon.RimWorld.Royalty">
         <multiplyByNearbyThingCount MayRequire="Ludeon.RimWorld.Royalty">AnimusStone</multiplyByNearbyThingCount>
         <plantDef>Dryad_Thornlauncher</plantDef>
-        <distanceToMThing>4</distanceToMThing>
+        <distanceToMThing>3</distanceToMThing>
         <count>1</count>
         <max>3</max>
       </li>
