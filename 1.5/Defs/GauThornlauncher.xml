@@ -30,8 +30,8 @@
 
   <ThingDef ParentName="DryadTurretGun">
     <defName>Dryad_Thornlauncher_Gun</defName>
-    <label>throncaster</label>
-    <description>The 'weapon' of a throncaster dryad.</description>
+    <label>thornlauncher</label>
+    <description>The 'weapon' of a thornlauncher dryad.</description>
     <graphicData>
       <graphicClass>Graphic_Single</graphicClass>
       <texPath>Building/Dryad_Turret/Thornlauncher_Top</texPath>

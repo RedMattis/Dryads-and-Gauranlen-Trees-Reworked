@@ -32,7 +32,7 @@
 
   <ThingDef ParentName="DryadTurretGun">
     <defName>Dryad_Thorncaster_Gun</defName>
-    <label>throncaster</label>
+    <label>thorncaster</label>
     <description>The 'weapon' of a throncaster dryad.</description>
     <graphicData>
       <graphicClass>Graphic_Random</graphicClass>
@@ -80,6 +80,7 @@
   <ThingDef ParentName="BaseProjectileNeolithic">
     <defName>Dryad_GauBullet</defName>
     <label>gau stinger</label>
+    <thingClass>Bullet</thingClass>
     <graphicData>
       <texPath>Building/Dryad_Turret/Thorncaster_Bullet</texPath>
       <graphicClass>Graphic_Single</graphicClass>
