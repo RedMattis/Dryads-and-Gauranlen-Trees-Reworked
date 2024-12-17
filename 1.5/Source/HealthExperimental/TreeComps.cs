@@ -218,13 +218,13 @@ namespace Dryad
             {
                 int plantNumberSpawned = plants.Count(p => p.def == plantDef);
                 if (plantNumberSpawned == pToSpawn) continue;
-                if (plantNumberSpawned > pToSpawn)
-                {
-                    var p = plants.First(p => p.def == plantDef);
-                    try { p.Destroy(); } catch { }
-                    plants.Remove(p);
-                    continue;
-                }
+                //if (plantNumberSpawned > pToSpawn)
+                //{
+                //    var p = plants.First(p => p.def == plantDef);
+                //    try { if (!p.Destroyed) p.Destroy(); } catch { }
+                //    plants.Remove(p);
+                //    continue;
+                //}
 
                 var plantRules = PlantSpawnRules.GetRulesForPlant(plantDef);
                 if (plantRules == null)

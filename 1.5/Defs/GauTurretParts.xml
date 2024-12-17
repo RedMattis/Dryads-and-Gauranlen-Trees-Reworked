@@ -8,6 +8,8 @@
     <useHitPoints>true</useHitPoints>
     <passability>PassThroughOnly</passability>
     <soundImpactDefault>BulletImpact_Ground</soundImpactDefault>
+    <thingCategories IsNull="True"/>
+    <designationCategory IsNull="True"/>
     <statBases>
       <Flammability>0.5</Flammability>
       <MaxHitPoints>50</MaxHitPoints>
@@ -19,6 +21,8 @@
       <ai_neverTrashThis>true</ai_neverTrashThis>
       <ai_chillDestination>false</ai_chillDestination>
       <paintable>true</paintable>
+      <deconstructible>false</deconstructible>
+      <neverBuildable>true</neverBuildable>
     </building>
     <graphicData>
       <texPath>Building/Dryad_Turret/FlowerBase</texPath>
@@ -50,8 +54,12 @@
     <altitudeLayer>Building</altitudeLayer>
     <stealable>false</stealable>
     <rotatable>false</rotatable>
+    <thingCategories IsNull="True"/>
+    <designationCategory IsNull="True"/>
     <building>
       <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+      <deconstructible>false</deconstructible>
+      <neverBuildable>true</neverBuildable>
     </building>
     <statBases>
       <MaxHitPoints>150</MaxHitPoints>
