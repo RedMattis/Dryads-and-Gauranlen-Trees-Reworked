@@ -95,7 +95,7 @@
           </focusTypes>
           <offsets>
             <li Class="FocusStrengthOffset_ArtificialBuildings">
-              <radius>7.9</radius>
+              <radius>9.9</radius>
               <curve>
                 <points>
                   <li>(0,   0.0)</li>

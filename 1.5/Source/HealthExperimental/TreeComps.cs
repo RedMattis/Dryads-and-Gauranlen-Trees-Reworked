@@ -274,7 +274,7 @@ namespace Dryad
             var hb = NewProps.harmonyBuildings;
             float localHarmony = nearBuildings.Where(b => hb.Contains(b.def)).Sum(HarmonyFromBuilding);
             float mapHarmony = allBuildings.Where(b => hb.Contains(b.def)).Sum(HarmonyFromBuilding);
-            float harmonyDisruption = nearBuildings.Where(b => b.def.building.artificialForMeditationPurposes && !hb.Contains(b.def)).Count();
+            float harmonyDisruption = GauranlenUtility.BuildingsAffectingConnectionStrengthAt(parent.Position, parent.Map, Props).Count;
             float mechanoidDisruption = parent.Map.mapPawns.AllPawns.Where(p => p.Faction == Faction.OfPlayer && p.RaceProps.IsMechanoid).Sum(p => (int)Mathf.Ceil(p.BodySize));
             mechanoidDisruption *= Main.settings.mechPenaltyScale;
             
