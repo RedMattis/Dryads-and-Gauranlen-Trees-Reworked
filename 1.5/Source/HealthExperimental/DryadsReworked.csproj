@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GauranlenTracker.cs" />
     <Compile Include="Jobs\JobGiver_DryadMiner.cs" />
     <Compile Include="Jobs\Jobigver_DryadCocoon.cs" />
     <Compile Include="Defs.cs" />

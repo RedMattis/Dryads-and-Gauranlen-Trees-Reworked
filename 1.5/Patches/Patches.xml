@@ -580,27 +580,7 @@
       <li>Dryad_Clawer</li>
     </value>
   </Operation>
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/GauranlenTreeModeDef[defName="Clawer" or defName="Woodmaker" or defName="Berrymaker" or defName="Medicinemaker" or defName="VDE_Nectarmaker"]/displayedStats</xpath>
-    <value>
-      <li>PlantWorkSpeed</li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/GauranlenTreeModeDef[defName="Barkskin" or defName="VDE_Stonedigger"]/displayedStats</xpath>
-    <value>
-      <li>MiningSpeed</li>
-      <li>MiningYield</li>
-    </value>
-  </Operation>
-
-  <Operation Class="PatchOperationAdd">
-    <xpath>Defs/GauranlenTreeModeDef[defName="Medicinemaker"]/displayedStats</xpath>
-    <value>
-      <li>MedicalTendSpeed</li>
-    </value>
-  </Operation>
+  
 
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/StatDef[(defName="MedicalTendQuality" or defName="MedicalTendSpeed") and not(showOnPawnKind)]</xpath>

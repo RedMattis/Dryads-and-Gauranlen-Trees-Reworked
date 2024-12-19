@@ -39,8 +39,7 @@
     </graphicData>
     <size>(1,1)</size>
     <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
-    <comps>
-    </comps>
+    <comps> <li Class="Dryad.CompProperties_GauranLenConnection"><maxDistanceFromTree>15</maxDistanceFromTree></li> </comps>
   </ThingDef>
 
   <ThingDef Abstract="True" Name="DryadTurretGun" ParentName="BaseWeaponTurret">
@@ -49,7 +48,7 @@
 
   <ThingDef Abstract="True" Name="Dryad_Turret" ParentName="BuildingBase">
     <drawerType>MapMeshAndRealTime</drawerType>
-    <uiIconPath>Things/Building/Security/TurretMini_MenuIcon</uiIconPath>
+    <uiIconPath>Building/Dryad_Turret/FlowerBase</uiIconPath>
     <uiIconScale>0.90</uiIconScale>
     <altitudeLayer>Building</altitudeLayer>
     <stealable>false</stealable>
@@ -70,13 +69,12 @@
       <ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
     </statBases>
     <tickerType>Normal</tickerType>
-    <comps>
-    </comps>
     <passability>PassThroughOnly</passability>
     <pathCost>50</pathCost>
     <fillPercent>0.4</fillPercent>
     <hasTooltip>true</hasTooltip>
     <soundImpactDefault>BulletImpact_Ground</soundImpactDefault>
+    <comps> <li Class="Dryad.CompProperties_GauranLenConnection"><maxDistanceFromTree>15</maxDistanceFromTree></li> </comps>
     <!-- <terrainAffordanceNeeded>Light</terrainAffordanceNeeded> -->
   </ThingDef>
 

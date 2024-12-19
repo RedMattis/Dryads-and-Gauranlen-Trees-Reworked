@@ -116,6 +116,25 @@ namespace Dryad
             set => currentTier = value;
         }
 
+        public void RemovePlant(Thing plant)
+        {
+            plants.Remove(plant);
+        }
+        public void AddPlant(Thing plant)
+        {
+            plants.Add(plant);
+        }
+
+        public bool CanSupportPlant(ThingDef plant, bool additional)
+        {
+            if (currentTier != null)
+            {
+                int currentCount = plants.Count(p => p.def == plant);
+                int maxCount = currentTier.plants.FirstOrDefault(p => p.thingDef == plant).count;
+                return additional ? currentCount < maxCount : currentCount <= maxCount;
+            }
+            return false;
+        }
         public override void CompTick()
         {
             if (CurrentTier == null) RefreshConnection();
@@ -217,7 +236,7 @@ namespace Dryad
             foreach(var (pToSpawn, plantDef) in tierTracker.plants.InRandomOrder())
             {
                 int plantNumberSpawned = plants.Count(p => p.def == plantDef);
-                if (plantNumberSpawned == pToSpawn) continue;
+                if (plantNumberSpawned >= pToSpawn) continue;
                 //if (plantNumberSpawned > pToSpawn)
                 //{
                 //    var p = plants.First(p => p.def == plantDef);
@@ -244,6 +263,13 @@ namespace Dryad
                     plants.Add(plantThing);
                     plantThing.SetFaction(Faction.OfPlayer);
                     turretSpawnTick = Find.TickManager.TicksGame + Rand.Range(TurretSpawnTickCooldown/2, (int)(TurretSpawnTickCooldown*1.5f));
+
+                    var plantComp = plantThing.TryGetComp<CompGauranlenConnection>();
+                    if (plantComp != null)
+                    {
+                        plantComp.SetParentTree(parent);
+                    }
+
                     return;
                 }
             }
@@ -541,6 +567,15 @@ namespace Dryad
             {
                 // Remove all missing/destroyed turrets.
                 plants.RemoveAll((Thing x) => x?.Destroyed ?? true);
+
+                // Set the parent tree for all turrets.
+                foreach (var plant in plants.Where(x=>x is ThingWithComps).Select(x=>(ThingWithComps)x))
+                {
+                    if (plant.GetComp<CompGauranlenConnection>() is CompGauranlenConnection gauCon)
+                    {
+                        gauCon.SetParentTree(parent);
+                    }
+                }
             }
         }
     }
