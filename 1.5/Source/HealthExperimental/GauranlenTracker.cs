@@ -16,7 +16,6 @@ namespace Dryad
 
             if (Find.TickManager.TicksGame % 15000 == 0)
             {
-                Log.Message("DEBUG: Gauranlen Game Tracker tick");
                 // Remove any null or destroyed entries
                 gauPlants.RemoveWhere(p => p == null || p.parent == null || p.parent.Destroyed);
                 allTrees.RemoveWhere(t => t == null || t.parent == null || t.parent.Destroyed);
