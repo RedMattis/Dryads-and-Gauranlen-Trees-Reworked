@@ -14,6 +14,9 @@
           <RestFallRateFactor>2</RestFallRateFactor>
           <MeleeDamageFactor>0.75</MeleeDamageFactor>
         </statFactors>
+        <statOffsets>
+          <SM_BodySizeOffset MayRequire="RedMattis.BetterPrerequisites">-0.1</SM_BodySizeOffset>
+        </statOffsets>
       </li>
       <li>
         <!-- <label>normal</label> -->
@@ -60,6 +63,7 @@
           <IncomingDamageFactor>0.5</IncomingDamageFactor>
           <RestFallRateFactor>0</RestFallRateFactor>
           <MeleeDamageFactor>1.4</MeleeDamageFactor>
+          <MeleeCooldownFactor>0.9</MeleeCooldownFactor>
           <MeleeHitChance>1.1</MeleeHitChance>
           <MedicalTendQuality>2</MedicalTendQuality>
           <PlantHarvestYield>1.5</PlantHarvestYield>
@@ -105,9 +109,6 @@
         <label>strained</label>
         <minSeverity>0</minSeverity>
         <painOffset>0.05</painOffset>
-        <statOffsets>
-          <SM_BodySizeOffset MayRequire="RedMattis.BetterPrerequisites">-0.1</SM_BodySizeOffset>
-        </statOffsets>
       </li>
       <li>
         <minSeverity>0.08</minSeverity>
