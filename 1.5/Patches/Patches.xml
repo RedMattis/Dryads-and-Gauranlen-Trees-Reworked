@@ -26,6 +26,7 @@
         <spawningPodSizeRange>0.4~0.65</spawningPodSizeRange>
         <maxDryadsWild>1</maxDryadsWild>
         <gauTiers>
+          <li>Dryad_TierBeyondUltimate</li>
           <li>Dryad_TierUltimate</li>
           <li>Dryad_TierPenultimate</li>
           <li>Dryad_TierGreat</li>

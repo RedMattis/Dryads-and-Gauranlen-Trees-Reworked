@@ -360,7 +360,7 @@ namespace Dryad
                 Log.Error("No tiers defined for " + parent.def.defName);
                 return null;
             }
-            var tier = NewProps.gauTiers.First(t => t.IsValidFor(this, localHarmony, totalHarmony, totalShrineWealth, otherGauranlenDist, ref info));
+            var tier = NewProps.gauTiers.First(t => t.New_IsValidFor(this, localHarmony, totalHarmony, totalShrineWealth, otherGauranlenDist, animaStoneCount, ref info));
 
             if (tier == null)
             {

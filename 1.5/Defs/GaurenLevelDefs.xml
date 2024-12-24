@@ -72,6 +72,42 @@
   </Dryad.TreeTier>
 
   <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
+    <defName>Dryad_TierBeyondUltimate</defName>
+    <label>beyond divinity</label>
+    <tierColor>0.4,0.9,0.8</tierColor>
+
+    <hidden>true</hidden>
+
+    <localHarmony>40</localHarmony>
+    <globalHarmony>60</globalHarmony>
+    <!-- Note that since the 12 animus stone multiply wealth by 12 this is actually more like 30K-->
+    <localWealth>150000</localWealth> 
+    <gauranlenSpacing>20</gauranlenSpacing>
+    <animusStoneCount>12</animusStoneCount>
+
+    <connectedHediffSeverity>1.25</connectedHediffSeverity>
+    <dryadHediffSeverity>1.25</dryadHediffSeverity>
+
+    <!-- Note that these will be capped at the max anyway due to the Animus Stone need. -->
+    <dryadCount>99</dryadCount>
+    <dryadMaxCount>6</dryadMaxCount>
+    <plants>
+      <li>
+        <plantDef>Dryad_Bulb</plantDef>
+        <count>4</count>
+      </li>
+      <li>
+        <plantDef>Dryad_Thornlauncher</plantDef>
+        <count>2</count>
+      </li>
+      <li>
+        <plantDef>Dryad_Thorncaster</plantDef>
+        <count>3</count>
+      </li>
+    </plants>
+  </Dryad.TreeTier>
+
+  <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
     <defName>Dryad_TierUltimate</defName>
     <label>divine</label>
     <tierColor>0.4,0.8,0.8</tierColor>
@@ -101,7 +137,7 @@
   </Dryad.TreeTier>
   <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
     <defName>Dryad_TierPenultimate</defName>
-    <label>transcendant</label>
+    <label>transcendent</label>
     <tierColor>0.6,0.8,1.0</tierColor>
     <localHarmony>10</localHarmony>
     <globalHarmony>20</globalHarmony>

@@ -93,6 +93,9 @@ namespace Dryad
         public float globalHarmony = -99;
         public float localWealth = -1;
         public float gauranlenSpacing = -1;
+        public int animusStoneCount = 0;
+
+        public bool hidden = false;
 
         public HediffDef connectedPawnHediff;
         public float connectedHediffSeverity = 0.1f;
@@ -133,28 +136,45 @@ namespace Dryad
             return plantsToSpawn.GroupBy(p => p.plantDef).Select(g => (g.Sum(p => p.Item1), g.Key));
         }
 
+        public bool New_IsValidFor(CompNewTreeConnection tree, float localHarmony, float globalHarmony, float localWealth, float gauranlenSpacing, int animusStoneCount, ref string info)
+        {
+            if (animusStoneCount < this.animusStoneCount)
+            {
+                info = "Dryad_NeedMoreAnimus".Translate(animusStoneCount, this.animusStoneCount).Resolve().Colorize(tierColor);
+                if (hidden) info = "";
+                return false;
+            }
+
+            return IsValidFor(tree, localHarmony, globalHarmony, localWealth, gauranlenSpacing, ref info);
+        }
+
         // Check if the tree is valid for this tier (enough Harmony, etc.)
         public bool IsValidFor(CompNewTreeConnection tree, float localHarmony, float globalHarmony, float localWealth, float gauranlenSpacing, ref string info)
         {
+
             //if (info.NullOrEmpty()) info = "Dryad_MaxLevelYES".Translate().Colorize(ColorLibrary.Blue);
             if (localHarmony < this.localHarmony)
             {
                 info = "Dryad_NeedMoreHarmony".Translate(localHarmony.ToString("F1"), this.localHarmony.ToString("F1")).Resolve().Colorize(tierColor);
+                if (hidden) info = "";
                 return false;
             }
             if (globalHarmony < this.globalHarmony)
             {
                 info = "Dryad_NeedMapHarmony".Translate(globalHarmony.ToString("F0"), this.globalHarmony.ToString("F0")).Resolve().Colorize(tierColor);
+                if (hidden) info = "";
                 return false;
             }
             if (localWealth < this.localWealth)
             {
                 info = "Dryad_ShrineWealthNeed".Translate(localWealth.ToString("F0"), this.localWealth.ToString("F0")).Resolve().Colorize(tierColor);
+                if (hidden) info = "";
                 return false;
             }
             if (gauranlenSpacing < this.gauranlenSpacing)
             {
                 info = "Dryad_GauranlenSpacing".Translate(gauranlenSpacing.ToString("F0"), this.gauranlenSpacing.ToString("F0")).Resolve().Colorize(tierColor);
+                if (hidden) info = "";
                 return false;
             }
             return true;
