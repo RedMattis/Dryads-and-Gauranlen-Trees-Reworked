@@ -80,7 +80,7 @@
 
     <localHarmony>40</localHarmony>
     <globalHarmony>60</globalHarmony>
-    <!-- Note that since the 12 animus stone multiply wealth by 12 this is actually more like 30K-->
+    <!-- Note that since the 12 animus stone multiply wealth by 12 this is actually... not that much.-->
     <localWealth>150000</localWealth> 
     <gauranlenSpacing>20</gauranlenSpacing>
     <animusStoneCount>12</animusStoneCount>
@@ -90,7 +90,6 @@
 
     <!-- Note that these will be capped at the max anyway due to the Animus Stone need. -->
     <dryadCount>99</dryadCount>
-    <dryadMaxCount>6</dryadMaxCount>
     <plants>
       <li>
         <plantDef>Dryad_Bulb</plantDef>

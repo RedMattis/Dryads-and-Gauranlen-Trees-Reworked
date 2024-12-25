@@ -50,7 +50,9 @@
           <MeleeDamageFactor>1.2</MeleeDamageFactor>
           <MedicalTendQuality>1.5</MedicalTendQuality>
           <PlantHarvestYield>1.25</PlantHarvestYield>
+          <RangedCooldownFactor>0.9</RangedCooldownFactor>
         </statFactors>
+        <painOffset>-0.05</painOffset>
       </li>
       <li>
         <label>supreme</label>
@@ -60,6 +62,7 @@
           <WorkSpeedGlobal>4</WorkSpeedGlobal>
           <ImmunityGainSpeed>3</ImmunityGainSpeed>
           <MoveSpeed>1.2</MoveSpeed>
+          <CarryingCapacity>1.3</CarryingCapacity>
           <IncomingDamageFactor>0.5</IncomingDamageFactor>
           <RestFallRateFactor>0</RestFallRateFactor>
           <MeleeDamageFactor>1.4</MeleeDamageFactor>
@@ -67,8 +70,9 @@
           <MeleeHitChance>1.1</MeleeHitChance>
           <MedicalTendQuality>2</MedicalTendQuality>
           <PlantHarvestYield>1.5</PlantHarvestYield>
-          <RangedCooldownFactor>0.75</RangedCooldownFactor>
+          <RangedCooldownFactor>0.7</RangedCooldownFactor>
         </statFactors>
+        <painOffset>-0.1</painOffset>
         <statOffsets>
           <SM_BodySizeOffset MayRequire="RedMattis.BetterPrerequisites">0.2</SM_BodySizeOffset>
         </statOffsets>
@@ -76,11 +80,12 @@
       <li>
         <label>gauranlen embodiment</label>
         <minSeverity>1.24</minSeverity>
-        <regeneration>800</regeneration>
+        <regeneration>1600</regeneration>
         <statFactors>
-          <WorkSpeedGlobal>8</WorkSpeedGlobal>
+          <WorkSpeedGlobal>12</WorkSpeedGlobal>
           <ImmunityGainSpeed>4</ImmunityGainSpeed>
-          <MoveSpeed>1.3</MoveSpeed>
+          <MoveSpeed>1.35</MoveSpeed>
+          <CarryingCapacity>2</CarryingCapacity>
           <IncomingDamageFactor>0.35</IncomingDamageFactor>
           <RestFallRateFactor>0</RestFallRateFactor>
           <MeleeDamageFactor>1.6</MeleeDamageFactor>
@@ -88,8 +93,9 @@
           <MeleeHitChance>2</MeleeHitChance>
           <MedicalTendQuality>4</MedicalTendQuality>
           <PlantHarvestYield>1.6</PlantHarvestYield>
-          <RangedCooldownFactor>0.5</RangedCooldownFactor>
+          <RangedCooldownFactor>0.4</RangedCooldownFactor>
         </statFactors>
+        <painOffset>-0.2</painOffset>
         <statOffsets>
           <SM_BodySizeOffset MayRequire="RedMattis.BetterPrerequisites">0.5</SM_BodySizeOffset>
         </statOffsets>
@@ -180,7 +186,7 @@
       <li>
         <label>gestalt</label>
         <minSeverity>1.24</minSeverity>
-        <regeneration>1600</regeneration>
+        <regeneration>6400</regeneration>
         <hungerRateFactor>2</hungerRateFactor>
         <naturalHealingFactor>8</naturalHealingFactor>
         <totalBleedFactor>0.05</totalBleedFactor>
