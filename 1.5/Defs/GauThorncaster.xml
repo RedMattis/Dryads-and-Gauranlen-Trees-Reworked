@@ -43,7 +43,7 @@
     <statBases>
       <AccuracyTouch>0.9</AccuracyTouch>
       <AccuracyShort>0.75</AccuracyShort>
-      <AccuracyMedium>0.35</AccuracyMedium>
+      <AccuracyMedium>0.45</AccuracyMedium>
       <AccuracyLong>0.15</AccuracyLong>
       <RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
       <DeteriorationRate>0</DeteriorationRate>
@@ -57,7 +57,7 @@
         <warmupTime>0</warmupTime>
         <ticksBetweenBurstShots>35</ticksBetweenBurstShots>
         <burstShotCount>2</burstShotCount>
-        <range>32.9</range>
+        <range>28.9</range>
         
         <soundCastTail>GunTail_Light</soundCastTail>
         <soundCast>Dryad_ThornShoot</soundCast>
@@ -88,7 +88,7 @@
     </graphicData>
     <projectile>
       <damageDef>RangedStab</damageDef>
-      <damageAmountBase>22</damageAmountBase>
+      <damageAmountBase>20</damageAmountBase>
       <stoppingPower>2</stoppingPower>
       <armorPenetrationBase>0.45</armorPenetrationBase>
       <speed>35</speed>
