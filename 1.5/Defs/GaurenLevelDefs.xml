@@ -85,11 +85,12 @@
     <gauranlenSpacing>20</gauranlenSpacing>
     <animusStoneCount>12</animusStoneCount>
 
-    <connectedHediffSeverity>1.25</connectedHediffSeverity>
-    <dryadHediffSeverity>1.25</dryadHediffSeverity>
-
+    <connectedHediffSeverity>1.75</connectedHediffSeverity>
+    <dryadHediffSeverity>1.75</dryadHediffSeverity>
+    
     <!-- Note that these will be capped at the max anyway due to the Animus Stone need. -->
     <dryadCount>99</dryadCount>
+    <greaterDryadCount>1</greaterDryadCount>
     <plants>
       <li>
         <plantDef>Dryad_Bulb</plantDef>
@@ -107,9 +108,75 @@
   </Dryad.TreeTier>
 
   <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
+    <defName>Dryad_TierUltimateTrueLimit</defName>
+    <label>truly divine?</label>
+    <tierColor>0.4,0.8,0.8</tierColor>
+
+    <hidden>true</hidden>
+
+    <localHarmony>10</localHarmony>
+    <globalHarmony>40</globalHarmony>
+    <localWealth>15000</localWealth>
+    <gauranlenSpacing>16</gauranlenSpacing>
+    <animusStoneCount>8</animusStoneCount>
+
+    <connectedHediffSeverity>1.5</connectedHediffSeverity>
+    <dryadHediffSeverity>1.5</dryadHediffSeverity>
+    <dryadCount>4</dryadCount>
+    <greaterDryadCount>1</greaterDryadCount>
+    <plants>
+      <li>
+        <plantDef>Dryad_Bulb</plantDef>
+        <count>2</count>
+      </li>
+      <li>
+        <plantDef>Dryad_Thornlauncher</plantDef>
+        <count>2</count>
+      </li>
+      <li>
+        <plantDef>Dryad_Thorncaster</plantDef>
+        <count>3</count>
+      </li>
+    </plants>
+  </Dryad.TreeTier>
+
+  <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
+    <defName>Dryad_TierUltimateLimit</defName>
+    <label>truly divine</label>
+    <tierColor>0.4,0.75,0.8</tierColor>
+
+    <hidden>true</hidden>
+    
+    <localHarmony>10</localHarmony>
+    <globalHarmony>40</globalHarmony>
+    <localWealth>15000</localWealth>
+    <gauranlenSpacing>14</gauranlenSpacing>
+    <animusStoneCount>4</animusStoneCount>
+
+    <connectedHediffSeverity>1.25</connectedHediffSeverity>
+    <dryadHediffSeverity>1.25</dryadHediffSeverity>
+    <dryadCount>4</dryadCount>
+    <greaterDryadCount>1</greaterDryadCount>
+    <plants>
+      <li>
+        <plantDef>Dryad_Bulb</plantDef>
+        <count>2</count>
+      </li>
+      <li>
+        <plantDef>Dryad_Thornlauncher</plantDef>
+        <count>2</count>
+      </li>
+      <li>
+        <plantDef>Dryad_Thorncaster</plantDef>
+        <count>3</count>
+      </li>
+    </plants>
+  </Dryad.TreeTier>
+
+  <Dryad.TreeTier ParentName="Dryad_StandardTierSettings">
     <defName>Dryad_TierUltimate</defName>
     <label>divine</label>
-    <tierColor>0.4,0.8,0.8</tierColor>
+    <tierColor>0.4,0.75,0.8</tierColor>
     <localHarmony>10</localHarmony>
     <globalHarmony>40</globalHarmony>
     <localWealth>15000</localWealth>

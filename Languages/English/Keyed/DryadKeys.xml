@@ -22,6 +22,8 @@
   <Dryad_DryadsReworkedSettings>Dryads &amp; Gauranlen Reworked</Dryad_DryadsReworkedSettings>
   <Dryad_CurrentLevel>State: {0}</Dryad_CurrentLevel>
   <Dryad_HarmonyAffectedBy>Local harmony affected by</Dryad_HarmonyAffectedBy>
+
+  <Dryad_AnimusStoneDirect>Encircled by {0} Animus Stones</Dryad_AnimusStoneDirect>
   <!-- <Dryad_Count>Dryads: {0}/{1}</Dryad_Count> -->
 
 </LanguageData>

@@ -78,8 +78,31 @@
         </statOffsets>
       </li>
       <li>
+        <label>supreme</label>
+        <minSeverity>1.49</minSeverity>
+        <regeneration>600</regeneration>
+        <statFactors>
+          <WorkSpeedGlobal>6</WorkSpeedGlobal>
+          <ImmunityGainSpeed>3</ImmunityGainSpeed>
+          <MoveSpeed>1.25</MoveSpeed>
+          <CarryingCapacity>1.32</CarryingCapacity>
+          <IncomingDamageFactor>0.45</IncomingDamageFactor>
+          <RestFallRateFactor>0</RestFallRateFactor>
+          <MeleeDamageFactor>1.45</MeleeDamageFactor>
+          <MeleeCooldownFactor>0.85</MeleeCooldownFactor>
+          <MeleeHitChance>1.2</MeleeHitChance>
+          <MedicalTendQuality>2.1</MedicalTendQuality>
+          <PlantHarvestYield>1.6</PlantHarvestYield>
+          <RangedCooldownFactor>0.6</RangedCooldownFactor>
+        </statFactors>
+        <painOffset>-0.11</painOffset>
+        <statOffsets>
+          <SM_BodySizeOffset MayRequire="RedMattis.BetterPrerequisites">0.25</SM_BodySizeOffset>
+        </statOffsets>
+      </li>
+      <li>
         <label>gauranlen embodiment</label>
-        <minSeverity>1.24</minSeverity>
+        <minSeverity>1.74</minSeverity>
         <regeneration>1600</regeneration>
         <statFactors>
           <WorkSpeedGlobal>12</WorkSpeedGlobal>
@@ -184,8 +207,56 @@
         <capacityFactorEffectMultiplier>PruningSpeed</capacityFactorEffectMultiplier>
       </li>
       <li>
-        <label>gestalt</label>
+        <label>avatar</label>
         <minSeverity>1.24</minSeverity>
+        <!-- <regeneration>100</regeneration> -->
+        <hungerRateFactor>0.6</hungerRateFactor>
+        <naturalHealingFactor>5</naturalHealingFactor>
+        <totalBleedFactor>0.4</totalBleedFactor>
+        <statFactors>
+          <ImmunityGainSpeed>1.6</ImmunityGainSpeed>
+          <RestRateMultiplier>2</RestRateMultiplier>
+        </statFactors>
+        <statOffsets>
+          <ArmorRating_Sharp>0.11</ArmorRating_Sharp>
+          <ComfyTemperatureMin>-11</ComfyTemperatureMin>
+          <ComfyTemperatureMax>11</ComfyTemperatureMax>
+        </statOffsets>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <postFactor>1.11</postFactor>
+          </li>
+        </capMods>
+        <capacityFactorEffectMultiplier>PruningSpeed</capacityFactorEffectMultiplier>
+      </li>
+      <li>
+        <label>avatar</label>
+        <minSeverity>1.49</minSeverity>
+        <!-- <regeneration>100</regeneration> -->
+        <hungerRateFactor>0.6</hungerRateFactor>
+        <naturalHealingFactor>5</naturalHealingFactor>
+        <totalBleedFactor>0.4</totalBleedFactor>
+        <statFactors>
+          <ImmunityGainSpeed>1.6</ImmunityGainSpeed>
+          <RestRateMultiplier>2</RestRateMultiplier>
+        </statFactors>
+        <statOffsets>
+          <ArmorRating_Sharp>0.11</ArmorRating_Sharp>
+          <ComfyTemperatureMin>-11</ComfyTemperatureMin>
+          <ComfyTemperatureMax>11</ComfyTemperatureMax>
+        </statOffsets>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <postFactor>1.11</postFactor>
+          </li>
+        </capMods>
+        <capacityFactorEffectMultiplier>PruningSpeed</capacityFactorEffectMultiplier>
+      </li>
+      <li>
+        <label>gestalt</label>
+        <minSeverity>1.74</minSeverity>
         <regeneration>6400</regeneration>
         <hungerRateFactor>2</hungerRateFactor>
         <naturalHealingFactor>8</naturalHealingFactor>
@@ -245,6 +316,16 @@
         <label>gauranlen attunement</label>
         <description>I am... I mean, the gauranlen is doing well.</description>
         <baseMoodEffect>16</baseMoodEffect>
+      </li>
+      <li>
+        <label>gauranlen attunement..?</label>
+        <description>There is something more just beyond reach...</description>
+        <baseMoodEffect>18</baseMoodEffect>
+      </li>
+      <li>
+        <label>gauranlen attunement..?</label>
+        <description>It is just beyond our reach! We can be so much more!</description>
+        <baseMoodEffect>19</baseMoodEffect>
       </li>
       <li>
         <label>gauranlen gestalt</label>

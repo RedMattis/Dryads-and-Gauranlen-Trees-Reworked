@@ -62,7 +62,7 @@ namespace Dryad
         private TreeTierTracker currentTier = null;
 
         public int turretSpawnTick = 0;
-
+        public int animusStones = 0;
         public int TurretSpawnTickCooldown => (int)(15000 * Main.settings.turretSpawnTime);
 
         //protected List<Thing> turrets = new();
@@ -337,6 +337,7 @@ namespace Dryad
 
             // Check if any of the buildings nearby is the AnimusStone
             int animaStoneCount = veryNearBuildings.Sum(b => b.def == ThingDefOf.AnimusStone ? 1 : 0);
+            animusStones = animaStoneCount;
 
             totalShrineWealth *= (1 + animaStoneCount);
 
@@ -460,6 +461,10 @@ namespace Dryad
                 else
                 {
                     text.AppendLine("Dryad_NotEnoughHarmony".Translate().Colorize(ColorLibrary.RedReadable));
+                }
+                if (animusStones>0)
+                {
+                    text.AppendLine("Dryad_AnimusStoneDirect".Translate(animusStones));
                 }
 
                 if (!HasProductionMode)
