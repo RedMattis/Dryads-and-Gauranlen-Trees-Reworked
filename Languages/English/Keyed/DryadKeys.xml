@@ -24,6 +24,9 @@
   <Dryad_HarmonyAffectedBy>Local harmony affected by</Dryad_HarmonyAffectedBy>
 
   <Dryad_AnimusStoneDirect>Encircled by {0} Animus Stones</Dryad_AnimusStoneDirect>
+
+  <Dryad_SeverConnection>Sever Connection</Dryad_SeverConnection>
+  <Dryad_SeverConnectionDesc>Sever the connection between the Dryad and the Gauranlen Tree. It will take about a day until the tree is ready to connect again.</Dryad_SeverConnectionDesc>
   <!-- <Dryad_Count>Dryads: {0}/{1}</Dryad_Count> -->
 
 </LanguageData>

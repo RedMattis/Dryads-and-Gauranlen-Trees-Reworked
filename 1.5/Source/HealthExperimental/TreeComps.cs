@@ -135,6 +135,52 @@ namespace Dryad
             }
             return false;
         }
+
+        public override IEnumerable<Gizmo> CompGetGizmosExtra()
+        {
+            var result = base.CompGetGizmosExtra();
+
+            if (ConnectedPawn != null)
+            {
+                Command_Action severConnection = new()
+                {
+                    defaultLabel = "Dryad_SeverConnection".Translate(),
+                    defaultDesc = "Dryad_SeverConnectionDesc".Translate(),
+                    icon = ContentFinder<Texture2D>.Get("Icons/Dryad_cut_connection", true),
+                    action = DeleteConnection
+                };
+                result = result.Concat(new Gizmo[] { severConnection });
+            }
+            foreach (var gizmo in result)
+            {
+                yield return gizmo;
+            }
+        }
+
+        public void DeleteConnection()
+        {
+            // Deselect so we don't get a stat request error.
+            Find.Selector.Deselect(parent);
+
+            SoundDefOf.GauranlenConnectionTorn.PlayOneShot(SoundInfo.InMap(parent));
+            foreach (var dryad in Dryads)
+            {
+                ResetDryad(dryad);
+                if (dryad.health.hediffSet.GetFirstHediffOfDef(CurrentTier.tier.dryadHediff) is Hediff dh)
+                {
+                    dryad.health.RemoveHediff(dh);
+                }
+            }
+            var hediff = ConnectedPawn.health.hediffSet.GetFirstHediffOfDef(CurrentTier.tier.connectedPawnHediff);
+            if (hediff != null)
+            {
+                ConnectedPawn.health.RemoveHediff(hediff);
+            }
+
+            connectedPawn = null;
+            nextUntornTick = Find.TickManager.TicksGame + 60000;
+        }
+
         public override void CompTick()
         {
             if (CurrentTier == null) RefreshConnection();
