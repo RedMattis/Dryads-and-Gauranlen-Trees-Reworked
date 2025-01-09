@@ -540,6 +540,12 @@
       <CarryingCapacity>100</CarryingCapacity>
     </value>
   </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Carrier"]/statBases</xpath>
+    <value>
+      <StaggerDurationFactor MayRequire="Ludeon.Rimworld.Biotech">0.1</StaggerDurationFactor>
+    </value>
+  </Operation>
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Dryad_Carrier"]/statBases/MoveSpeed</xpath>
     <value>
