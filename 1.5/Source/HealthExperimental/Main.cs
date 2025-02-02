@@ -51,9 +51,8 @@ namespace Dryads
             listingStandard.Begin(scrollView);
 
             CreateSettingsSlider(listingStandard, "Mech Harmony Reduction:", ref settings.mechPenaltyScale);
-
             CreateSettingsSlider(listingStandard, "Turret Spawn Time Multiplier:", ref settings.turretSpawnTime);
-
+            CreateSettingCheckbox(listingStandard, "Disable VFE Awakend Dryads (requires restart):", ref settings.noAwakendDryads);
 
             // Add a "Reset to Default" button
             if (listingStandard.ButtonText("Reset to Default"))
@@ -84,6 +83,19 @@ namespace Dryads
             value = Widgets.HorizontalSlider(sliderRect, value, 0f, 4f, true);
             Widgets.Label(valueRect, $"{value * 100:F0}%");
         }
+
+        public static void CreateSettingCheckbox(Listing_Standard listingStandard, string labelName, ref bool value)
+        {
+            Rect fullRow = listingStandard.GetRect(Text.LineHeight);
+            // Divide the row into two segments for the label and the checkbox
+            float labelWidth = fullRow.width * 0.90f;
+            float checkboxWidth = fullRow.width * 0.1f;
+            Rect labelRect = new(fullRow.x, fullRow.y, labelWidth, fullRow.height);
+            Rect checkboxRect = new(labelRect.xMax, fullRow.y, checkboxWidth, fullRow.height);
+
+            Widgets.Label(labelRect, labelName);
+            Widgets.Checkbox(checkboxRect.position, ref value);
+        }
     }
     
     public class DryadSettings : ModSettings
@@ -94,10 +106,14 @@ namespace Dryads
         public const float defaultTurretSpawnTime = 1;
         public float turretSpawnTime = defaultTurretSpawnTime;
 
+        public const bool defaultNoAwakendDryads = true;
+        public bool noAwakendDryads = defaultNoAwakendDryads;
+
         public override void ExposeData()
         {
             Scribe_Values.Look(ref mechPenaltyScale, "mechPenalty", defaultMechPenaltyScale);
             Scribe_Values.Look(ref turretSpawnTime, "turretSpawnTime", defaultTurretSpawnTime);
+            Scribe_Values.Look(ref noAwakendDryads, "noAwakendDryads", defaultNoAwakendDryads);
             base.ExposeData();
         }
 

@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConditionalPatches.cs" />
     <Compile Include="GauranlenTracker.cs" />
     <Compile Include="Jobs\JobGiver_DryadMiner.cs" />
     <Compile Include="Jobs\Jobigver_DryadCocoon.cs" />
@@ -97,7 +98,6 @@
     <Publicize Include="Assembly-CSharp:RimWorld.CompTreeConnection.ResetDryad" />
     <Publicize Include="Assembly-CSharp:RimWorld.CompTreeConnection.connectedPawn" />
     <Publicize Include="Assembly-CSharp:RimWorld.CompTreeConnection.nextUntornTick" />
-    
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
