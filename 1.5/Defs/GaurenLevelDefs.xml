@@ -1,23 +1,4 @@
 <Defs>
-  <Dryad.PlantSpawnRules>
-    <defName>Dryad_Bulb</defName>
-    <thingDef>Dryad_Bulb</thingDef>
-    <spawnOn>Plant_MossGauranlen</spawnOn>
-  </Dryad.PlantSpawnRules>
-
-  <Dryad.PlantSpawnRules>
-    <defName>Dryad_Thorncaster</defName>
-    <thingDef>Dryad_Thorncaster</thingDef>
-    <spawnOn>Dryad_Bulb</spawnOn>
-  </Dryad.PlantSpawnRules>
-
-  <Dryad.PlantSpawnRules>
-    <defName>Dryad_Thornlauncher</defName>
-    <thingDef>Dryad_Thornlauncher</thingDef>
-    <spawnOn>Dryad_Bulb</spawnOn>
-  </Dryad.PlantSpawnRules>
-  
-
   <Dryad.TreeTier Name="Dryad_StandardTierSettings" Abstract="True">
     <!--The tiers will be tested from the highest number to the lowest.
     If a tier is valid it will stop testing and go with that.-->
@@ -59,7 +40,7 @@
         <plantDef>Dryad_Thorncaster</plantDef>
         <distanceToMThing>3</distanceToMThing>
         <count>2</count> <!--Multiplied by thing count if provided.-->
-        <max>6</max>
+        <max>7</max>
       </li>
       <li MayRequire="Ludeon.RimWorld.Royalty">
         <multiplyByNearbyThingCount MayRequire="Ludeon.RimWorld.Royalty">AnimusStone</multiplyByNearbyThingCount>
@@ -98,7 +79,7 @@
       </li>
       <li>
         <plantDef>Dryad_Thornlauncher</plantDef>
-        <count>2</count>
+        <count>7</count>
       </li>
       <li>
         <plantDef>Dryad_Thorncaster</plantDef>

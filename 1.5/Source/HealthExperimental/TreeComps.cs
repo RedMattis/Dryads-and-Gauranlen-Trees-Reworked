@@ -283,13 +283,6 @@ namespace Dryad
             {
                 int plantNumberSpawned = plants.Count(p => p.def == plantDef);
                 if (plantNumberSpawned >= pToSpawn) continue;
-                //if (plantNumberSpawned > pToSpawn)
-                //{
-                //    var p = plants.First(p => p.def == plantDef);
-                //    try { if (!p.Destroyed) p.Destroy(); } catch { }
-                //    plants.Remove(p);
-                //    continue;
-                //}
 
                 var plantRules = PlantSpawnRules.GetRulesForPlant(plantDef);
                 if (plantRules == null)
@@ -302,9 +295,18 @@ namespace Dryad
                     // If not spawnOn is not defined check if the place is empty.
                     (plantRules.spawnOn == null && c.GetEdifice(parent.Map) == null) ||
                     // If spawnOn is defined check if the place is the right thing. And check is there is no in-progress construction there.
-                    c.GetThingList(parent.Map).All(t => t.def == plantRules.spawnOn) 
+                    c.GetThingList(parent.Map).All(t => t?.def == plantRules.spawnOn) 
                     ), out var cell))
                 {
+                    bool neighValid = true;
+
+                    // If the thing we are spawning is more than 1 tile, check if all the tiles are empty or filled with unimportant things.
+                    if (plantDef.size.x > 1 || plantDef.size.z > 1)
+                    {
+                        neighValid = CheckValidBigPlantPlacement(plantDef, ref cell);
+                    }
+                    if (!neighValid) continue;
+
                     var plantThing = GenSpawn.Spawn(plantDef, cell, parent.Map);
                     plants.Add(plantThing);
                     plantThing.SetFaction(Faction.OfPlayer);
@@ -322,6 +324,45 @@ namespace Dryad
 
             // Shorter cooldown in case there was nothing to place, or it failed to place.
             turretSpawnTick = Find.TickManager.TicksGame + Rand.Range(TurretSpawnTickCooldown / 4, (int)(TurretSpawnTickCooldown));
+
+            bool CheckValidBigPlantPlacement(ThingDef plantDef, ref IntVec3 cell)
+            {
+                IntVec2 size = plantDef.size;
+                var possibleStartPositions = new List<IntVec3>();
+
+                for (int x = 0; x < size.x; x++)
+                {
+                    for (int z = 0; z < size.z; z++)
+                    {
+                        possibleStartPositions.Add(new IntVec3(x, 0, z));
+                    }
+                }
+
+                foreach (var startPos in possibleStartPositions)
+                {
+                    bool isValid = true;
+                    for (int x = 0; x < size.x; x++)
+                    {
+                        for (int z = 0; z < size.z; z++)
+                        {
+                            IntVec3 c = cell + new IntVec3(x, 0, z) + startPos;
+                            if (!c.GetThingList(parent.Map).All(t => t.def.IsPlant && !t.def.plant.IsTree && t.def.size.Area <= 1))
+                            {
+                                isValid = false;
+                                break;
+                            }
+                        }
+                        if (!isValid) break;
+                    }
+
+                    if (isValid)
+                    {
+                        cell += startPos;
+                        return true;
+                    }
+                }
+                return false;
+            }
         }
 
 
@@ -334,8 +375,16 @@ namespace Dryad
             base.PostDestroy(mode, previousMap);
         }
 
+
+        private (int time, TreeTierTracker) gaunLevelCached = (0, null);
+        const int cacheTime = 500;
         private TreeTierTracker GetGauLevel()
         {
+            if (gaunLevelCached.Item2 != null && Find.TickManager.TicksGame < gaunLevelCached.time + cacheTime)
+            {
+                return gaunLevelCached.Item2;
+            }
+
             // Get all buildings withn range of the tree
             var otherGau = parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.DryadSpawner);
             var allBuildings = parent.Map.listerBuildings.allBuildingsColonist;
@@ -418,6 +467,8 @@ namespace Dryad
 
             var tracker = new TreeTierTracker(this, tier, thingsNearby, info);
             CurrentTier = tracker;
+
+            gaunLevelCached = (Find.TickManager.TicksGame, tracker);
             return tracker;
         }
 

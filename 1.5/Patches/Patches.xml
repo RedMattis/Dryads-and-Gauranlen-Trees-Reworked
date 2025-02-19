@@ -129,6 +129,22 @@
   </Operation>
 
   <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AnimusStone"]/stealable</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]</xpath>
+      <value>
+        <stealable>false</stealable>
+      </value>
+    </nomatch>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/stealable</xpath>
+      <value>
+        <stealable>false</stealable>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
     <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/statBases/MeditationFocusStrength</xpath>
     <nomatch Class="PatchOperationAdd">
       <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/statBases</xpath>

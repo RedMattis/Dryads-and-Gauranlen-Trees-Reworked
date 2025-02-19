@@ -76,6 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConditionalPatches.cs" />
+    <Compile Include="Defs\PlantUpgrade.cs" />
+    <Compile Include="Defs\DefOfs.cs" />
+    <Compile Include="Defs\GreaterDryadLinks.cs" />
+    <Compile Include="Defs\PlantSpawnRules.cs" />
+    <Compile Include="Defs\TreeTier.cs" />
+    <Compile Include="Defs\TreeTierTracker.cs" />
     <Compile Include="GauranlenTracker.cs" />
     <Compile Include="Jobs\JobGiver_DryadMiner.cs" />
     <Compile Include="Jobs\Jobigver_DryadCocoon.cs" />
