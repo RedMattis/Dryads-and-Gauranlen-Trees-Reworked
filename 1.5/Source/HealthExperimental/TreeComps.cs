@@ -330,9 +330,9 @@ namespace Dryad
                 IntVec2 size = plantDef.size;
                 var possibleStartPositions = new List<IntVec3>();
 
-                for (int x = 0; x < size.x; x++)
+                for (int x = -size.x + 1; x < size.x; x++)
                 {
-                    for (int z = 0; z < size.z; z++)
+                    for (int z = -size.z + 1; z < size.z; z++)
                     {
                         possibleStartPositions.Add(new IntVec3(x, 0, z));
                     }
@@ -346,7 +346,20 @@ namespace Dryad
                         for (int z = 0; z < size.z; z++)
                         {
                             IntVec3 c = cell + new IntVec3(x, 0, z) + startPos;
-                            if (!c.GetThingList(parent.Map).All(t => t.def.IsPlant && !t.def.plant.IsTree && t.def.size.Area <= 1))
+
+                            if (c == cell) continue;
+
+                            // Check so it is inside the map.
+                            if (!c.InBounds(parent.Map))
+                            {
+                                isValid = false;
+                                break;
+                            }
+                            var allPants = tierTracker.plants.Select(p => p.thingDef).ToList();
+                            var things = c.GetThingList(parent.Map);
+                            if (!things.Empty() &&
+                                !things.All(t => t.def.size.Area <= 1 &&
+                                (allPants.Contains(t.def) || (t.def.IsPlant && !t.def.plant.IsTree))))
                             {
                                 isValid = false;
                                 break;

@@ -5,6 +5,7 @@
     <designationCategory>Misc</designationCategory>
     <useHitPoints>true</useHitPoints>
     <passability>PassThroughOnly</passability>
+    <stealable>false</stealable>
     <thingCategories>
       <li>BuildingsMisc</li>
     </thingCategories>
