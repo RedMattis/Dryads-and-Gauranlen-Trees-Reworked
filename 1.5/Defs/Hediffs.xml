@@ -49,6 +49,7 @@
           <RestFallRateFactor>0.5</RestFallRateFactor>
           <MeleeDamageFactor>1.2</MeleeDamageFactor>
           <MedicalTendQuality>1.5</MedicalTendQuality>
+          <MedicalTendSpeed>2</MedicalTendSpeed>
           <PlantHarvestYield>1.25</PlantHarvestYield>
           <RangedCooldownFactor>0.9</RangedCooldownFactor>
         </statFactors>
@@ -69,6 +70,7 @@
           <MeleeCooldownFactor>0.9</MeleeCooldownFactor>
           <MeleeHitChance>1.1</MeleeHitChance>
           <MedicalTendQuality>2</MedicalTendQuality>
+          <MedicalTendSpeed>2</MedicalTendSpeed>
           <PlantHarvestYield>1.5</PlantHarvestYield>
           <RangedCooldownFactor>0.7</RangedCooldownFactor>
         </statFactors>
@@ -92,6 +94,7 @@
           <MeleeCooldownFactor>0.85</MeleeCooldownFactor>
           <MeleeHitChance>1.2</MeleeHitChance>
           <MedicalTendQuality>2.1</MedicalTendQuality>
+          <MedicalTendSpeed>2.5</MedicalTendSpeed>
           <PlantHarvestYield>1.6</PlantHarvestYield>
           <RangedCooldownFactor>0.6</RangedCooldownFactor>
         </statFactors>
@@ -115,6 +118,7 @@
           <MeleeCooldownFactor>0.75</MeleeCooldownFactor>
           <MeleeHitChance>2</MeleeHitChance>
           <MedicalTendQuality>4</MedicalTendQuality>
+          <MedicalTendSpeed>3</MedicalTendSpeed>
           <PlantHarvestYield>1.6</PlantHarvestYield>
           <RangedCooldownFactor>0.4</RangedCooldownFactor>
         </statFactors>
