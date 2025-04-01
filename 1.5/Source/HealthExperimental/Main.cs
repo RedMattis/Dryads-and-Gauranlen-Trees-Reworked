@@ -50,9 +50,10 @@ namespace Dryads
             Widgets.BeginScrollView(inRect, ref scrollPosition, scrollView);
             listingStandard.Begin(scrollView);
 
-            CreateSettingsSlider(listingStandard, "Mech Harmony Reduction:", ref settings.mechPenaltyScale);
-            CreateSettingsSlider(listingStandard, "Turret Spawn Time Multiplier:", ref settings.turretSpawnTime);
-            CreateSettingCheckbox(listingStandard, "Disable VFE Awakend Dryads (requires restart):", ref settings.noAwakendDryads);
+            CreateSettingsSlider(listingStandard, "Dryad_MechHarmonyReduction".Translate(), ref settings.mechPenaltyScale);
+            CreateSettingsSlider(listingStandard, "Dryad_TurretSpawnTime".Translate(), ref settings.turretSpawnTime);
+            CreateSettingCheckbox(listingStandard, "Dryad_NoAwakenedDryads".Translate(), ref settings.noAwakendDryads);
+            CreateSettingCheckbox(listingStandard, "Dryad_NotBuildingPenalties".Translate(), ref settings.noHarmonyPenaltyFromBuildings);
 
             // Add a "Reset to Default" button
             if (listingStandard.ButtonText("Reset to Default"))
@@ -109,11 +110,15 @@ namespace Dryads
         public const bool defaultNoAwakendDryads = true;
         public bool noAwakendDryads = defaultNoAwakendDryads;
 
+        public const bool defaultNoHarmonyPenaltyFromBuildings = false;
+        public bool noHarmonyPenaltyFromBuildings = defaultNoHarmonyPenaltyFromBuildings;
+
         public override void ExposeData()
         {
             Scribe_Values.Look(ref mechPenaltyScale, "mechPenalty", defaultMechPenaltyScale);
             Scribe_Values.Look(ref turretSpawnTime, "turretSpawnTime", defaultTurretSpawnTime);
             Scribe_Values.Look(ref noAwakendDryads, "noAwakendDryads", defaultNoAwakendDryads);
+            Scribe_Values.Look(ref noHarmonyPenaltyFromBuildings, "noHarmonyPenaltyFromBuildings", defaultNoHarmonyPenaltyFromBuildings);
             base.ExposeData();
         }
 

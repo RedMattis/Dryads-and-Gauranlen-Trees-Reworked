@@ -475,6 +475,22 @@
               </li>
             </subNodes>
           </li>
+          <li Class="Dryad.ThinkNode_ConditionalIsDef">
+            <defList>
+              <li>Dryad_Carrier</li>
+              <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Gaubricmaker</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Gaubricmaker</li>
+            </defList>
+            <subNodes>
+              <li Class="ThinkNode_Tagger">
+                <tagToGive>TrainedAnimalBehavior</tagToGive>
+                <subNodes>
+                  <li Class="Dryad.JobGiver_Clean"> 
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
         </subNodes>
       </li>
     </value>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  
+  <Dryad_MechHarmonyReduction>Mech Harmony Reduction:</Dryad_MechHarmonyReduction>
+  <Dryad_TurretSpawnTime>Turret Spawn Time Multiplier:</Dryad_TurretSpawnTime>
+  <Dryad_NoAwakenedDryads>Disable VFE Awakend Dryads (requires restart):</Dryad_NoAwakenedDryads>
+  <Dryad_NotBuildingPenalties>Disable Harmony Penalty from Buildings:</Dryad_NotBuildingPenalties>
+
+</LanguageData>

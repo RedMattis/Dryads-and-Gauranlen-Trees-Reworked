@@ -83,6 +83,7 @@
     <Compile Include="Defs\TreeTier.cs" />
     <Compile Include="Defs\TreeTierTracker.cs" />
     <Compile Include="GauranlenTracker.cs" />
+    <Compile Include="Jobs\JobGiver_DryadClean.cs" />
     <Compile Include="Jobs\JobGiver_DryadMiner.cs" />
     <Compile Include="Jobs\Jobigver_DryadCocoon.cs" />
     <Compile Include="Defs.cs" />
