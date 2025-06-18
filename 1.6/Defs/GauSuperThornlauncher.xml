@@ -1,0 +1,127 @@
+<Defs>
+  <ThingDef ParentName="Dryad_Turret">
+    <defName>Dryad_SuperThornlauncher</defName>
+    <label>gauranlen crucifer</label>
+    <description>A highly unusual plant rarely seen near a gauranlen tree. Tha plant can launch heavy dense spikes of strange matter over walls to strike distant foes. It's accuracy is outstanding. It will mostly prioritise enemies a safe distance away from its allies.\n\nWhen it detects fire the plant will also attempt to shoot a fire-retardant gooey substance. While this does little to extinguish a large fire it can quickly coat the ground and prevent the fire from spreading to itself and the Gauranlen Tree</description>
+    <thingClass>Dryad.GauranlenTurret</thingClass>
+    <graphicData>
+      <texPath>Building/Dryad_Turret/Thorncaster_Super</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <drawOffset>(0,0,-.2)</drawOffset>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,-.2)</offset>
+      </shadowData>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>300</MaxHitPoints>
+      <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+      <ShootingAccuracyTurret>2</ShootingAccuracyTurret>
+    </statBases>
+    <building>
+      <combatPower>120</combatPower>
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretGunDef>Dryad_SuperThornlauncher_Gun</turretGunDef>
+      <turretBurstCooldownTime>0</turretBurstCooldownTime>
+      <turretBurstWarmupTime>2</turretBurstWarmupTime>
+      <!-- <turretTopOffset>(0,1)</turretTopOffset> -->
+      
+      <turretTopDrawSize>1.5</turretTopDrawSize>
+      <playTargetAcquiredSound>false</playTargetAcquiredSound>
+    </building>
+  </ThingDef>
+
+  <ThingDef ParentName="DryadTurretGun">
+    <defName>Dryad_SuperThornlauncher_Gun</defName>
+    <label>gaucrucifer</label>
+    <description>The 'weapon' of a gauranlen crucifer dryad.</description>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Building/Dryad_Turret/Thornlauncher_Super_Top</texPath>
+      <!-- <drawSize>(2,2)</drawSize> -->
+      <drawOffset>(0,0,.5)</drawOffset>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.8</AccuracyTouch>
+      <AccuracyShort>1</AccuracyShort>
+      <AccuracyMedium>1</AccuracyMedium>
+      <AccuracyLong>1</AccuracyLong>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>5</Mass>
+      <Flammability>0.25</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Dryad_SuperHeavyGauBullet</defaultProjectile>
+        <warmupTime>0</warmupTime>
+        <ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+        <burstShotCount>1</burstShotCount>
+        <range>34.9</range>
+        <minRange>3.9</minRange>
+        <forcedMissRadius>0.1</forcedMissRadius>
+        <requireLineOfSight>false</requireLineOfSight>
+
+        <ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>        
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <soundCast>Dryad_ThornShoot</soundCast>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+      </li>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Dryad_OverheadSapBullet</defaultProjectile>
+        <warmupTime>6</warmupTime>
+        <range>15</range>
+        <targetParams>
+          <canTargetFires>true</canTargetFires>
+        </targetParams>
+        <soundCast>Dryad_ThornShoot</soundCast>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+
+        <requireLineOfSight>false</requireLineOfSight>
+      </li>
+    </verbs>
+  </ThingDef>
+
+    <ThingDef ParentName="BaseProjectileNeolithic">
+    <defName>Dryad_SuperHeavyGauBullet</defName>
+    <label>gau crucifer</label>
+    <thingClass>Projectile_Explosive</thingClass>
+    <graphicData>
+      <texPath>Building/Dryad_Turret/Thornlauncher_Super2_Bullet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.6</drawSize>
+    </graphicData>
+    <projectile>
+      <damageDef>RangedStab</damageDef>
+      <damageAmountBase>45</damageAmountBase>
+      <stoppingPower>3</stoppingPower>
+      <armorPenetrationBase>1.5</armorPenetrationBase>
+      <speed>60</speed>
+      <arcHeightFactor>0.5</arcHeightFactor>
+      <flyOverhead>true</flyOverhead>
+      <shadowSize>0.5</shadowSize>
+      <explosionRadius>1.1</explosionRadius>
+      <soundExplode>BulletImpact_Ground</soundExplode>
+      <screenShakeFactor>0</screenShakeFactor>
+      <doExplosionVFX>false</doExplosionVFX>
+      <extraDamages>
+        <li>
+          <def>Stun</def>
+          <amount>16</amount>
+          <chance>0.5</chance>
+        </li>
+        <li>
+          <def>EMP</def>
+          <amount>20</amount>
+          <chance>0.75</chance>
+        </li>
+      </extraDamages>
+    </projectile>
+  </ThingDef>
+
+</Defs>

@@ -1,0 +1,673 @@
+<Patch>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/minifiedDef</xpath>
+    <value>
+      <minifiedDef>MinifiedTree</minifiedDef>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/statBases/MaxHitPoints</xpath>
+    <value>
+      <MaxHitPoints>600</MaxHitPoints>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/comps/li[@Class="CompProperties_TreeConnection"]</xpath>
+    <value>
+      <li Class="Dryad.CompProperties_NewTreeConnection">
+        <pawnKind>Dryad_Basic</pawnKind>
+        <spawnDays>3</spawnDays>
+        <initialConnectionStrengthRange>0.2~0.2</initialConnectionStrengthRange>
+        <connectionStrengthLossPerDryadDeath>0.1</connectionStrengthLossPerDryadDeath>
+        <connectionStrengthGainPerHourPruningBase>0.1</connectionStrengthGainPerHourPruningBase>
+        <spawningPodOffset>(-0.15, 0, -0.55)</spawningPodOffset>
+        <spawningPodSizeRange>0.4~0.65</spawningPodSizeRange>
+        <maxDryadsWild>1</maxDryadsWild>
+        <gauTiers>
+          <li>Dryad_TierBeyondUltimate</li>
+          <li>Dryad_TierUltimateTrueLimit</li>
+          <li>Dryad_TierUltimateLimit</li>
+          <li>Dryad_TierUltimate</li>
+          <li>Dryad_TierPenultimate</li>
+          <li>Dryad_TierGreat</li>
+          <li>Dryad_TierGood</li>
+          <li>Dryad_TierNormal</li>
+          <li>Dryad_TierPoor</li>
+          <li>Dryad_TierBad</li>
+          <li>Dryad_TierWorst</li>
+        </gauTiers>
+        <harmonyBuildings>
+          <li MayRequire="Ludeon.Rimworld.Royalty">AnimusStone</li>
+          <li MayRequire="Ludeon.Rimworld.Royalty">NatureShrine_Small</li>
+          <li MayRequire="Ludeon.Rimworld.Royalty">NatureShrine_Large</li>
+          <li>Dryad_GauranlenShrine_Small</li>
+          <li>Dryad_GauranlenShrine_Large</li>
+          <li>Dryad_VikingShrine</li>
+        </harmonyBuildings>
+        <maxDryadsPerConnectionStrengthCurve>
+          <points>
+            <li>(0.05, 0)</li>
+            <li>(0.23, 1)</li>
+            <li>(0.48, 2)</li>
+            <li>(0.73, 3)</li>
+            <li>(0.90, 4)</li>
+            <li>(0.909, 5)</li>
+            <li>(0.919, 6)</li>
+            <li>(0.929, 7)</li>
+            <li>(0.939, 8)</li>
+            <li>(0.949, 9)</li>
+            <li>(0.959, 10)</li>
+            <li>(0.969, 11)</li>
+            <li>(0.979, 12)</li>
+            <li>(0.989, 13)</li>
+            <li>(0.999, 14)</li>
+          </points>
+        </maxDryadsPerConnectionStrengthCurve>
+        <connectionLossPerLevelCurve>
+          <points>
+            <li>(0, -0.1)</li>
+          </points>
+        </connectionLossPerLevelCurve>
+        <connectionLossDailyPerBuildingDistanceCurve>
+          <points>
+            <li>(0,0)</li>
+          </points>
+        </connectionLossDailyPerBuildingDistanceCurve>
+        <connectionStrengthGainPerPlantSkill>
+          <points>
+            <li>(0, 50)</li>
+            <li>(8, 1)</li>
+            <li>(20, 1.2)</li>
+          </points>
+        </connectionStrengthGainPerPlantSkill>
+      </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/comps/li[@Class="CompProperties_MeditationFocus"]</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/comps</xpath>
+      <value>
+        <li Class="CompProperties_MeditationFocus" MayRequire="Ludeon.Rimworld.Royalty">
+          <statDef>MeditationFocusStrength</statDef>
+          <focusTypes>
+            <li>Natural</li>
+          </focusTypes>
+          <offsets>
+            <li Class="FocusStrengthOffset_ArtificialBuildings">
+              <radius>9.9</radius>
+              <curve>
+                <points>
+                  <li>(0,   0.0)</li>
+                  <li>(5,  -0.05)</li>
+                  <li>(10, -0.1)</li>
+                  <li>(50, -0.15)</li>
+                </points>
+              </curve>
+            </li>
+            <li Class="FocusStrengthOffset_BuildingDefs">
+              <defs>
+                <AnimusStone MayRequire="Ludeon.RimWorld.Royalty">0.03</AnimusStone>
+                <NatureShrine_Small MayRequire="Ludeon.RimWorld.Royalty">0.01</NatureShrine_Small>
+                <NatureShrine_Large MayRequire="Ludeon.RimWorld.Royalty">0.01</NatureShrine_Large>
+                <Dryad_GauranlenShrine_Small MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Small>
+                <Dryad_GauranlenShrine_Large MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Large>
+                <Dryad_VikingShrine MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_VikingShrine>
+              </defs>
+              <radius>7.9</radius>
+              <maxBuildings>4</maxBuildings>
+              <explanationKey>MeditationFocusPerAnimusStoneAndShrine</explanationKey>
+              <explanationKeyAbstract>MeditationFocusPerAnimusStoneAndShrineAbstract</explanationKeyAbstract>
+            </li>
+          </offsets>
+        </li>
+      </value>
+    </nomatch>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AnimusStone"]/stealable</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]</xpath>
+      <value>
+        <stealable>false</stealable>
+      </value>
+    </nomatch>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/stealable</xpath>
+      <value>
+        <stealable>false</stealable>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/statBases/MeditationFocusStrength</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/statBases</xpath>
+      <value>
+        <MeditationFocusStrength>0.24</MeditationFocusStrength>
+      </value>
+    </nomatch>
+  </Operation>
+  
+  <!-- <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/drawPlaceWorkersWhileSelected</xpath>
+    <value>
+      <drawPlaceWorkersWhileSelected>false</drawPlaceWorkersWhileSelected>
+    </value>
+  </Operation> -->
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/placeWorkers</xpath>
+    <value>
+      <placeWorkers>
+        <li Inherit="False">Dryad.PlaceWorker_Woody</li>
+      </placeWorkers>
+      
+      <!-- PlaceWorker_ShowFacilitiesConnections -->
+    </value>
+  </Operation>
+
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="DryadCocoon"]/comps/li[@Class="CompProperties_DryadCocoon" or @Class="DryadHealingPod"]/daysToComplete</xpath>
+    <value>
+      <daysToComplete>1</daysToComplete>
+    </value>
+  </Operation>
+
+  JobGiver_CreateAndEnterCocoon
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThinkTreeDef[defName="Dryad"]//li[@Class="JobGiver_CreateAndEnterCocoon"]</xpath>
+    <value>
+      <li Class="Dryad.JobGiver_DryadCreateAndEnterCocoon">
+        <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+      </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThinkTreeDef[defName="Dryad"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalOfPlayerFaction"]/subNodes/li[@Class="ThinkNode_ChancePerHour_Constant"]</xpath>
+    <value>
+      <li Class="ThinkNode_ConditionalRequireCapacities">
+        <requiredCapacities>
+          <li>Manipulation</li>
+        </requiredCapacities>
+        <subNodes>
+          <li Class="ThinkNode_ChancePerHour_Constant">
+            <mtbHours>0.25</mtbHours>
+            <subNodes>
+              <li Class="ThinkNode_Tagger"> 
+                <tagToGive>TrainedAnimalBehavior</tagToGive>
+                <subNodes>
+                  
+                  <li Class="Dryad.ThinkNode_ConditionalIsDef">
+                    <defList>
+                      <li>Dryad_Medicinemaker</li>
+                      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Medicinemaker</li>
+                    </defList>
+                    <subNodes>
+                      <li Class="Dryad.JobGiver_DryadTend">
+                      </li>
+                    </subNodes>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <li Class="ThinkNode_ChancePerHour_Constant">
+            <mtbHours>0.25</mtbHours>
+            <subNodes>
+              <li Class="ThinkNode_Tagger"> 
+                <tagToGive>TrainedAnimalBehavior</tagToGive>
+                <subNodes>
+                  <li Class="Dryad.ThinkNode_ConditionalIsDef">
+                    <defList>
+                      <li>Dryad_Medicinemaker</li>
+                      <li>Dryad_Carrier</li>
+                      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Medicinemaker</li>
+                      <!-- <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Carrier</li> -->
+                    </defList>
+                    <subNodes>
+                      <li Class="Dryad.JobGiver_DryadRescueNearby">
+                        <radius>75</radius>
+                      </li>
+                    </subNodes>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          
+
+          <!-- <li Class="ThinkNode_ChancePerHour_Constant">
+            <mtbHours>0.01</mtbHours>
+            <subNodes>
+              <li Class="Dryad.JobGiver_FeedPatient">
+              </li>
+            </subNodes>
+          </li> -->
+          
+          <!-- Hauling far away. -->
+          <li Class="ThinkNode_ChancePerHour_Constant">
+            <mtbHours>0.5</mtbHours>
+            <subNodes>
+              <li Class="ThinkNode_ConditionalTrainableCompleted">
+                <trainable>Haul</trainable>
+                <subNodes>
+                  <li Class="ThinkNode_Tagger">
+                    <tagToGive>TrainedAnimalBehavior</tagToGive>
+                    <subNodes>
+                      <li Class="JobGiver_Haul" />
+                    </subNodes>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <!-- Sowing far away -->
+          <li Class="ThinkNode_ChancePerHour_Constant">
+            <mtbHours>3</mtbHours>
+            <subNodes>
+              <li Class="Dryad.ThinkNode_ConditionalIsDef">
+                <defList>
+                  <li>Dryad_Medicinemaker</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Medicinemaker</li>
+                </defList>
+                <subNodes>
+                  <li Class="ThinkNode_Tagger">
+                    <tagToGive>TrainedAnimalBehavior</tagToGive>
+                    <subNodes>
+                      <li Class="Dryad.JobGiver_DryadSow">
+                        <maxDistance>70</maxDistance>
+                        <plantFood>false</plantFood>
+                        <plantBeauty>false</plantBeauty>
+                        <plantMisc>false</plantMisc>
+                        <maxSkill>18</maxSkill>
+                      </li>
+                    </subNodes>
+                  </li>
+                </subNodes>
+              </li>
+              <li Class="Dryad.ThinkNode_ConditionalIsDef">
+                <defList>
+                  <li>Dryad_Berrymaker</li>
+                  <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Nectarmaker</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Berrymaker</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Nectarmaker</li>
+                </defList>
+                <subNodes>
+                  <li Class="ThinkNode_Tagger">
+                    <tagToGive>TrainedAnimalBehavior</tagToGive>
+                    <subNodes>
+                      <li Class="Dryad.JobGiver_DryadSow">
+                        <maxDistance>70</maxDistance>
+                        <plantMedical>false</plantMedical>
+                        <plantMisc>false</plantMisc>
+                        <plantDrugs>false</plantDrugs>
+                        <maxSkill>9</maxSkill>
+                      </li>
+                    </subNodes>
+                  </li>
+                </subNodes>
+              </li>
+              <li Class="Dryad.ThinkNode_ConditionalIsDef">
+                <defList>
+                  <li>Dryad_Woodmaker</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Woodmaker</li>
+                </defList>
+                <subNodes>
+                  <li Class="ThinkNode_Tagger">
+                    <tagToGive>TrainedAnimalBehavior</tagToGive>
+                    <subNodes>
+                      <li Class="Dryad.JobGiver_DryadSow">
+                        <maxDistance>70</maxDistance>
+                        <plantOnlyTrees>true</plantOnlyTrees>
+                        <maxSkill>9</maxSkill>
+                      </li>
+                    </subNodes>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <!-- Sowing Nearby -->
+          <li Class="Dryad.ThinkNode_ConditionalIsDef">
+            <defList>
+              <li>Dryad_Medicinemaker</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Medicinemaker</li>
+            </defList>
+            <subNodes>
+              <li Class="ThinkNode_Tagger">
+                <tagToGive>TrainedAnimalBehavior</tagToGive>
+                <subNodes>
+                  <li Class="Dryad.JobGiver_DryadSow">
+                    <maxDistance>14</maxDistance>
+                    <plantFood>false</plantFood>
+                    <plantBeauty>false</plantBeauty>
+                    <plantMisc>false</plantMisc>
+                    <maxSkill>18</maxSkill>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <li Class="Dryad.ThinkNode_ConditionalIsDef">
+            <defList>
+              <li>Dryad_Berrymaker</li>
+              <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Nectarmaker</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Berrymaker</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Nectarmaker</li>
+            </defList>
+            <subNodes>
+              <li Class="ThinkNode_Tagger">
+                <tagToGive>TrainedAnimalBehavior</tagToGive>
+                <subNodes>
+                  <li Class="Dryad.JobGiver_DryadSow">
+                    <maxDistance>14</maxDistance>
+                    <plantMedical>false</plantMedical>
+                    <plantMisc>false</plantMisc>
+                    <plantDrugs>false</plantDrugs>
+                    <maxSkill>9</maxSkill>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <li Class="Dryad.ThinkNode_ConditionalIsDef">
+            <defList>
+              <li>Dryad_Woodmaker</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Woodmaker</li>
+            </defList>
+            <subNodes>
+              <li Class="ThinkNode_Tagger">
+                <tagToGive>TrainedAnimalBehavior</tagToGive>
+                <subNodes>
+                  <li Class="Dryad.JobGiver_DryadSow">
+                    <maxDistance>14</maxDistance>
+                    <plantOnlyTrees>true</plantOnlyTrees>
+                    <maxSkill>9</maxSkill>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <!-- Harvesting -->
+          <li Class="ThinkNode_ChancePerHour_Constant">
+            <mtbHours>2</mtbHours>
+            <subNodes>
+              <li Class="Dryad.ThinkNode_ConditionalIsDef">
+                <defList>
+                  <li>Dryad_Clawer</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Clawer</li>
+                </defList>
+                <subNodes>
+                  <li Class="ThinkNode_Tagger">
+                    <tagToGive>TrainedAnimalBehavior</tagToGive>
+                    <subNodes>
+                      <li Class="Dryad.JobGiver_DryadHarvest"> 
+                        <maxDistance>70</maxDistance>
+                      </li>
+                    </subNodes>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <li Class="ThinkNode_ChancePerHour_Constant">
+            <mtbHours>4</mtbHours>
+            <subNodes>
+              <li Class="Dryad.ThinkNode_ConditionalIsDef">
+                <defList>
+                  <li>Dryad_Barkskin</li>
+                  <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Stonedigger</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Barkskin</li>
+                  <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Stonedigger</li>
+                </defList>
+                <subNodes>
+                  <li Class="ThinkNode_Tagger">
+                    <tagToGive>TrainedAnimalBehavior</tagToGive>
+                    <subNodes>
+                      <li Class="Dryad.JobGiver_DryadMine"> 
+                        <maxDistance>500</maxDistance>
+                      </li>
+                    </subNodes>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <li Class="Dryad.ThinkNode_ConditionalIsDef">
+            <defList>
+              <li>Dryad_Clawer</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Clawer</li>
+            </defList>
+            <subNodes>
+              <li Class="ThinkNode_Tagger">
+                <tagToGive>TrainedAnimalBehavior</tagToGive>
+                <subNodes>
+                  <li Class="Dryad.JobGiver_DryadHarvest"> 
+                    <maxDistance>14</maxDistance>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <li Class="Dryad.ThinkNode_ConditionalIsDef">
+            <defList>
+              <li>Dryad_Barkskin</li>
+              <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Stonedigger</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Barkskin</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Stonedigger</li>
+            </defList>
+            <subNodes>
+              <li Class="ThinkNode_Tagger">
+                <tagToGive>TrainedAnimalBehavior</tagToGive>
+                <subNodes>
+                  <li Class="Dryad.JobGiver_DryadMine"> 
+                    <maxDistance>14</maxDistance>
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <li Class="Dryad.ThinkNode_ConditionalIsDef">
+            <defList>
+              <li>Dryad_Carrier</li>
+            </defList>
+            <subNodes>
+              <li Class="ThinkNode_Tagger">
+                <tagToGive>TrainedAnimalBehavior</tagToGive>
+                <subNodes>
+                  <li Class="Dryad.JobGiver_DryadHaul">
+                      <maxDistance>20</maxDistance>
+                    </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+          <li Class="Dryad.ThinkNode_ConditionalIsDef">
+            <defList>
+              <li>Dryad_Carrier</li>
+              <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Gaubricmaker</li>
+              <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Gaubricmaker</li>
+            </defList>
+            <subNodes>
+              <li Class="ThinkNode_Tagger">
+                <tagToGive>TrainedAnimalBehavior</tagToGive>
+                <subNodes>
+                  <li Class="Dryad.JobGiver_Clean"> 
+                  </li>
+                </subNodes>
+              </li>
+            </subNodes>
+          </li>
+        </subNodes>
+      </li>
+    </value>
+  </Operation>  
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name="DryadBase"]/statBases</xpath>
+    <value>
+      <RestRateMultiplier>2</RestRateMultiplier>
+      <PlantWorkSpeed>0.25</PlantWorkSpeed>
+      <MiningSpeed>0.25</MiningSpeed>
+    </value>
+  </Operation>
+  
+  <!-- <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name="DryadBase"]/race</xpath>
+    <value>
+      <intelligence>ToolUser</intelligence>
+    </value>
+  </Operation> -->
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Woodmaker"]/statBases</xpath>
+    <value>
+      <RestRateMultiplier>1</RestRateMultiplier>
+      <PlantWorkSpeed>0.4</PlantWorkSpeed>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Clawer"]/statBases</xpath>
+    <value>
+      <PlantWorkSpeed>0.4</PlantWorkSpeed>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Medicinemaker"]/statBases</xpath>
+    <value>
+      <!-- No Medicine means a x0.3 quality. Might be able to get it to use medicine though? -->
+      <MedicalTendQuality>2</MedicalTendQuality>
+      <MedicalTendSpeed>0.4</MedicalTendSpeed>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Woodmaker"]/race</xpath>
+    <value>
+      <trainability>Advanced</trainability>
+      <trainableTags>
+        <li>Basic</li>
+        <li>Work</li>
+      </trainableTags>
+      <untrainableTags>
+        <li>Help</li>
+        <li>Combat</li>
+      </untrainableTags>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Medicinemaker"]/race</xpath>
+    <value>
+      <trainability>Advanced</trainability>
+      <trainableTags>
+        <li>Help</li>
+      </trainableTags>
+      <untrainableTags>
+        <li>Work</li>
+        <li>Basic</li>
+        <li>Combat</li>
+      </untrainableTags>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Carrier"]/statBases</xpath>
+    <value>
+      <CarryingCapacity>100</CarryingCapacity>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Carrier"]/statBases</xpath>
+    <value>
+      <StaggerDurationFactor MayRequire="Ludeon.Rimworld.Biotech">0.1</StaggerDurationFactor>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Dryad_Carrier"]/statBases/MoveSpeed</xpath>
+    <value>
+      <MoveSpeed>5</MoveSpeed>
+    </value>
+  </Operation>
+  
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Dryad_Carrier"]/race</xpath>
+    <value>
+      <baseBodySize>1</baseBodySize>
+      <baseHealthScale>1</baseHealthScale>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Dryad_Carrier"]/race/trainableTags</xpath>
+    <value>
+      <trainableTags>
+        <li>Help</li>
+        <li>Work</li>
+      </trainableTags>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Dryad_Carrier"]/race/untrainableTags</xpath>
+    <value>
+      <untrainableTags>
+        <li>Combat</li>
+        <li>Basic</li>
+      </untrainableTags>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/StatDef[defName="PlantWorkSpeed"]/showOnPawnKind</xpath>
+    <value>
+      <li>Dryad_Berrymaker</li>
+      <li>Dryad_Woodmaker</li>
+      <li>Dryad_Medicinemaker</li>
+      <li>Dryad_Clawer</li>
+    </value>
+  </Operation>
+  
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/StatDef[(defName="MedicalTendQuality" or defName="MedicalTendSpeed") and not(showOnPawnKind)]</xpath>
+    <success>Always</success>
+    <value>
+      <showOnPawnKind></showOnPawnKind>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/StatDef[defName="MedicalTendQuality" or defName="MedicalTendSpeed"]/showOnPawnKind</xpath>
+    <value>
+      <li>Dryad_Medicinemaker</li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/StatDef[(defName="MiningSpeed" or defName="MiningYield") and not(showOnPawnKind)]</xpath>
+    <success>Always</success>
+    <value>
+      <showOnPawnKind></showOnPawnKind>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/StatDef[defName="MiningSpeed" or defName="MiningYield"]/showOnPawnKind</xpath>
+    <value>
+      <li>Dryad_Barkskin</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Stonedigger</li>
+      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Barkskin</li>
+      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Stonedigger</li>
+    </value>
+  </Operation>
+
+</Patch>

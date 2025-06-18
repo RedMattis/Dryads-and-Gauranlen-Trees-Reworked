@@ -1,0 +1,22 @@
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <!-- 20% is too bloody rare! Ludeon, do you seriously think tribal players are trading with other Tribal Settlements THAT often? -->
+    <xpath>Defs/ThingDef[defName="Plant_TreeAnima"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets/li[@Class="FocusStrengthOffset_BuildingDefs"]/defs</xpath>
+    <value>
+      <Dryad_GauranlenShrine_Small MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Small>
+      <Dryad_GauranlenShrine_Large MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Large>
+      <Dryad_VikingShrine MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_VikingShrine>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <!-- 20% is too bloody rare! Ludeon, do you seriously think tribal players are trading with other Tribal Settlements THAT often? -->
+    <xpath>Defs/ThingDef[defName="AnimusStone"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets/li[@Class="FocusStrengthOffset_BuildingDefs"]/defs</xpath>
+    <value>
+      <Dryad_GauranlenShrine_Small MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Small>
+      <Dryad_GauranlenShrine_Large MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Large>
+      <Dryad_VikingShrine MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_VikingShrine>
+    </value>
+  </Operation>
+
+</Patch>
