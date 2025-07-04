@@ -20,7 +20,7 @@ namespace Dryad
             Thing haulable = GenClosest.ClosestThing_Global_Reachable(pawn.Position, pawn.Map, pawn.Map.listerHaulables.ThingsPotentiallyNeedingHauling(), PathEndMode.OnCell, TraverseParms.For(pawn), maxDistance, Validator);
             if (haulable != null)
             {
-                return HaulAIUtility.HaulToStorageJob(pawn, haulable);
+                return HaulAIUtility.HaulToStorageJob(pawn, haulable, false);
             }
             return null;
             bool Validator(Thing t)

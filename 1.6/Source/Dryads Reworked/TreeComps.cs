@@ -654,7 +654,7 @@ namespace Dryad
         [HarmonyPostfix]
         public static void ResetDryadPostFix(CompTreeConnection __instance, Pawn dryad)
         {
-            if (dryad == null) return;
+            if (dryad == null && __instance?.ConnectedPawn != null) return;
             foreach (TrainableDef aDef in DefDatabase<TrainableDef>.AllDefs)
             {
                 // Hax it so that dryads can be trained to rescue even if not combat trained.
