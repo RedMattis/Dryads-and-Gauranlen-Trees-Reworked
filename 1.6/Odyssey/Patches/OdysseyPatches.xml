@@ -1,0 +1,58 @@
+<Patch>
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName='Plant_TreeGauranlen']/plant/vacuumResistant</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/plant</xpath>
+      <value>
+        <vacuumResistant>true</vacuumResistant>
+      </value>
+    </nomatch>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/plant/vacuumResistant</xpath>
+      <value>
+        <vacuumResistant>true</vacuumResistant>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName='Plant_MossGauranlen']/plant/vacuumResistant</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Plant_MossGauranlen"]/plant</xpath>
+      <value>
+        <vacuumResistant>true</vacuumResistant>
+      </value>
+    </nomatch>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="Plant_MossGauranlen"]/plant/vacuumResistant</xpath>
+      <value>
+        <vacuumResistant>true</vacuumResistant>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- Let them grow under roofs, to permit sticking them inside ships, ground permitting. -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName='Plant_TreeGauranlen']/plant/interferesWithRoof</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/plant</xpath>
+      <value>
+        <interferesWithRoof>false</interferesWithRoof>
+      </value>
+    </nomatch>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/plant/interferesWithRoof</xpath>
+      <value>
+        <interferesWithRoof>false</interferesWithRoof>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[@Name="DryadBase"]/statBases</xpath>
+    <value>
+      <VacuumResistance>2.0</VacuumResistance>
+    </value>
+  </Operation>
+
+</Patch>
