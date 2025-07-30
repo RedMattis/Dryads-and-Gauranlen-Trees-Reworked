@@ -44,15 +44,6 @@ namespace Dryad
 
         public override ThinkResult TryIssueJobPackage(Pawn pawn, JobIssueParams jobParams)
         {
-            bool isBerryMaker = pawn.def == DryadDefs.Dryad_Berrymaker;
-            bool isMedicineMaker = pawn.def == DryadDefs.Dryad_Medicinemaker;
-            bool isWoodMaker = pawn.def == DryadDefs.Dryad_Woodmaker;
-
-            if (!(isBerryMaker || isMedicineMaker || isWoodMaker))
-            {
-                return ThinkResult.NoJob;
-            }
-
             int num = -999;
             TargetInfo targetInfo = TargetInfo.Invalid;
             WorkGiver_Scanner workGiver_Scanner = null;

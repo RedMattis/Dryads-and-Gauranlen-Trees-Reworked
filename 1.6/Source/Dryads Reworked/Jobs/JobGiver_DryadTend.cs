@@ -29,12 +29,6 @@ namespace Dryad
 
         public override ThinkResult TryIssueJobPackage(Pawn pawn, JobIssueParams jobParams)
         {
-            //bool isMedicineMaker = pawn.def == DryadDefs.Dryad_Medicinemaker;
-
-            //if (!(isMedicineMaker))
-            //{
-            //    return ThinkResult.NoJob;
-            //}
             var tendablePawns = pawn.Map.mapPawns.SpawnedPawnsWithAnyHediff.Where(p => ShouldTendPawn(pawn, p, false)).ToList();
             if (tendablePawns.Count > 0)
             {

@@ -553,7 +553,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Dryad_Woodmaker"]/race</xpath>
+    <xpath>Defs/ThingDef[defName="Dryad_Woodmaker" or defName="DVE_GreaterDryad_Woodmaker"]/race</xpath>
     <value>
       <trainability>Advanced</trainability>
       <trainableTags>
@@ -568,7 +568,7 @@
   </Operation>
 
   <Operation Class="PatchOperationAdd">
-    <xpath>Defs/ThingDef[defName="Dryad_Medicinemaker"]/race</xpath>
+    <xpath>Defs/ThingDef[defName="Dryad_Medicinemaker" or defName="DVE_GreaterDryad_Medicinemaker" or defName="DVE_GreaterDryad_Berrymaker"]/race</xpath>
     <value>
       <trainability>Advanced</trainability>
       <trainableTags>
@@ -635,6 +635,11 @@
       <li>Dryad_Woodmaker</li>
       <li>Dryad_Medicinemaker</li>
       <li>Dryad_Clawer</li>
+      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Medicinemaker</li>
+      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Woodmaker</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Nectarmaker</li>
+      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Berrymaker</li>
+      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Nectarmaker</li>
     </value>
   </Operation>
   
@@ -650,6 +655,7 @@
     <xpath>Defs/StatDef[defName="MedicalTendQuality" or defName="MedicalTendSpeed"]/showOnPawnKind</xpath>
     <value>
       <li>Dryad_Medicinemaker</li>
+      <li MayRequire="RedMattis.Dryads.Greater">DVE_GreaterDryad_Medicinemaker</li>
     </value>
   </Operation>
 

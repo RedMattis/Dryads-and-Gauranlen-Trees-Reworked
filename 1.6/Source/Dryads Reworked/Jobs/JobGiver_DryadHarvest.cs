@@ -29,12 +29,6 @@ namespace Dryad
 
         public override ThinkResult TryIssueJobPackage(Pawn pawn, JobIssueParams jobParams)
         {
-            //bool isClawer = pawn.def == DryadDefs.Dryad_Clawer;
-            //if (!isClawer)
-            //{
-            //    return ThinkResult.NoJob;
-            //}
-
             int num = -999;
             TargetInfo targetInfo = TargetInfo.Invalid;
             WorkGiver_Scanner workGiver_Scanner = null;
