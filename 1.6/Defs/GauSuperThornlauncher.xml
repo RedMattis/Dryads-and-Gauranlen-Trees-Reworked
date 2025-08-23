@@ -66,7 +66,7 @@
         <forcedMissRadius>0.1</forcedMissRadius>
         <requireLineOfSight>false</requireLineOfSight>
 
-        <ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>        
+        <ai_AvoidFriendlyFireRadius>4</ai_AvoidFriendlyFireRadius>        
         <soundCastTail>GunTail_Light</soundCastTail>
         <soundCast>Dryad_ThornShoot</soundCast>
         <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>

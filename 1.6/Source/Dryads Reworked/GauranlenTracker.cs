@@ -51,6 +51,8 @@ namespace Dryad
                         gauPlants.Remove(plant);
                     }
                 }
+
+
             }
         }
 

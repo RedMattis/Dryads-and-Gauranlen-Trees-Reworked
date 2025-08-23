@@ -9,7 +9,7 @@
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/statBases/MaxHitPoints</xpath>
     <value>
-      <MaxHitPoints>600</MaxHitPoints>
+      <MaxHitPoints>1000</MaxHitPoints>
     </value>
   </Operation>
 

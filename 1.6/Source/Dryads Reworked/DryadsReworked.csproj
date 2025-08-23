@@ -83,13 +83,14 @@
     <Compile Include="Defs\TreeTier.cs" />
     <Compile Include="Defs\TreeTierTracker.cs" />
     <Compile Include="GauranlenTracker.cs" />
+    <Compile Include="GauTurrets\CompProperties_GauranLenConnection.cs" />
     <Compile Include="Jobs\JobGiver_DryadClean.cs" />
     <Compile Include="Jobs\JobGiver_DryadHaul.cs" />
     <Compile Include="Jobs\JobGiver_DryadMiner.cs" />
     <Compile Include="Jobs\Jobigver_DryadCocoon.cs" />
     <Compile Include="Defs.cs" />
     <Compile Include="DryadConnectionHediff.cs" />
-    <Compile Include="GauranlenTurret.cs" />
+    <Compile Include="GauTurrets\GauranlenTurret.cs" />
     <Compile Include="Jobs\JobGiver_DryadHarvest.cs" />
     <Compile Include="Jobs\JobGiver_FeedPatient.cs" />
     <Compile Include="Jobs\JobGiver_Rescue.cs" />

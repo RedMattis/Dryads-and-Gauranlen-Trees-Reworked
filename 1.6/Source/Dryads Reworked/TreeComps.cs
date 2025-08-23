@@ -212,12 +212,35 @@ namespace Dryad
                 gaumakerPod = null;
             }
             RefreshConnection();
+            RemoveDryadsOnWrongMap();
 
             if (HasProductionMode && Mode != desiredMode)
             {
                 FinalizeMode();
             }
             TryUpgradeToGreaterDryad();
+        }
+
+        private void RemoveDryadsOnWrongMap()
+        {
+            List<Pawn> dryadsToRemove = [];
+            foreach (var dryad in Dryads)
+            {
+                if (dryad.Map == parent.Map) continue;
+                var parentThing = dryad.ParentHolder == null ? null : dryad.ParentHolder as Thing;
+                if (parentThing == null && parentThing.Map == dryad.Map) continue;
+                else
+                {
+                    dryadsToRemove.Add(dryad);
+                    Log.Message($"Removing dryad {dryad?.Name} from tree {parent?.Label} because netiher it ({dryad?.Map}); nor its parent ({parentThing}, {parentThing?.Map}), if any; is on the same map as its tree {parent.Map}.\n" +
+                        $"If the dryad was abandoned or teleported then this is normal.");
+                }
+            }
+            for (int idx = dryadsToRemove.Count - 1; idx >= 0; idx--)
+            {
+                Pawn dryad = dryadsToRemove[idx];
+                RemoveDryad(dryad);
+            }
         }
 
         private void RefreshConnection()
