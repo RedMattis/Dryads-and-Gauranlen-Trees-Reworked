@@ -13,6 +13,25 @@
     </value>
   </Operation>
 
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"][not(descriptionHyperlinks)]</xpath>
+    <success>Always</success>
+    <value>
+      <descriptionHyperlinks/>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/descriptionHyperlinks</xpath>
+    <value>
+      <ThingDef>Dryad_VikingShrine</ThingDef>
+      <ThingDef>Dryad_GauranlenShrine_Small</ThingDef>
+      <ThingDef>Dryad_GauranlenShrine_Large</ThingDef>
+    </value>
+  </Operation>
+
+  
+
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/ThingDef[defName="Plant_TreeGauranlen"]/comps/li[@Class="CompProperties_TreeConnection"]</xpath>
     <value>
