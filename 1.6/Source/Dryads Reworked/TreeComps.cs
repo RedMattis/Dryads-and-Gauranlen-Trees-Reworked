@@ -140,6 +140,11 @@ namespace Dryad
         {
             var result = base.CompGetGizmosExtra();
 
+            if (pruningGizmo is not Gizmo_FakePruningConfig)
+            {
+                pruningGizmo = new Gizmo_FakePruningConfig(this);
+            }
+
             if (ConnectedPawn != null)
             {
                 Command_Action severConnection = new()
@@ -671,6 +676,16 @@ namespace Dryad
                 EffecterDefOf.DryadEmergeFromCocoon.Spawn(pawn.Position, pawn.Map).Cleanup();
                 numGreater++;
             }
+        }
+
+        /// <summary>
+        /// For compatibility with other mods that change the pruning gizmo, we replace it with a fake one that does nothing, so that other mods don't get null reference exceptions, etc.
+        /// </summary>
+        public class Gizmo_FakePruningConfig(CompTreeConnection connection) : Gizmo_PruningConfig(connection)
+        {
+            public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms) =>
+                new(GizmoState.Clear);
+            public override float GetWidth(float maxWidth) => 0;
         }
 
         [HarmonyPatch(typeof(CompTreeConnection), "ResetDryad")]

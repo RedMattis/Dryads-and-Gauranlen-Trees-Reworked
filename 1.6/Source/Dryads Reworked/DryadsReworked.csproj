@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Publicize Include="Assembly-CSharp:RimWorld.CompTreeConnection.ResetDryad" />
+    <Publicize Include="Assembly-CSharp:RimWorld.CompTreeConnection.pruningGizmo" />
     <Publicize Include="Assembly-CSharp:RimWorld.CompTreeConnection.connectedPawn" />
     <Publicize Include="Assembly-CSharp:RimWorld.CompTreeConnection.nextUntornTick" />
   </ItemGroup>
