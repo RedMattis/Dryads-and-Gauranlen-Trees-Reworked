@@ -233,7 +233,7 @@ namespace Dryad
             {
                 if (dryad.Map == parent.Map) continue;
                 var parentThing = dryad.ParentHolder == null ? null : dryad.ParentHolder as Thing;
-                if (parentThing == null && parentThing.Map == dryad.Map) continue;
+                if (parentThing?.Map != null && parentThing.Map == dryad.Map) continue;
                 else
                 {
                     dryadsToRemove.Add(dryad);
