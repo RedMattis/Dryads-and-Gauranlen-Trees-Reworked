@@ -1,0 +1,45 @@
+<Patch>
+  <Operation Class="PatchOperationReplace">
+    <!-- 20% is too bloody rare! Ludeon, do you seriously think tribal players are trading with other Tribal Settlements THAT often? -->
+    <xpath>Defs/TraderKindDef/stockGenerators/li[thingDef="AnimusStone"]/countRange</xpath>
+    <value>
+      <countRange>0~1</countRange>
+    </value>
+  </Operation>
+
+  <!--Next we're adding it to the neolithic shaman. 33% should be fine.-->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/TraderKindDef[defName="Caravan_Neolithic_ShamanMerchant"]/stockGenerators</xpath>
+    <value>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>AnimusStone</thingDef>
+        <countRange>-1~1</countRange>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- Try to make them a bit more common as quest rewards. Adding instead of replacing for compatibility purposes.-->
+  <Operation Class="PatchOperationAdd">
+    <xpath>//ThingSetMakerDef[defName="Reward_ItemsStandard"]/root/options/li[maxMarketValue=5500]/thingSetMaker/options</xpath>
+    <value>
+      <li>
+        <weight>0.2</weight>
+        <weightIfPlayerHasNoItem>20</weightIfPlayerHasNoItem>
+        <weightIfPlayerHasNoItemItem>AnimusStone</weightIfPlayerHasNoItemItem>
+        <thingSetMaker Class="ThingSetMaker_Conditional_MakingFaction">
+          <makingFactionCategories><li>Tribal</li></makingFactionCategories>
+          <requireNonNull>true</requireNonNull>
+          <thingSetMaker Class="ThingSetMaker_Count">
+            <fixedParams>
+              <filter>
+                <thingDefs>
+                  <li MayRequire="Ludeon.RimWorld.Royalty">AnimusStone</li>
+                </thingDefs>
+              </filter>
+            </fixedParams>
+          </thingSetMaker>
+        </thingSetMaker>
+      </li>
+    </value>
+  </Operation>
+</Patch>

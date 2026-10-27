@@ -1,0 +1,31 @@
+<Defs>
+  <Dryad.PlantSpawnRules>
+    <defName>Dryad_Bulb</defName>
+    <thingDef>Dryad_Bulb</thingDef>
+    <spawnOn>Plant_MossGauranlen</spawnOn>
+  </Dryad.PlantSpawnRules>
+
+  <Dryad.PlantSpawnRules>
+    <defName>Dryad_Thorncaster</defName>
+    <thingDef>Dryad_Thorncaster</thingDef>
+    <spawnOn>Dryad_Bulb</spawnOn>
+  </Dryad.PlantSpawnRules>
+
+  <Dryad.PlantSpawnRules>
+    <defName>Dryad_Thornlauncher</defName>
+    <thingDef>Dryad_Thornlauncher</thingDef>
+    <spawnOn>Dryad_Bulb</spawnOn>
+  </Dryad.PlantSpawnRules>
+
+   <Dryad.PlantSpawnRules>
+    <defName>Dryad_GiantThorncaster</defName>
+    <thingDef>Dryad_GiantThorncaster</thingDef>
+    <spawnOn>Dryad_Thorncaster</spawnOn>
+  </Dryad.PlantSpawnRules>
+
+  <Dryad.PlantSpawnRules>
+    <defName>Dryad_SuperThornlauncher</defName>
+    <thingDef>Dryad_SuperThornlauncher</thingDef>
+    <spawnOn>Dryad_Thornlauncher</spawnOn>
+  </Dryad.PlantSpawnRules>
+</Defs>

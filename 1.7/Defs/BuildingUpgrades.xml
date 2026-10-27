@@ -1,0 +1,17 @@
+<Defs>
+  <Dryad.PlantUpgrade>
+    <defName>Dryad_GiantThorncaster</defName>
+    <plant>Dryad_Thorncaster</plant>
+    <greaterPlant>Dryad_GiantThorncaster</greaterPlant>
+    <cost>3</cost>
+  </Dryad.PlantUpgrade>
+
+    <Dryad.PlantUpgrade>
+    <defName>Dryad_SuperThornlauncher</defName>
+    <plant>Dryad_Thornlauncher</plant>
+    <greaterPlant>Dryad_SuperThornlauncher</greaterPlant>
+    <cost>3</cost>
+  </Dryad.PlantUpgrade>
+
+
+</Defs>

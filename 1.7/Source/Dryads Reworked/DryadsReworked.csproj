@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Authors>RedMattis</Authors>
+    
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    
+		<DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <NoStdLib>true</NoStdLib>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    
+    <OutputPath>..\..\Assemblies\</OutputPath>
+    <RootNamespace>Dryad</RootNamespace>
+    <AssemblyName>DryadsReworked</AssemblyName>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Krafs.Rimworld.Ref">
+      <Version>1.6.4566</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+
+    <PackageReference Include="Krafs.Publicizer">
+      <Version>2.3.*</Version>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+
+    <PackageReference Include="Lib.Harmony">
+      <Version>2.4.1</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Publicize Include="Assembly-CSharp:RimWorld.CompTreeConnection.ResetDryad" />
+    <Publicize Include="Assembly-CSharp:RimWorld.CompTreeConnection.pruningGizmo" />
+    <Publicize Include="Assembly-CSharp:RimWorld.CompTreeConnection.connectedPawn" />
+    <Publicize Include="Assembly-CSharp:RimWorld.CompTreeConnection.nextUntornTick" />
+  </ItemGroup>
+</Project>

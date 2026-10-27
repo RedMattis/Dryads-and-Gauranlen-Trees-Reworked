@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DryadsReworked</name>
+    </assembly>
+    <members>
+        <member name="M:Dryad.GauranlenTurret.TryFindNewTarget">
+            <summary>
+            For the fire extinguish-sap ability
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Dryad.CompNewTreeConnection.Gizmo_FakePruningConfig">
+            <summary>
+            For compatibility with other mods that change the pruning gizmo, we replace it with a fake one that does nothing, so that other mods don't get null reference exceptions, etc.
+            </summary>
+        </member>
+        <member name="M:Dryad.CompNewTreeConnection.Gizmo_FakePruningConfig.#ctor(RimWorld.CompTreeConnection)">
+            <summary>
+            For compatibility with other mods that change the pruning gizmo, we replace it with a fake one that does nothing, so that other mods don't get null reference exceptions, etc.
+            </summary>
+        </member>
+    </members>
+</doc>

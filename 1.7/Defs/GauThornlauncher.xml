@@ -1,0 +1,136 @@
+<Defs>
+  <ThingDef ParentName="Dryad_Turret">
+    <defName>Dryad_Thornlauncher</defName>
+    <label>gauranlen impaler</label>
+    <description>A highly unusual plant which rarely grows from gauranlen moss near a gauranlen tree. Tha plant can launch heavy dense spikes of hardened resin over walls to strike distant foes. While its accuracy is impressive the range is not. It will mostly prioritise enemies a safe distance away from its allies.\n\nWhen it detects fire the plant will also attempt to shoot a fire-retardant gooey substance. While this does little to extinguish a large fire it can quickly coat the ground and prevent the fire from spreading to itself and the Gauranlen Tree</description>
+    <thingClass>Dryad.GauranlenTurret</thingClass>
+    <graphicData>
+      <texPath>Building/Dryad_Turret/Thorncaster</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <drawOffset>(0,0,-.2)</drawOffset>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,-.2)</offset>
+      </shadowData>
+    </graphicData>
+    <building>
+      <combatPower>45</combatPower>
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretGunDef>Dryad_Thornlauncher_Gun</turretGunDef>
+      <turretBurstCooldownTime>6</turretBurstCooldownTime>
+      <!-- <turretTopOffset>(0,1)</turretTopOffset> -->
+      <turretTopDrawSize>1.5</turretTopDrawSize>
+      <playTargetAcquiredSound>false</playTargetAcquiredSound>
+    </building>
+  </ThingDef>
+
+  <ThingDef ParentName="DryadTurretGun">
+    <defName>Dryad_Thornlauncher_Gun</defName>
+    <label>thornlauncher</label>
+    <description>The 'weapon' of a thornlauncher dryad.</description>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Building/Dryad_Turret/Thornlauncher_Top</texPath>
+      <!-- <drawSize>(2,2)</drawSize> -->
+      <drawOffset>(0,0,.5)</drawOffset>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.9</AccuracyTouch>
+      <AccuracyShort>1</AccuracyShort>
+      <AccuracyMedium>1</AccuracyMedium>
+      <AccuracyLong>1</AccuracyLong>
+      <RangedWeapon_Cooldown>6</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>5</Mass>
+      <Flammability>0.25</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Dryad_HeavyGauBullet</defaultProjectile>
+        <warmupTime>3</warmupTime>
+        <ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+        <burstShotCount>1</burstShotCount>
+        <range>22.9</range>
+        <minRange>3.9</minRange>
+        <forcedMissRadius>0.1</forcedMissRadius>
+        <requireLineOfSight>false</requireLineOfSight>
+
+        <ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>        
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <soundCast>Dryad_ThornShoot</soundCast>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+      </li>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Dryad_OverheadSapBullet</defaultProjectile>
+        <warmupTime>7</warmupTime>
+        <range>13</range>  <!--Change to like 8 or something.-->
+        <targetParams>
+          <canTargetFires>true</canTargetFires>
+        </targetParams>
+        <soundCast>Dryad_ThornShoot</soundCast>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+
+        <requireLineOfSight>false</requireLineOfSight>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseProjectileNeolithic">
+    <defName>Dryad_HeavyGauBullet</defName>
+    <label>gau javelin</label>
+    <thingClass>Projectile_Explosive</thingClass>
+    <graphicData>
+      <texPath>Building/Dryad_Turret/Thornlauncher_Bullet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.4</drawSize>
+    </graphicData>
+    <projectile>
+      <damageDef>RangedStab</damageDef>
+      <damageAmountBase>34</damageAmountBase>
+      <stoppingPower>3</stoppingPower>
+      <armorPenetrationBase>0.65</armorPenetrationBase>
+      <speed>40</speed>
+      <arcHeightFactor>0.5</arcHeightFactor>
+      <flyOverhead>true</flyOverhead>
+      <shadowSize>0.4</shadowSize>
+      <explosionRadius>1.1</explosionRadius>
+      <soundExplode>BulletImpact_Ground</soundExplode>
+      <screenShakeFactor>0</screenShakeFactor>
+      <doExplosionVFX>false</doExplosionVFX>
+      
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseProjectileNeolithic">
+    <defName>Dryad_OverheadSapBullet</defName>
+    <label>gau sap</label>
+    <thingClass>Projectile_Liquid</thingClass>
+    <graphicData>
+      <texPath>Building/Dryad_Turret/Sap_Bullet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.15</drawSize>
+    </graphicData>
+    <projectile>
+      <damageDef>Extinguish</damageDef>
+      <damageAmountBase>100</damageAmountBase>
+      <stoppingPower>2.5</stoppingPower>
+      <speed>35</speed>
+      <arcHeightFactor>0.7</arcHeightFactor>
+      <shadowSize>0.4</shadowSize>
+      <flyOverhead>true</flyOverhead>
+      <armorPenetrationBase>0.8</armorPenetrationBase>
+      <landedEffecter>ExtinguisherPuffSmall</landedEffecter>
+      <filth>Filth_FireFoam</filth>
+      <filthCount>1</filthCount>
+      <soundImpact>Foam_Impact</soundImpact>
+    </projectile>
+  </ThingDef>
+
+
+</Defs>

@@ -1,0 +1,108 @@
+<Defs>
+  <ThingDef ParentName="Dryad_Turret">
+    <defName>Dryad_GiantThorncaster</defName>
+    <label>giant gauranlen thorncaster</label>
+    <description>A huge unusual plant which rarely seen on gauranlen moss near a gauranlen tree. The plant can rapidly spew lots of dense spikes of hardened resin at foes.\n\nDespite the terrible accuracy the plant is queerly adept at avoiding striking allies.\n\nWhen it detects fire the plant will also attempt to shoot a fire-retardant gooey substance. While this does little to extinguish a large fire it can quickly coat the ground and prevent the fire from spreading to itself and the Gauranlen Tree</description>
+    <thingClass>Dryad.GauranlenTurret</thingClass>
+    <graphicData>
+      <texPath>Building/Dryad_Turret/Thorncaster</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2,2)</drawSize>
+      <damageData>
+        <rect>(0.4,0.4,1.6,1.6)</rect>
+      </damageData>
+      <drawOffset>(0,0,-.2)</drawOffset>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,-.2)</offset>
+      </shadowData>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>800</MaxHitPoints>
+      <RangedWeapon_Cooldown>5</RangedWeapon_Cooldown>
+    </statBases>
+    <size>(2,2)</size>
+    <building>
+      <combatPower>150</combatPower>
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretGunDef>Dryad_GiantThorncaster_Gun</turretGunDef>
+      <turretBurstWarmupTime>0.25</turretBurstWarmupTime>
+      <turretBurstCooldownTime>6</turretBurstCooldownTime>
+      <!-- <turretTopOffset>(0,1)</turretTopOffset> -->
+      
+      <turretTopDrawSize>3</turretTopDrawSize>
+      <playTargetAcquiredSound>false</playTargetAcquiredSound>
+    </building>
+  </ThingDef>
+
+  <ThingDef ParentName="DryadTurretGun">
+    <defName>Dryad_GiantThorncaster_Gun</defName>
+    <label>giant thornspewer</label>
+    <description>The 'weapon' of a throncaster dryad.</description>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Building/Dryad_Turret/Thorncaster_Top/Thorncaster_TopD</texPath>
+      <!-- <drawSize>(2,2)</drawSize> -->
+      <drawOffset>(0,0,.5)</drawOffset>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>1</AccuracyTouch>
+      <AccuracyShort>0.7</AccuracyShort>
+      <AccuracyMedium>0.3</AccuracyMedium>
+      <AccuracyLong>0.15</AccuracyLong>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>5</Mass>
+      <Flammability>0.25</Flammability>
+      <ShootingAccuracyTurret>0.5</ShootingAccuracyTurret>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Dryad_GauBulletSpam</defaultProjectile>
+        <warmupTime>1.5</warmupTime>
+
+        <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+        <burstShotCount>18</burstShotCount>
+        <range>30.9</range>
+        
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <soundCast>Dryad_ThornShoot</soundCast>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+      </li>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Dryad_SapBullet</defaultProjectile>
+        <burstShotCount>8</burstShotCount>
+        <ticksBetweenBurstShots>50</ticksBetweenBurstShots>
+        <warmupTime>8</warmupTime>
+        <range>16</range>  <!--Change to like 8 or something.-->
+        <targetParams>
+          <canTargetFires>true</canTargetFires>
+        </targetParams>
+        <soundCast>Dryad_ThornShoot</soundCast>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+      </li>
+    </verbs>
+  </ThingDef>
+
+    <ThingDef ParentName="BaseProjectileNeolithic">
+    <defName>Dryad_GauBulletSpam</defName>
+    <label>gau stinger</label>
+    <thingClass>Bullet</thingClass>
+    <graphicData>
+      <texPath>Building/Dryad_Turret/Thorncaster_Bullet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.5</drawSize>
+    </graphicData>
+    <projectile>
+      <damageDef>RangedStab</damageDef>
+      <damageAmountBase>15</damageAmountBase>
+      <stoppingPower>1</stoppingPower>
+      <armorPenetrationBase>0.5</armorPenetrationBase>
+      <speed>25</speed>
+      <arcHeightFactor>0.35</arcHeightFactor>
+      <shadowSize>0.42</shadowSize>
+    </projectile>
+  </ThingDef>
+
+</Defs>

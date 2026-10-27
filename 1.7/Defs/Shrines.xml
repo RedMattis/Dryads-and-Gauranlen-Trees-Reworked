@@ -1,0 +1,219 @@
+<Defs>
+  <ThingDef Name="Dryad_StandingStones" ParentName="BuildingBase" Abstract="True">
+    <rotatable>false</rotatable>
+    <altitudeLayer>Building</altitudeLayer>
+    <designationCategory>Misc</designationCategory>
+    <useHitPoints>true</useHitPoints>
+    <passability>PassThroughOnly</passability>
+    <stealable>false</stealable>
+    <thingCategories>
+      <li>BuildingsMisc</li>
+    </thingCategories>
+    <statBases>
+      <Flammability>0.0</Flammability>
+    </statBases>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <placeWorkers>
+      <li MayRequire="Ludeon.Rimworld.Royalty">PlaceWorker_ArtificialBuildingsNear</li>
+      <!-- <li MayRequire="Ludeon.Rimworld.Royalty">PlaceWorker_RequireNaturePsycaster</li> -->
+      <li MayRequire="Ludeon.Rimworld.Royalty">PlaceWorker_MeditationOffsetBuildingsNear</li>
+    </placeWorkers>
+    <building>
+      <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+      <ai_neverTrashThis>true</ai_neverTrashThis>
+      <ai_chillDestination>false</ai_chillDestination>
+      <paintable>true</paintable>
+    </building>
+    <minifiedDef>MinifiedThing</minifiedDef>
+  </ThingDef>
+
+  <ThingDef ParentName="Dryad_StandingStones">
+    <defName>Dryad_VikingShrine</defName>
+    <label>rune stone</label>
+    <description>A loosely carved and smoothed structure ascribed with ancient text and ornate patterns. Ancient northern tribes were known to pray at these shrines as well as keep them in their halls as aesthetic decorum.</description>
+    <graphicData>
+      <graphicClass>Graphic_Random</graphicClass>
+      <texPath>Building/VikingShrine</texPath>
+      <drawSize>(1,1)</drawSize>
+      <shadowData>
+				<volume>(0.8, 0.7, 0.6)</volume>
+				<offset>(0,0,-0.5)</offset>
+			</shadowData>
+    </graphicData>
+    <size>(1,1)</size>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <comps>
+      <li Class="CompProperties_MeditationFocus" MayRequire="Ludeon.Rimworld.Royalty">
+        <statDef>MeditationFocusStrength</statDef>
+        <focusTypes>
+          <li>Natural</li>
+        </focusTypes>
+        <offsets>
+          <li Class="FocusStrengthOffset_ArtificialBuildings" MayRequire="Ludeon.Rimworld.Royalty">
+            <radius>7.9</radius>
+            <curve>
+              <points>
+                <li>(0,   0.0)</li>
+                <li>(5,  -0.06)</li>
+                <li>(10, -0.12)</li>
+                <li>(50, -0.22)</li>
+              </points>
+            </curve>
+          </li>
+          <li Class="FocusStrengthOffset_BuildingDefs" MayRequire="Ludeon.Rimworld.Royalty">
+            <defs>
+							<AnimusStone MayRequire="Ludeon.RimWorld.Royalty">0.03</AnimusStone>
+							<NatureShrine_Small MayRequire="Ludeon.RimWorld.Royalty">0.01</NatureShrine_Small>
+							<NatureShrine_Large MayRequire="Ludeon.RimWorld.Royalty">0.01</NatureShrine_Large>
+              <Dryad_GauranlenShrine_Small MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Small>
+							<Dryad_GauranlenShrine_Large MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Large>
+              <Dryad_VikingShrine MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_VikingShrine>
+						</defs>
+            <radius>7.9</radius>
+            <maxBuildings>4</maxBuildings>
+            <explanationKey>MeditationFocusPerAnimusStoneAndShrine</explanationKey>
+            <explanationKeyAbstract>MeditationFocusPerAnimusStoneAndShrineAbstract</explanationKeyAbstract>
+          </li>
+        </offsets>
+      </li>
+    </comps>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+      <WorkToBuild>12000</WorkToBuild>
+      <Beauty>15</Beauty>
+      <MeditationFocusStrength>0.1</MeditationFocusStrength>
+      <Mass>12</Mass>
+    </statBases>
+    <costStuffCount>100</costStuffCount>
+    <building>
+      <paintable>true</paintable>
+    </building>
+  </ThingDef>
+
+  <ThingDef ParentName="Dryad_StandingStones">
+    <defName>Dryad_GauranlenShrine_Small</defName>
+    <label>gauranlen shrine</label>
+    <description>A small shrine for honoring the gauranlen tree.</description>
+    <graphicData>
+      <graphicClass>Graphic_Random</graphicClass>
+      <texPath>Building/Dryad_SmallShrine</texPath>
+      <drawSize>(2,2)</drawSize>
+      <shadowData>
+        <volume>(1.4, 1, 0.8)</volume>
+        <offset>(0,0,-0.5)</offset>
+      </shadowData>
+    </graphicData>
+    <size>(2,2)</size>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <comps>
+      <li Class="CompProperties_MeditationFocus" MayRequire="Ludeon.Rimworld.Royalty">
+        <statDef>MeditationFocusStrength</statDef>
+        <focusTypes>
+          <li>Natural</li>
+        </focusTypes>
+        <offsets>
+          <li Class="FocusStrengthOffset_ArtificialBuildings" MayRequire="Ludeon.Rimworld.Royalty">
+            <radius>7.9</radius>
+            <curve>
+              <points>
+                <li>(0,   0.0)</li>
+                <li>(5,  -0.06)</li>
+                <li>(10, -0.12)</li>
+                <li>(50, -0.22)</li>
+              </points>
+            </curve>
+          </li>
+          <li Class="FocusStrengthOffset_BuildingDefs" MayRequire="Ludeon.Rimworld.Royalty">
+            <defs>
+							<AnimusStone MayRequire="Ludeon.RimWorld.Royalty">0.03</AnimusStone>
+							<NatureShrine_Small MayRequire="Ludeon.RimWorld.Royalty">0.01</NatureShrine_Small>
+							<NatureShrine_Large MayRequire="Ludeon.RimWorld.Royalty">0.01</NatureShrine_Large>
+              <Dryad_GauranlenShrine_Small MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Small>
+							<Dryad_GauranlenShrine_Large MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Large>
+              <Dryad_VikingShrine MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_VikingShrine>
+						</defs>
+            <radius>7.9</radius>
+            <maxBuildings>4</maxBuildings>
+            <explanationKey>MeditationFocusPerAnimusStoneAndShrine</explanationKey>
+            <explanationKeyAbstract>MeditationFocusPerAnimusStoneAndShrineAbstract</explanationKeyAbstract>
+          </li>
+        </offsets>
+      </li>
+    </comps>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+      <WorkToBuild>15000</WorkToBuild>
+      <Beauty>10</Beauty>
+      <MeditationFocusStrength>0.22</MeditationFocusStrength>
+      <Mass>25</Mass>
+    </statBases>
+    <costStuffCount>150</costStuffCount>
+    <building>
+      <paintable>true</paintable>
+    </building>
+  </ThingDef>
+
+  <ThingDef ParentName="Dryad_StandingStones">
+    <defName>Dryad_GauranlenShrine_Large</defName>
+    <label>large gauranlen shrine</label>
+    <description>A large shrine for honoring the gauranlen tree.</description>
+    <graphicData>
+      <graphicClass>Graphic_Random</graphicClass>
+      <texPath>Building/Dryad_LargeShrine</texPath>
+      <drawSize>(3,3)</drawSize>
+      <shadowData>
+        <volume>(1.3,1.5,0.8)</volume>
+        <offset>(0,0,-0.9)</offset>
+      </shadowData>
+    </graphicData>
+    <size>(3,3)</size>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <comps>
+      <li Class="CompProperties_MeditationFocus" MayRequire="Ludeon.Rimworld.Royalty">
+        <statDef>MeditationFocusStrength</statDef>
+        <focusTypes>
+          <li>Natural</li>
+        </focusTypes>
+        <offsets>
+          <li Class="FocusStrengthOffset_ArtificialBuildings" MayRequire="Ludeon.Rimworld.Royalty">
+            <radius>7.9</radius>
+            <curve>
+              <points>
+                <li>(0,   0.0)</li>
+                <li>(5,  -0.06)</li>
+                <li>(10, -0.13)</li>
+                <li>(50, -0.30)</li>
+              </points>
+            </curve>
+          </li>
+          <li Class="FocusStrengthOffset_BuildingDefs" MayRequire="Ludeon.Rimworld.Royalty">
+            <defs>
+							<AnimusStone MayRequire="Ludeon.RimWorld.Royalty">0.03</AnimusStone>
+							<NatureShrine_Small MayRequire="Ludeon.RimWorld.Royalty">0.01</NatureShrine_Small>
+							<NatureShrine_Large MayRequire="Ludeon.RimWorld.Royalty">0.01</NatureShrine_Large>
+              <Dryad_GauranlenShrine_Small MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Small>
+							<Dryad_GauranlenShrine_Large MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_GauranlenShrine_Large>
+              <Dryad_VikingShrine MayRequire="Ludeon.RimWorld.Royalty">0.01</Dryad_VikingShrine>
+						</defs>
+            <radius>7.9</radius>
+            <maxBuildings>4</maxBuildings>
+            <explanationKey>MeditationFocusPerAnimusStoneAndShrine</explanationKey>
+            <explanationKeyAbstract>MeditationFocusPerAnimusStoneAndShrineAbstract</explanationKeyAbstract>
+          </li>
+        </offsets>
+      </li>
+    </comps>
+    <statBases>
+      <MaxHitPoints>300</MaxHitPoints>
+      <WorkToBuild>30000</WorkToBuild>
+      <MeditationFocusStrength>0.30</MeditationFocusStrength>
+      <Beauty>20</Beauty>
+      <Mass>50</Mass>
+    </statBases>
+    <costStuffCount>300</costStuffCount>
+  </ThingDef>
+
+</Defs>
